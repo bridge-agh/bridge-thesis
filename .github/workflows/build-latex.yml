@@ -1,22 +1,44 @@
 name: Build main.tex
-on: [push]
+
+on:
+  push:
+    branches:
+      - main
+      
 jobs:
   build_latex:
     runs-on: ubuntu-latest
+
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v3
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
           latexmk_shell_escape: true
+
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
           name: PDF
           path: main.pdf
-      - name: Release
-        uses: softprops/action-gh-release@v1
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        if: startsWith(github.ref, 'refs/heads/main')
         with:
-          files: main.pdf
+          tag_name: ${{ github.sha }}
+          release_name: Release ${{ github.sha }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        if: startsWith(github.ref, 'refs/heads/main')
+        with:
+          asset_path: main.pdf
+          asset_name: main.pdf
+          asset_content_type: application/pdf
+          release_tag: ${{ github.sha }}
