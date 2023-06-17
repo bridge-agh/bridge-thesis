@@ -17,6 +17,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          latexmk_shell_escape: true
+
       - name: Update Release with New File
         uses: "actions/github-script@v6"
         with:
