@@ -21,15 +21,20 @@ jobs:
         uses: "actions/github-script@v6"
         with:
           script: |
-            // Check if the release "latest" already exists
-            const release = await github.rest.repos.getReleaseByTag({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag: "latest"
-            });
+            // Check if the release "latest" already exists, catch erros if it does not exist
+            let release = null;
+            try {
+              release = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: "latest"
+              });
+            } catch (error) {
+              console.log("Release does not exist");
+            }
             
             // If the release "latest" does exist, delete it
-            if (release.data.id) {
+            if (release) {
               await github.rest.repos.deleteRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
