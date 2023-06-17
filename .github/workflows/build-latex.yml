@@ -4,45 +4,58 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
-  build_latex:
+  update-release-with-file:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      packages: write
+
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v3
-
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Update Release with New File
+        uses: "actions/github-script@v6"
         with:
-          root_file: main.tex
-          latexmk_shell_escape: true
+          script: |
+            // Check if the release "latest" already exists
+            const release = await github.rest.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: "latest"
+            });
+            
+            // If the release "latest" does exist, delete it
+            if (release.data.id) {
+              await github.rest.repos.deleteRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: release.data.id
+              });
+            }
+    
+            // Create a new release "latest"
+            const todayDate = new Date().toISOString().slice(0, 10);
+            const newRelease = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: "latest",
+              name: "main.pdf",
+              body: "latest main.pdf - " + todayDate,
+              draft: false,
+              prerelease: false
+            });
 
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v3
-        with:
-          name: PDF
-          path: main.pdf
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/heads/main')
-        with:
-          tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/heads/main')
-        with:
-          asset_path: main.pdf
-          asset_name: main.pdf
-          asset_content_type: application/pdf
-          release_tag: ${{ github.sha }}
+            // Upload the file "main.pdf" from the root directory of the repository and attach it to the release "latest"
+            await github.rest.repos.uploadReleaseAsset({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: newRelease.data.id,
+              name: "main.pdf",
+              data: require("fs").readFileSync("main.pdf")
+            });
+            
