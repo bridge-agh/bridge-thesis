@@ -54,7 +54,7 @@
 
 \newcommand*{\LangSupervisor}{Opiekun pracy: }
 
-\newcommand*{\LangThesisAuthor}{Autor: }
+\newcommand*{\LangThesisAuthor}{Autorzy: }
 
 \newcommand*{\LangStatementBody}{Uprzedzony(-a) o odpowiedzialności
   karnej na podstawie art. 115 ust. 1 i 2 ustawy z dnia 4 lutego 1994 r. o
@@ -114,7 +114,6 @@
 \RequirePackage[polish]{babel}
 \RequirePackage{amsmath}
 \RequirePackage{mathptmx}
-\RequirePackage{times}
 
 \addto\captionspolish{%
   \def\listtablename{Spis tabel}%
@@ -210,6 +209,9 @@
 \fancyhead{}
 
 \fancyhead[LE]{\bfseries \thepage}
+\fancyhead[RE]{\leftmark}
+
+\fancyhead[LO]{ \leftmark}
 \fancyhead[RO]{\bfseries \thepage}
 
 \frenchspacing
