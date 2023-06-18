@@ -208,11 +208,22 @@
 \fancyhf{}
 \fancyhead{}
 
-\fancyhead[LE]{\bfseries \thepage}
-\fancyhead[RE]{\leftmark}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\leftmark}
 
-\fancyhead[LO]{ \leftmark}
-\fancyhead[RO]{\bfseries \thepage}
+% \fancyhead[LE]{\bfseries \thepage}
+% \fancyhead[RO]{\bfseries \thepage}
+
+\fancyfoot[LE]{\thepage}
+\fancyfoot[RO]{\thepage}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}
+  
+  \fancyfoot[LE]{\thepage}
+  \fancyfoot[RO]{\thepage}
+}
 
 \frenchspacing
 \sloppy
