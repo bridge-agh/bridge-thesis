@@ -2,20 +2,23 @@
 \label{sec:wybrane-aspekty-realizacji}
 
 \section{Architektura serwera}
-
+Wstępne założenia dotyczące infrastruktury aplikacji serwerowej opierały się na wykorzystaniu języka Python wraz z frameworkiem FastApi. Z czasem jednak, w świetle narastających wymagań i doświadczeń zgromadzonych podczas etapu tworzenia, nasz zespół podjął strategiczną decyzję o ewolucji stosu technologicznego. Ostatecznie, struktura serwera została skonstruowana w dynamicznym języku Scala, korzystając z potencjału frameworku Akka, specjalizującego się w programowaniu współbieżnym oraz rozproszonym, bazującym na zaawansowanym modelu aktorów. 
+\subsection{Short poll}
+Pierwotny model komunikacji między klientem a serwerem był zbudowany w oparciu o metodę short polling, zaimplementowaną przy pomocy FastApi. Ten sposób w praktycznym zastosowaniu ujawnił pewne ograniczenia. Regularne zapytania wysyłane przez klienta w celu sprawdzenia stanu danych na serwerze prowadziły do widocznych opóźnień w aktualizacji interfejsu użytkownika. Taka sytuacja stwarzała trudności nawet przy realizacji bardzo prostych funkcji, takich jak zmiana pozycji użytkowników w przestrzeni lobby.
 \subsection{Long poll}
-
+Wobec wyzwań narzuconych przez ograniczenia metody short polling, nasz zespół rozważał migrację ku strategii long polling. Metoda ta, w odróżnieniu od konwencjonalnych technik polegających na ciągłym wysyłaniu zapytań przez klienta w celu odświeżenia danych, proponuje utrzymanie otwartego kanału HTTP do czasu, aż serwer będzie posiadał świeże informacje do przekazania. Mimo iż koncepcja ta wydawała się obiecująca, nasiliły się obawy związane z koniecznością ciągłego monitorowania potencjalnej utraty połączenia - problemu, dla którego brak jest uniwersalnych rozwiązań. Dodatkowo, obawy o wzrost złożoności zarządzania wieloma aktywnymi połączeniami skłoniły nas do ostatecznej rezygnacji z wdrożenia tej techniki.
 \subsection{Połączenie reaktywne}
-
+Implementacja frameworku Akka pozwoliła na ustanowienie stabilnego, reaktywnego połączenia między klientem a serwerem. Programowanie reaktywne, koncentrujące się na płynnym przepływie danych i ich propagacji, umożliwiło aplikacji klienta na bieżąco reagować na wszelkie zmiany. Jest to szczególnie istotne w kontekście naszej aplikacji, która charakteryzuje się intensywną interakcją użytkownika, zwłaszcza podczas naszej kluczowej funkcjonalności - rozgrywki w brydża. Zastosowanie tego podejścia znacząco usprawniło koordynację sekwencji animacji ruchów poszczególnych graczy.
 \subsection{Testy}
-
+Framework Akka dostarcza także kompleksowe narzędzia do efektywnego testowania aktorów, w tym symulowane środowisko czasu wykonania, które pozwala na dogłębne sprawdzenie zachowań asynchronicznych w warunkach synchronicznych. Dzięki tym możliwościom możemy rozwijać architekturę serwera, mając pełne przekonanie co do jej stabilności i niezawodności działania.
 
 \section{Aplikacja webowa}
+Aplikacja webowa została skonstruowana przy wykorzystaniu platformy Next.js oraz języka programowania Typescript, który jest rozszerzeniem Javascriptu o statyczne typowanie. W przeciwieństwie do segmentu serwerowego, początkowo dobrane technologie okazały się adekwatne i nie generowały konieczności dokonywania zmian w zastosowanym stacku. Jedynie aspekt związany z realizacją rozgrywki w brydża wymagał szczególnej uwagi. Próba implementacji animacji, takich jak ruch kart, z wykorzystaniem wyłącznie komponentów React okazała się być nadmiernie czaso i pracochłonna. Ta część projektu została dokładniej omówiona w sekcji poświęconej Silnikowi gry.
 
 \subsection{Przystosowanie do backendu - hooki}
-
+Biblioteka React oferuje potężne narzędzie w postaci hooków, które umożliwiają efektywne zarządzanie stanem i cyklem życia komponentów. W naszym projekcie, do obsługi zapytań klienta do serwera backendowego, zdecydowaliśmy się skorzystać z hooka useSWR, pochodzącego z biblioteki SWR. Jest to wysoce efektywne rozwiązanie do pobierania danych w aplikacjach opartych na React. Aby jeszcze bardziej zoptymalizować proces, stworzyliśmy również zestaw własnych, dedykowanych hooków. Takie podejście pozwoliło na znaczną standaryzację logiki odpowiedzialnej za wysyłanie i odbieranie zapytań HTTP, co przyczyniło się do drastycznego zmniejszenia ilości kodu wymaganego do realizacji tych operacji.
 \subsection{Efektywne opisywanie stylu}
-
+W celu nadania stylów komponentom naszej aplikacji internetowej posłużyliśmy się frameworkiem Tailwind CSS w połączeniu z biblioteką Daisy UI. Zastosowanie gotowych klas dostarczonych przez te narzędzia umożliwiło nam efektywne i intuicyjne stylizowanie elementów interfejsu użytkownika, eliminując jednocześnie potrzebę bezpośredniego zarządzania plikami CSS. Dzięki temu uniknęliśmy konieczności definicji własnych klas, co często prowadzi do tworzenia zawiłego i powtarzalnego kodu. Wykorzystanie tego podejścia znacznie przyspieszyło proces rozwoju front-endu naszej aplikacji.
 \subsection{Testy E2E}
 
 
