@@ -134,8 +134,8 @@ wewnątrz. Posiada on następujące możliwości:
   \item zamknięcie lobby -- jeżeli administrator jest ostatnim ludzkim
         graczem w~lobby, opuszczenie go spowoduje jego automatyczne
         zamknięcie.
-%  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
-%         dostępność rozgrywki rozpoczętej przez lobby w~panelu
+        %  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
+        %         dostępność rozgrywki rozpoczętej przez lobby w~panelu
 
 \end{itemize}
 
@@ -165,30 +165,110 @@ wewnątrz. Posiada on następujące możliwości:
 
 
 \section{Specyfikacja wymagań funkcjonalnych}
-Aplikacja nie tylko powinna być dobrze zaprojektowana i wygodna w użyciu, ale także funkcjonalna. Musi spełniać założone wymagania, udostępniając odpowiednie funkcjonalności, żeby była przydatna dla jej użytkowników. Nie da się używać wirtualnego asystenta do gry w brydża, jeśli brakuje w nim asystenta AI, czy w ogóle elementu rozgrywki. Bez spełnienia kluczowych wymagań funkcjonalnych, aplikacja praktycznie nie istnieje. W tym podrozdziale przedstawiamy te wymagania.
+Aplikacja nie tylko powinna być dobrze zaprojektowana i~wygodna
+w~użyciu, ale także funkcjonalna. Musi spełniać założone wymagania,
+udostępniając odpowiednie funkcjonalności, żeby była przydatna dla
+jej użytkowników. Nie da się używać wirtualnego asystenta do gry
+w~brydża, jeśli brakuje w nim asystenta AI, czy w~ogóle elementu
+rozgrywki. Bez spełnienia kluczowych wymagań funkcjonalnych,
+aplikacja praktycznie nie istnieje. W~tym podrozdziale przedstawiamy
+te wymagania.
 \subsection{Logowanie i rejestracja nowych użytkowników}
-Żeby uzyskać dostęp do funkcjonalności naszej aplikacji potrzebne jest posiadanie konta i bycie zalogowanym. Dlatego koniecznością jest umożliwienie użytkownikom utworzenia konta, logowania się na nie i późniejszego wylogowania. Formularz rejestracji wymaga podania adresu e-mail, nazwy użytkownika i hasła. Logowanie odbywa się poprzez wprowadzenie swojego adresu e-mail i hasła.
+Żeby uzyskać dostęp do funkcjonalności naszej aplikacji, potrzebne
+jest posiadanie konta i bycie zalogowanym. Z~tego względu koniecznością
+jest umożliwienie użytkownikom utworzenia konta, logowania się na
+nie i~możliwość późniejszego wylogowania. Formularz rejestracji wymaga
+podania adresu e-mail, nazwy użytkownika i~hasła. Logowanie odbywa się
+poprzez wprowadzenie swojego adresu e-mail i~hasła.
 \subsection{Utworzenie/Dołączenie do lobby}
-W celu rozegrania partii brydża przeciwko innym graczom, bądź przeciwnikom AI gracz musi mieć możliwość utworzenia własnej rozgrywki oraz dołączenia do istniejącej. Utworzyć jak i dołączyć do lobby można z widoku głównego aplikacji.  Dołączenie do lobby odbywa się poprzez wprowadzenie identyfikatora gry lub wejście w link otrzymany od założyciela lobby. Po utworzeniu lobby użytkownik może wysłać jego identyfikator innym graczom, zapraszając ich do dołączenia, albo zdecydować się wypełnić brakujące miejsca asystentami AI. 
+W celu rozegrania partii brydża przeciwko innym graczom bądź
+przeciwnikom AI, gracz musi mieć możliwość utworzenia własnej
+rozgrywki oraz dołączenia do istniejącej. Utworzenie, jak i~dołączenie do
+lobby jest dostępne z~widoku głównego aplikacji. Dołączenie do lobby
+odbywa się poprzez wprowadzenie identyfikatora gry lub wejście w~link
+otrzymany od założyciela lobby. Po utworzeniu lobby użytkownik może
+wysłać jego identyfikator innym graczom, zapraszając ich do dołączenia,
+albo zdecydować się na wypełnienie brakujących miejsc asystentami AI.
 \subsection{Wyrzucenie gracza z lobby}
-Administrator lobby może w dowolnym momencie arbitralnie wyrzucić każdego z pozostałych graczy.
+Administrator lobby może w dowolnym momencie arbitralnie wyrzucić
+każdego z pozostałych graczy.
 \subsection{Rozpoczęcie rozgrywki}
-Kiedy do lobby dołączą wszyscy gracze lub część miejsc zostanie obsadzonych asystentami AI, administrator lobby może rozpocząć rozgrywkę, używajac odpowiedniego przycisku. Wszyscy gracze zostają przeniesieni do ekranu gry. 
+Kiedy do lobby dołączą wszyscy gracze lub część miejsc zostanie
+obsadzonych asystentami AI, administrator lobby może rozpocząć
+rozgrywkę, używając odpowiedniego przycisku. Wszyscy gracze zostają
+przeniesieni do ekranu gry.
 \subsection{Rozgrywka}
-Głównym celem i podstawową funkcjonalnością naszej aplikacji jest rozgrywka w brydża. Każda runda zaczyna się od licytacji, po której gracze wykładają karty zgodie z zasadami gry. Gra kończy się kiedy jedna z par zdobędzie wystarczającą liczbę punktów. Po skończonej rozgrywce użytkownikowi wyświetlany jest ekran z wynikami.
+Głównym celem i~podstawową funkcjonalnością naszej aplikacji jest
+rozgrywka w brydża. Każda runda zaczyna się od licytacji, po której
+gracze wykładają karty zgodnie z~zasadami gry. Gra kończy się, kiedy
+jedna z~par zdobędzie wystarczającą liczbę punktów. Po skończonej
+rozgrywce użytkownikowi wyświetlany jest ekran z~wynikami.
 \subsection{Wyświetlenie wyników}
-Ważne jest, żeby gracze po skończeniu partii mogli zobaczyć podsumowanie całej rozgrywki. Użytkownikowi wyświetlany jest ostateczny wynik gry, a także liczbę zdobytych przez jego zespół lew oraz możliwych do zdobycia w każdej z rund. Dzięki temu gracze mogą dokładniej przeanalizować rozegraną partię i lepiej oceniać swoje możliwości podczas licytacji w przyszłych rozgrywkach. 
+Ważne jest, żeby gracze po skończeniu partii mogli zobaczyć
+podsumowanie całej rozgrywki. Użytkownikowi wyświetlany jest ostateczny
+wynik gry, a~także liczba zdobytych punktów przez jego zespół na
+podstawie zdobytych lew. Dzięki temu gracze mogą dokładniej
+przeanalizować rozegraną partię i~lepiej oceniać swoje możliwości
+podczas licytacji w~przyszłych rozgrywkach.
 \subsection{Opuszczenie rozgrywki}
-Użytkownik może nie tylko wyjść z lobby, ale także w dowolnym momencie opuścić rozgrywkę. W takim przypadku gracz zostaje przeniesiony do ekranu z dotychczasowymi wynikami, a jego miejsce zajmuje asystent AI.
+Użytkownik może nie tylko wyjść z~lobby, ale także w~dowolnym momencie
+opuścić rozgrywkę. W~takim przypadku miejsce gracza zastępuje
+asystent AI.
 % TODO
 
 \section{Specyfikacja wymagań niefunkcjonalnych}
-W naszym projekcie aplikacji - wirtualnego asystenta do gry w brydża, istotą jest zapewnienie nie tylko wszystkich potrzebnych wymagań funkcjonalnych, ale także wygodnej i przyjemnej rozgrywki oraz korzystania z reszty funkcjonalności. Niewiele osób będzie chętnie korzystać z aplikacji, choćby miała ona wyjątkowo rozbudowane spektrum funkcji, jeśli jej działanie będzie niestabilne i pozbawione intuicyjności. W tym podrozdziale przedstawiamy wymagania niefunkcjonalne aplikacji, które są równie ważne jak zdefiniowane wcześniej wymagania funkcjonalne.
+W naszym projekcie aplikacji -- wirtualnego asystenta do gry w~brydża,
+istotą jest zapewnienie nie tylko wszystkich potrzebnych wymagań
+funkcjonalnych, ale także wygodnej i~przyjemnej rozgrywki oraz
+korzystania z reszty funkcjonalności. Niewiele osób będzie chętnie
+korzystać z~aplikacji, choćby miała ona wyjątkowo rozbudowane spektrum
+funkcji, jeśli jej działanie będzie niestabilne i~pozbawione
+intuicyjności. W~tym podrozdziale przedstawiamy wymagania
+niefunkcjonalne aplikacji, które są równie ważne, jak zdefiniowane
+wcześniej wymagania funkcjonalne.
 \subsection{Dostępność}
-Rozwijany przez nas wirtualny asystent do gry w brydża jest aplikacją webową. Dzięki temu będzie on dostępny zarówno dla użytkowników Windows, MacOS, Linux, czy innych systemów operacyjnych. Co więcej, starannie zaprojektowane interfejsy użytkownika (UI) zostały dostosowane tak, aby były wygodne i funkcjonalne nawet na urządzeniach o niewielkich rozmiarach ekranu, umożliwiając płynne korzystanie z aplikacji również na urządzeniach mobilnych.
+Rozwijany przez nas wirtualny asystent do gry w~brydża jest aplikacją
+webową. Dzięki temu będzie on dostępny zarówno dla użytkowników
+Windows, MacOS, Linux, jak i~innych systemów operacyjnych posiadających
+przeglądarkę wspierającą najnowsze standardy. Co więcej, starannie
+zaprojektowane interfejsy użytkownika (UI) zostały dostosowane tak,
+aby były wygodne i~funkcjonalne nawet na urządzeniach o~niewielkich
+rozmiarach ekranu, umożliwiając płynne korzystanie z~aplikacji również
+na urządzeniach mobilnych.
 \subsection{Użyteczność}
-Priorytetem naszej aplikacji jest zapewnienie łatwości obsługi i zrozumiałości. Niezwykle istotne jest, aby interfejs użytkownika był intuicyjny, estetyczny i nie zniechęcał potencjalnych użytkowników, ani nie utrudniał korzystania z aplikacji. Dlatego podczas projektowania interfejsu użytkownika kierowaliśmy się zasadami dobrego UI/UX. Stworzyliśmy minimalistyczny i uporządkowany interfejs, który eliminuje chaos i zapewnia spójność na wszystkich podstronach aplikacji. Wykorzystaliśmy ikony o jednakowym znaczeniu na wszystkich stronach, co ułatwia nawigację. Dodatkowo, zastosowaliśmy stałą gamę starannie dobranych kolorów dla elementów interfejsu, co pozwoliło nam utrzymać spójny styl podczas projektowania kolejnych widoków. Aplikacja oferuje tryb jasny i ciemny, aby użytkownicy mogli wygodnie korzystać z niej w zależności od preferencji lub pory dnia. Ponadto, wszystkie podstrony są responsywne, co oznacza, że elementy interfejsu zachowują pełną funkcjonalność, niezależnie od zmiany rozmiaru ekranu, na którym są wyświetlane.
+Priorytetem naszej aplikacji jest zapewnienie łatwości obsługi
+i~zrozumiałości. Niezwykle istotne jest, aby interfejs użytkownika
+był intuicyjny, estetyczny i~nie zniechęcał potencjalnych użytkowników,
+ani nie utrudniał korzystania z~aplikacji. Dlatego podczas projektowania
+interfejsu użytkownika kierowaliśmy się zasadami dobrego UI/UX.
+Stworzyliśmy minimalistyczny i~uporządkowany interfejs, który eliminuje
+chaos i~zapewnia spójność na wszystkich podstronach aplikacji.
+Wykorzystaliśmy ikony o~jednakowym znaczeniu na wszystkich stronach,
+co ułatwia nawigację. Dodatkowo zastosowaliśmy stałą gamę starannie
+dobranych kolorów dla elementów interfejsu, co pozwoliło nam utrzymać
+spójny styl podczas projektowania kolejnych widoków. Aplikacja oferuje
+tryb jasny i~ciemny, aby użytkownicy mogli wygodnie korzystać z~niej
+w~zależności od preferencji lub pory dnia. Ponadto, wszystkie podstrony
+są responsywne, co oznacza, że elementy interfejsu zachowują pełną
+funkcjonalność, niezależnie od zmiany rozmiaru ekranu, na którym są
+wyświetlane.
 \subsection{Niezawodność}
-Wirtualny asystent do gry w brydża tworzony jest z myślą o nauce i doskonaleniu umiejętności, ale także konkurencji i wzajemnym rozgrywkom pomiędzy graczami. Konieczne jest więc wprowadzenie logiki gry z największą dokładnością. Błędy w działaniu aplikacji podczas rozgrywki mogłyby wpłynąć na wynik gry oraz wprowadzić nowych graczy w zakłopotanie, a bardziej doświadczonych w stan irytacji. Niezwykle istotne jest również uniknięcie sytuacji, w których dochodziłoby do utraty połączenia lub braku synchronizacji pomiędzy graczami. Takie incydenty mogą zrujnować całą rozgrywkę i zdecydowanie obniżyć wartość jednej z kluczowych funkcjonalności aplikacji, jaką jest możliwość rozgrywania partii między użytkownikami. Pierwszym krokiem w stronę niezawodności aplikacji było wybranie odpowiednich technologii do jej realizacji. Next.js oraz FastAPI to godne zaufania, popularne na całym świecie narzędzia do budowy aplikacji webowych, a usługa Google Firebase odciąża nas z implementacji funkcjonalności gromadzenia danych i obsługi użytkowników od podstaw. Mając odpowiedni stos technologiczny przystąpiliśmy do implementacji kolejnych funkcjonalności z najwyższą starannością. 
+Wirtualny asystent do gry w brydża tworzony jest z~myślą o~nauce
+i~doskonaleniu umiejętności, ale także konkurencji i~wzajemnym
+rozgrywkom pomiędzy graczami. Konieczne jest więc wprowadzenie logiki
+gry z~największą dokładnością. Błędy w działaniu aplikacji podczas
+rozgrywki mogłyby wpłynąć na wynik gry oraz wprowadzić nowych graczy
+w~zakłopotanie, a~bardziej doświadczonych w~stan irytacji.
+Niezwykle istotne jest również uniknięcie sytuacji, w~których
+dochodziłoby do utraty połączenia lub braku synchronizacji pomiędzy
+graczami. Takie incydenty mogą zrujnować całą rozgrywkę i~zdecydowanie
+obniżyć wartość jednej z~kluczowych funkcjonalności aplikacji, jaką
+jest możliwość rozgrywania partii między użytkownikami.
+Pierwszym krokiem w~stronę niezawodności aplikacji było wybranie
+odpowiednich technologii do jej realizacji. Next.js oraz FastAPI %%% TODO dowód?
+to godne zaufania, popularne na całym świecie narzędzia do budowy
+aplikacji webowych, a~usługa Google Firebase odciąża nas z~implementacji
+funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
+Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji
+kolejnych funkcjonalności z~najwyższą starannością.
 
-% TODO
