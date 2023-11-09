@@ -49,13 +49,16 @@ jobs:
             }
     
             // Create a new release "latest"
-            const todayDate = new Date().toISOString().slice(0, 10);
+
+            // today date (include hours, minutes) format date as YYYY-MM-DD HH-MM
+            const todayDate = new Date().toISOString().slice(0, 16).replace("T", " ").replace(/:/g, "-");
+
             const newRelease = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag_name: "latest",
-              name: "main.pdf",
-              body: "latest main.pdf - " + todayDate,
+              name: `(${todayDate}) main.pdf`,
+              body: "latest main.pdf",
               draft: false,
               prerelease: false
             });
@@ -66,7 +69,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               release_id: newRelease.data.id,
-              name: "main.pdf",
+              name: `main ${todayDate}.pdf`
               data: require("fs").readFileSync("main.pdf")
             });
             
