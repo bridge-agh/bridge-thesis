@@ -69,7 +69,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               release_id: newRelease.data.id,
-              name: `main ${todayDate}.pdf`
+              name: `main ${todayDate}.pdf`,
               data: require("fs").readFileSync("main.pdf")
             });
             
