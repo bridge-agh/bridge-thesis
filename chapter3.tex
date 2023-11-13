@@ -1,7 +1,20 @@
 \chapter{\ChapterTitleRealizationAspects}
 \label{sec:wybrane-aspekty-realizacji}
 
-\section{Przekształcona architektura serwera}
+Ta sekcja pracy skupia się na najważniejszych aspektach opracowanej
+aplikacji, podkreślając istotne modyfikacje przeprowadzone w~trakcie
+jej implementacji. Jej celem jest szczegółowe opisanie poszczególnych
+komponentów oraz zidentyfikowanie czynników, które mogły prowadzić do
+ewentualnych błędów w~funkcjonowaniu systemu. Dodatkowo skoncentruje
+się na prezentacji skutecznych rozwiązań dla wykrytych problemów,
+oferując konkretne przykłady, które ilustrują zastosowane poprawki.
+
+\section{Architektura serwera}
+
+%%% TODO expand basic info
+Serwer napisany w języku Scala.
+
+\subsection{Połączenia z serwerem}
 
 Wstępne założenia dotyczące infrastruktury aplikacji
 serwerowej opierały się na wykorzystaniu języka Python
@@ -38,10 +51,10 @@ potencjalnej utraty połączenia. Skłoniło nas do ostatecznej rezygnacji
 z~wdrożenia tego pomysłu.
 
 Implementacja frameworku Akka pozwoliła na ustanowienie stabilnego,
-reaktywnego połączenia między klientem a~serwerem. Programowanie reaktywne,
-koncentrujące się na płynnym przepływie danych i~ich propagacji, umożliwiło
-aplikacji klienta natychmiastowo reagować na wszelkie zmiany. Jest to
-szczególnie istotne w~kontekście naszej aplikacji, która charakteryzuje
+\textbf{reaktywnego} połączenia między klientem a~serwerem. Programowanie
+reaktywne, koncentrujące się na płynnym przepływie danych i~ich propagacji,
+umożliwiło aplikacji klienta natychmiastowo reagować na wszelkie zmiany. Jest
+to szczególnie istotne w~kontekście naszej aplikacji, która charakteryzuje
 się intensywną interakcją użytkownika, zwłaszcza podczas naszej kluczowej
 funkcjonalności -- rozgrywki w~brydża. Zastosowanie tego podejścia
 znacząco usprawniło koordynację sekwencji animacji ruchów poszczególnych
@@ -57,9 +70,21 @@ graczy.
 % działania.
 
 \section{Aplikacja webowa}
-Aplikacja webowa została skonstruowana przy wykorzystaniu platformy Next.js oraz języka programowania Typescript, który jest rozszerzeniem Javascriptu o statyczne typowanie. W przeciwieństwie do segmentu serwerowego, początkowo dobrane technologie okazały się adekwatne i nie generowały konieczności dokonywania zmian w zastosowanym stacku. Wyjątek stanowiła realizacja rozgrywki w brydża. Próba implementacji animacji, takich jak ruch kart, z wykorzystaniem wyłącznie komponentów React okazała się być nadmiernie czaso i pracochłonna. Ta część projektu została dokładniej omówiona w sekcji poświęconej Silnikowi gry.
+Aplikacja webowa została stworzona przy użyciu platformy Next.js oraz
+języka programowania Typescript, będącego rozszerzeniem Javascriptu
+o~statyczne typowanie. Ta część projektu została zrealizowana zgodnie
+z~pierwotnymi założeniami. Jednakże wyjątkiem było wdrożenie funkcji
+rozgrywki w~brydża. Ze względu na złożoność problemów i~wymagania
+dotyczące wydajności, zdecydowano się na implementację tego elementu za
+pomocą technologii wcześniej niewzględnie planowanej.
 
-\subsection{Przystosowanie do backendu - hooki}
+Warto zaznaczyć, że implementacja rozgrywki w~brydża została logicznie
+odseparowana od reszty aplikacji, choć w~pełni integruje się z~samą
+platformą i~korzysta z~wcześniej wspomnianych języków programowania.
+Szczegółowy opis części znajduje się w~podrozdziale \nameref{subsec:silnik_gry}.
+
+
+\subsection{Przystosowanie do backendu -- hooki}
 Biblioteka React oferuje potężne narzędzie w postaci hooków, które umożliwiają efektywne zarządzanie stanem i cyklem życia komponentów. W naszym projekcie, do obsługi zapytań klienta do serwera backendowego, zdecydowaliśmy się skorzystać z hooka useSWR, pochodzącego z biblioteki SWR. Jest to wysoce efektywne rozwiązanie do pobierania danych w aplikacjach opartych na React. Aby jeszcze bardziej zoptymalizować proces, stworzyliśmy również zestaw własnych, dedykowanych hooków. Takie podejście pozwoliło na znaczną standaryzację logiki odpowiedzialnej za wysyłanie i odbieranie zapytań HTTP, co przyczyniło się do drastycznego zmniejszenia ilości kodu wymaganego do realizacji tych operacji.
 \subsection{Efektywne opisywanie stylu}
 W celu nadania stylów komponentom naszej aplikacji internetowej posłużyliśmy się frameworkiem Tailwind CSS w połączeniu z biblioteką Daisy UI. Zastosowanie gotowych klas dostarczonych przez te narzędzia umożliwiło nam efektywne i intuicyjne stylizowanie elementów interfejsu użytkownika, eliminując jednocześnie potrzebę bezpośredniego zarządzania plikami CSS. Dzięki temu uniknęliśmy konieczności definicji własnych klas, co często prowadzi do tworzenia zawiłego i powtarzalnego kodu. Wykorzystanie tego podejścia znacznie przyspieszyło proces rozwoju front-endu naszej aplikacji.
@@ -67,6 +92,8 @@ W celu nadania stylów komponentom naszej aplikacji internetowej posłużyliśmy
 
 
 \section{Silnik gry}
+\label{subsec:silnik_gry}
+Próba implementacji animacji, takich jak ruch kart, z wykorzystaniem wyłącznie komponentów React okazała się być nadmiernie czaso i pracochłonna. Ta część projektu została dokładniej omówiona w sekcji poświęconej Silnikowi gry.
 
 \subsection{Integracja silnika z React'em}
 
