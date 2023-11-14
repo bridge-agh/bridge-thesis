@@ -1,21 +1,25 @@
 \chapter{\ChapterTitleRealizationAspects}
 \label{sec:wybrane-aspekty-realizacji}
 
-Ta sekcja pracy skupia się na najważniejszych aspektach opracowanej
-aplikacji, podkreślając istotne modyfikacje przeprowadzone w~trakcie
-jej implementacji. Jej celem jest szczegółowe opisanie poszczególnych
-komponentów oraz zidentyfikowanie czynników, które mogły prowadzić do
-ewentualnych błędów w~funkcjonowaniu systemu. Dodatkowo skoncentruje
-się na prezentacji skutecznych rozwiązań dla wykrytych problemów,
-oferując konkretne przykłady, które ilustrują zastosowane poprawki.
+Ta sekcja pracy skupia się na opisaniu najważniejszych aspektów
+opracowanej aplikacji.
+Jej celem jest szczegółowe opisanie wybranych
+komponentów oraz przedstawienie czynników, które doprowadziły do
+problemów lub błędów w~funkcjonowaniu systemu. Dodatkowo skoncentruje
+się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
 \section{Architektura serwera}
-
 %%% TODO expand basic info
 Serwer napisany w języku Scala.
 
-\subsection{Połączenia z serwerem}
 
+%%% jak działa lobby bo ciekawe
+
+%%% utrata dostepow do endpointow w przypadku zmiany stanow lobby/gry
+
+
+
+\subsection{Połączenia z serwerem}
 Wstępne założenia dotyczące infrastruktury aplikacji
 serwerowej opierały się na wykorzystaniu języka Python
 wraz z~frameworkiem FastAPI. Z~czasem jednak, w~świetle
@@ -24,11 +28,11 @@ podczas etapu tworzenia, nasz zespół podjął
 strategiczną decyzję o~ewolucji stosu technologicznego.
 Ostatecznie, struktura serwera została skonstruowana
 w~dynamicznym języku Scala, korzystając z~potencjału
-frameworku Akka, specjalizującego się w~programowaniu
+framework'u Akka, specjalizującego się w~programowaniu
 współbieżnym oraz rozproszonym, bazującym na
 zaawansowanym modelu aktorów.
 
-Pierwotny model komunikacji między klientem, a~serwerem
+Pierwotny model komunikacji między klientem a~serwerem
 był zbudowany w~oparciu o~metodę \textbf{short polling},
 %%% TODO jakiś słownik co znaczy short polling???
 zaimplementowaną przy pomocy FastAPI. Ten sposób
@@ -70,34 +74,136 @@ graczy.
 % działania.
 
 \section{Aplikacja webowa}
-Aplikacja webowa została stworzona przy użyciu platformy Next.js oraz
-języka programowania Typescript, będącego rozszerzeniem Javascriptu
+Aplikacja webowa została stworzona przy użyciu platformy \textbf{Next.js} oraz
+języka programowania \textbf{Typescript}, będącego rozszerzeniem JavaScript'u
 o~statyczne typowanie. Ta część projektu została zrealizowana zgodnie
 z~pierwotnymi założeniami. Jednakże wyjątkiem było wdrożenie funkcji
 rozgrywki w~brydża. Ze względu na złożoność problemów i~wymagania
 dotyczące wydajności, zdecydowano się na implementację tego elementu za
-pomocą technologii wcześniej niewzględnie planowanej.
+pomocą technologii wcześniej nieuwzględnionej.
 
 Warto zaznaczyć, że implementacja rozgrywki w~brydża została logicznie
 odseparowana od reszty aplikacji, choć w~pełni integruje się z~samą
 platformą i~korzysta z~wcześniej wspomnianych języków programowania.
 Szczegółowy opis części znajduje się w~podrozdziale \nameref{subsec:silnik_gry}.
 
-
 \subsection{Przystosowanie do backendu -- hooki}
-Biblioteka React oferuje potężne narzędzie w postaci hooków, które umożliwiają efektywne zarządzanie stanem i cyklem życia komponentów. W naszym projekcie, do obsługi zapytań klienta do serwera backendowego, zdecydowaliśmy się skorzystać z hooka useSWR, pochodzącego z biblioteki SWR. Jest to wysoce efektywne rozwiązanie do pobierania danych w aplikacjach opartych na React. Aby jeszcze bardziej zoptymalizować proces, stworzyliśmy również zestaw własnych, dedykowanych hooków. Takie podejście pozwoliło na znaczną standaryzację logiki odpowiedzialnej za wysyłanie i odbieranie zapytań HTTP, co przyczyniło się do drastycznego zmniejszenia ilości kodu wymaganego do realizacji tych operacji.
+Biblioteka React oferuje potężne narzędzie w~postaci \textbf{hooków},
+które umożliwiają efektywne zarządzanie stanem i~cyklem życia komponentów.
+W~naszym projekcie, do obsługi zapytań klienta do serwera, zdecydowaliśmy się
+skorzystać z~hook'ów biblioteki \textbf{SWR}. Jest to efektywne rozwiązanie do
+pobierania danych rozwiązujące wiele problemów implementacynych takich jak
+cache'owanie i~deduplikacje danych, ponawianie żądań czy weryfikacja połączenia
+%%% TODO - slownik deduplikacja
+po odzyskaniu dostępu do sieci.
+
+Aby jeszcze bardziej zoptymalizować proces, stworzyliśmy
+również zestaw własnych, dedykowanych hook'ów. Takie podejście pozwoliło na
+znaczną standaryzację logiki odpowiedzialnej za aktualizacje stanów przy pomocy
+zapytań HTTP z~użyciem SWR. Przyczyniło się do drastycznego zmniejszenia ilości
+analizy kodu przez członków zespołu, gdyż założeniem hook'ów jest oferowanie
+możliwości wglądu, automatycznej aktualizacji lub zmiany stanu, które z~tych
+funkcji mogą być zaimplementowane w~różny sposób. Można porównać takie rozwiązanie
+do interfejsu oferującego niezmienne funkcjonalności.
+
+%%% TODO - kod/zdjecia wybranych hook'ów (sam kod może miec dodatkowe komentarze
+%%% opisujące jakies ciekawe cechy)
+
+Jak zostało wspomniane we wcześniejszym podrozdziale, dotyczącym serwera aplikacji,
+zrezygnowano ze wspomnianego rozwiązania biblioteki SWR na rzecz reaktywnego
+połączenia z~serwerem. Wymusiło to zmianę implementacji wysyłania i~odbierania
+zapytań do serwera. Istotne jest, że zastosowanie własnych hook'ów pozwoliło
+jedynie na zmianę wspólnej implementacji dla wszystkich komponentów. Logika
+wykorzystania hook'ów pozostała taka sama, przez co osoby odpowiedzialne za
+tworzenie UI nie musiały aktualizować kodu komponentów zawierających je.
+
 \subsection{Efektywne opisywanie stylu}
-W celu nadania stylów komponentom naszej aplikacji internetowej posłużyliśmy się frameworkiem Tailwind CSS w połączeniu z biblioteką Daisy UI. Zastosowanie gotowych klas dostarczonych przez te narzędzia umożliwiło nam efektywne i intuicyjne stylizowanie elementów interfejsu użytkownika, eliminując jednocześnie potrzebę bezpośredniego zarządzania plikami CSS. Dzięki temu uniknęliśmy konieczności definicji własnych klas, co często prowadzi do tworzenia zawiłego i powtarzalnego kodu. Wykorzystanie tego podejścia znacznie przyspieszyło proces rozwoju front-endu naszej aplikacji.
+W~celu nadania stylów komponentom naszej aplikacji internetowej posłużyliśmy się
+framework'iem \textbf{Tailwind CSS}. W~połączeniu z~biblioteką Daisy UI, która
+w~pełni wspiera ten framework, możliwe było zastosowanie gotowych klas
+stylistycznych. Oferują one nie tylko samą edycję pojedynczych elementów, ale też
+utworzenie zaprojektowanych, w~pełni animowanych obiektów.
+
+Efektywne i~intuicyjne stylizowanie elementów interfejsu użytkownika, eliminuje
+jednocześnie potrzebę bezpośredniego zarządzania plikami CSS. Jest to szczególnie
+przydatne, jeżeli wykorzystywany jest React, ze względu na jego naturalny podział
+elementów na osobne komponenty. Uniknęliśmy w~ten sposób konieczność
+definicji własnych klas, co często prowadzi do utworzenia zawiłego
+i~powtarzalnego kodu. Wykorzystanie tego podejścia znacznie przyspieszyło
+proces rozwoju części wizualnej aplikacji.
+
+
 \subsection{Testy E2E}
 
 
 \section{Silnik gry}
 \label{subsec:silnik_gry}
-Próba implementacji animacji, takich jak ruch kart, z wykorzystaniem wyłącznie komponentów React okazała się być nadmiernie czaso i pracochłonna. Ta część projektu została dokładniej omówiona w sekcji poświęconej Silnikowi gry.
+
+Silnik wizualny rozgrywki do gry w~brydża jest jednym z~najbardziej kluczowych
+elementów aplikacji. Jest on w~stanie zaoferować przyjemną rozgrywkę dla
+użytkowników, oferując konkurencyjne rozwiązanie dla obecnych na rynku produktów.
+
+\subsection{Framework Three.js}
+Podczas próby implementacji środowiska do gry, powstał problem z~zarządzaniem
+elementami kart i~ich przemieszczaniem po ekranie użytkownika. Animacje, takie jak
+ruch kart, z~wykorzystaniem wyłącznie komponentów React okazały się nadmiernie
+pracochłonne i~nieefektywne. Użytkownik mobilny miał problemy z~ładowaniem kart
+i~ich płynnym animowaniem. Jest to spowodowane inną architekturą procesorów
+mobilnych w~porównaniu do rozwiązań desktopowych. Nie są one przystosowane
+do wykonania najmocniejszych obliczeń, ale oferują niskie użycie energii. \\
+
+Wymusiło to rezygnację z~dotychczasowego podejścia. Dokonano zmiany na bardzo
+efektywny framework umożliwiający renderowanie elementów 3D - \textbf{Three.js}.
+
+Posiada on wszystkie potrzebne funkcje, których brakło w~naszym początkowym
+podejściu. Udostępnia on: \textit{canvas} -- którego zadaniem jest zdefiniowanie
+obszaru, na którym znajdują się wyświetlane elementy;  \textit{przestrzeń 3D} - w której możemy umieszczać
+karty i~przemieszczać niezależnie od struktury komponentów; \textit{kamerę} -- pozwalającą
+na wykorzystanie perspektywy w~środowisku 3D, przez co gracze mogą mieć wizualne
+odczucie realnej rozgrywki gry w~brydża.
+
+%%% TODO zdjęcie planszy gry 3D (orbithelper w gamescene)
+
+Dodatkowo framework ten wybrany został ze względu na swoją niezwykłą wydajność.
+Do renderowania elementów wykorzystuję on potencjał \textbf{WebGL}. Jest to API
+w~języku JavaScript, które jest standardem webowym wykorzystywanym
+w~przeglądarkach. Umożliwia on wykorzystanie akceleracji sprzętowej kart
+graficznych, które są przystosowane do przetwarzania fizyki, zdjęć
+i~efektów wizualnych. Kluczowe jest to, że stosując wspomnianą akcelerację,
+wykorzystujemy większy potencjał urządzeń mobilnych. Zastosowanie tego rozwiązania
+drastycznie zwiększyło efektywność i~płynność silnika gry na tych urządzeniach.
+Skok wydajności, porównując pierwotny silnik z~obecnym na urządzeniu mobilnym,
+jest na poziomie od około 15 wyświetlanych klatek na sekundę aż do
+ponad 140\footnote{
+    Porównanie zostało wykonane na urządzeniu
+    Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
+}.
 
 \subsection{Integracja silnika z React'em}
+Three.js oprócz wspomnianych zalet jest też wspierany w~postaci komponentów React.
+Rozwiązania, które są wykorzystane w~aplikacji to \textbf{React Three Fiber}
+i~\textbf{React drei}. Oba oferują wspomniane komponenty, jak i~dodatkowe moduły
+wspierające prace Three.js w~środowisku React. Uniknięto w~ten sposób korzystania
+z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty
+
 
 
 \section{AI}
 
 \subsection{TBC}
+
+
+\section{System wdrażania do środowiska deweloperskiego}
+
+%%% vercel jak to dziala z githubem
+
+%%% jak stworzono backend deploy z githubem i docekrem
+%%% ze github oferuje docker-repo
+
+\section{Dodatkowe elementy aplikacji}
+
+\subsection{tryb mobilny}
+
+\subsection{light/dark mode}
+
+\subsection{AI generated logos}
