@@ -1,6 +1,16 @@
 \chapter{\ChapterTitleWorkOrganization}
 \label{sec:organizacja-pracy}
 
+W~tym rozdziale omawiane są początkowe idee związane z~formą aplikacji,
+wizją jej funkcji oraz zarysem harmonogramu działań. Ponadto, przedstawiane
+są narzędzia, które zespół wykorzystał do skutecznego zarządzania
+i~realizacji projektu. Opisana jest również struktura organizacyjna
+zespołu, jego role i~zadania w kontekście tworzenia aplikacji.
+
+Ponadto, zawiera informacje dotyczące przygotowania narzędzi do
+weryfikacji postępu pracy, z~myślą o~osobach nadzorujących proces
+realizacji projektu.
+
 \section{Historia pomysłu projektu}
 
 %%% jak było
@@ -24,31 +34,94 @@
 %%% to opisujmey w obu przypadkach \subsubsection{Microsoft Teams}
 
 
-\section{Zastosowane praktyki i narzędzia organizacji pracy}
+\section{Wykorzystywane narzędzia do realizacji i organizacji pracy}
+
+Do realizacji projektu zostało wykorzystane wiele narzędzi i~technologii
+dostępnych za darmo lub jako produkty open source, czyli takie,
+których właściciel praw autorskich przyznaje użytkownikom prawa
+do swobodnego używania, modyfikacji i~udostępniania oprogramowania.
+
+Skorzystano także z~produktów komercyjnych, które zostały udostępnione
+bezpłatnie w~celach naukowych.
 
 \subsection{Planowanie i projektowanie}
 
+Przed rozpoczęciem tworzenia pierwszego kodu aplikacji niezbędne było
+opracowanie ogólnego planu i~pierwotnej wizji projektu. Zdecydowano
+się na staranne przygotowanie strategii działania oraz precyzyjnego
+zarysu celów i~funkcji, które mają być zrealizowane w~ramach projektu.
+To etap planowania stanowił fundament dla późniejszej implementacji
+i~umożliwił efektywne kierowanie procesem tworzenia aplikacji.
+
+Co więcej, w~ramach tego wstępnego etapu, zwrócono uwagę na
+opracowanie wizualizacji aplikacji. Starano się osiągnąć jasny
+zarys wyglądu aplikacji webowej poprzez stworzenie wstępnych projektów
+interfejsu użytkownika. Ta wizualizacja odegrała kluczową rolę
+w~procesie projektowania, umożliwiając zespołowi uzyskanie wyobrażenia
+o~finalnym wyglądzie aplikacji i~jednocześnie dostosowywanie projektu
+do oczekiwań i~potrzeb użytkowników, jak i~wzorowaniu się na utworzonej
+wizualizacji.
+
 \subsubsection{Shortcut}
+
+Praktycznie zawsze w~trakcie tworzenia oprogramowania wymagane jest
+narzędzie lub platforma udostępniająca możliwość tworzenia zadań,
+zależności między nimi oraz dzielenia na większe zbiory zadań.
+
+Zdecydowano się na narzędzie Shortcut \cite{Shortcut}, które oferuje
+wszystkie potrzebne funkcjonalności. Pozwala na podział zadań na tzw.
+epici -- elementy pracy zawierające wystarczająco dużo zadań do realizacji,
+których nie da się ukończyć w~krótkim czasie. Dla każdego milestone'a
+utworzono odpowiedni epic, dzięki czemu możliwe było prezentowanie
+kolejnych części i~kluczowych etapów procesu tworzenia aplikacji.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/shortcut/shortcut_backlog.png}
+    \caption{Backlog z zadaniami}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/shortcut/shortcut_epic.png}
+    \caption{Epic dotyczący systemu lobby wraz z~zadaniami i~ich statusami}
+\end{figure}
+
+\FloatBarrier
+
 
 \subsubsection{Figma}
 
+Do utworzenia wstępnej wizualizacji aplikacji użyto narzędzie Figma \cite{Figma}.
+Służy ono do projektowania graficznego, takich prac jak szkielety stron
+internetowych, prototypy interfejsów użytkownika czy też otwartych przestrzeni
+do zarządzania i~planowania.
 
-\section{Wykorzystywane technologie do realizacji projektu}
+Warto wspomnieć, że tak jak w~\ref{fig:figma_login} lub
+\ref{fig:figma_userflow} wykorzystano Figmę do stworzenia mocków i~schematów.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{img/schematy/milestones.png}
+    \caption{Szczegółowy podział milestone'ów na zadania}
+\end{figure}
+
+\FloatBarrier
+
 
 \subsection{Komunikacja wewnętrzna}
 
-W trakcie tworzenia projektu potrzebna była szybka i efektywna
+W~trakcie tworzenia projektu potrzebna była szybka i~efektywna
 wymiana wiadomości oraz możliwość współpracy w czasie rzeczywistym.
-Wykorzystana została w tym celu platforma Discord~\cite{Discord},
-która oferuje rozmowy głosowe, kanały tekstowe i udostępnianie
+Wykorzystana została w~tym celu platforma Discord~\cite{Discord},
+która oferuje rozmowy głosowe, kanały tekstowe i~udostępnianie
 obrazu na żywo.
-
 
 \subsection{System kontroli wersji}
 
-Aby synchronizować postępy pracy i ich historię zastosowano
-system kontroli wersji Git \cite{Git}. Wraz z nim, do przechowywania
-repozytoriów z kodem aplikacji, jak i dokumentacji wykorzystano
+Aby synchronizować postępy pracy i~ich historię zastosowano
+system kontroli wersji Git \cite{Git}. Wraz z~nim, do przechowywania
+repozytoriów z kodem aplikacji, jak i~dokumentacji wykorzystano
 platformę GitHub \cite{Github}.
 
 \subsection{Tworzenie dokumentacji}
@@ -56,7 +129,7 @@ platformę GitHub \cite{Github}.
 Do napisania dokumentacji aplikacji użyto języka \LaTeX~\cite{Latex}.
 Przesyłając tekst pracy na platformę GitHub, skorzystano z~technologii
 GitHub Actions \cite{GithubActions}, którą wykorzystano w celu
-generacji dokumentu od razu po opublikowaniu zmian w~tekście pracy.
+generacji dokumentu natychmiast po opublikowaniu zmian w~tekście pracy.
 Umożliwiło to na dostęp do najnowszej wersji dokumentu dla opiekuna
 pracy i~prowadzącego pracownię projektową, dzięki czemu była możliwa
 ciągła weryfikacja postępów nad pracą.
@@ -64,23 +137,63 @@ ciągła weryfikacja postępów nad pracą.
 
 \subsection{Tworzenie oprogramowania}
 
-Rozwój oprogramowania stanowił kluczowy i niezbędny element w realizacji założeń projektowych. 
-Naszym celem było stworzenie funkcjonalnej aplikacji, która integruje odmienne komponenty, wykorzystujące różne technologie. 
-Aby sprostać złożonym wymaganiom projektu, skorzystaliśmy z szerokiego spektrum narzędzi.
+Rozwój oprogramowania stanowił kluczowy i~niezbędny element w~realizacji
+założeń projektowych.
+Naszym celem było stworzenie funkcjonalnej aplikacji, która integruje
+odmienne komponenty, wykorzystujące różne technologie.
+Aby sprostać złożonym wymaganiom projektu, skorzystaliśmy z~szerokiego
+spektrum narzędzi.
 
 \subsubsection{VSCode}
 
-Visual Studio Code to zaawansowany edytor kodu stworzony przez Microsoft, który stał się jednym z najpopularniejszych narzędzi wśród programistów.
-VS Code wspiera wiele języków programowania i znaczników od JavaScript, TypeScript, Python, PHP, C++ po HTML, CSS, JSON i wiele innych.
-Do tego oferuje zaawansowane funkcje autouzupełniania kodu, informacje o typach, podpowiedzi dotyczące parametrów funkcji, info o definicjach i dokumentację.
-Dużą zaletą VSCode jest również możliwość personalizacji. Dostępne są tysiące rozszerzeń, które pozwalają na dostosowanie edytora do własnych potrzeb.
-Użycie tego edytora znacznie usprawniło rozwój frontendu aplikacji.
+Visual Studio Code \cite{VSCode}, dalej opisywany jako VSCode,
+to zaawansowany edytor kodu stworzony
+przez Microsoft, który stał się jednym z~najpopularniejszych narzędzi
+wśród programistów.
+VSCode wspiera wiele języków programowania i~znaczników od JavaScript,
+TypeScript, Python, PHP, C++ po HTML, CSS, JSON i~wiele innych.
+Do tego oferuje zaawansowane funkcje auto uzupełniania kodu, informacje
+o~typach, podpowiedzi dotyczące parametrów funkcji, info o~definicjach
+i~dokumentację.
+Dużą zaletą VSCode jest również możliwość personalizacji. Dostępne są
+tysiące rozszerzeń, które pozwalają na dostosowanie edytora do własnych
+potrzeb. Użycie tego edytora znacznie usprawniło rozwój wizualny aplikacji.
 
 \subsubsection{Produkty Jetbrains}
 
-Produkty Jetbrains, w tym dedykowane środowiska programistyczne (IDE) dla poszczególnych języków i ekosystemów, takie jak Java, Python czy PHP, są cenione za zaawansowane funkcje autouzupełniania i dogłębnej analizy kodu. Dostarczają one również potężnych narzędzi do refaktoryzacji, co znacząco ułatwia zarządzanie i optymalizację projektu. PyCharm, specjalizujący się w Pythonie, był pomocny podczas tworzenia modułu logiki gry w brydża, a także w początkowej fazie konstruowania serwera z użyciem FastApi. Z kolei IntelliJ IDEA, ze wsparciem dla języka Scala, znalazł zastosowanie w procesie rozwijania ostatecznej wersji architektury serwerowej. Wykorzystanie tych narzędzi znacząco przyczyniło się do efektywności naszego procesu deweloperskiego.
+Produkty JetBrains \cite{JetBrains}, w~tym dedykowane środowiska
+programistyczne (IDE) dla poszczególnych języków i~ekosystemów,
+takich jak Java, Python czy PHP.
+Są one cenione za zaawansowane funkcje auto uzupełniania i~dogłębnej
+analizy kodu. Dostarczają one również potężnych narzędzi do refaktoryzacji,
+co znacząco ułatwia zarządzanie i~optymalizację projektu.
+
+PyCharm \cite{PyCharm}, specjalizujący się w~Pythonie, był pomocny podczas tworzenia
+modułu logiki gry w~brydża, a~także w~początkowej fazie konstruowania
+serwera z~użyciem FastAPI.
+
+Z~kolei IntelliJ IDEA \cite{Intellij}, ze wsparciem dla języka
+Scala, znalazł zastosowanie w~procesie rozwijania ostatecznej wersji
+architektury serwerowej. Wykorzystanie tych narzędzi znacząco przyczyniło
+się do efektywności naszego procesu deweloperskiego.
 
 \subsubsection{Postman}
+
+Postman \cite{Postman} to narzędzie do testowania API, które umożliwia, głównie
+programistom i testerom, skuteczne zarządzanie, tworzenie, udostępnianie
+i~testowanie żądań HTTP. Jest to popularne środowisko do tworzenia
+i~wykonywania zapytań HTTP, zwłaszcza w~kontekście testowania
+endpointów RESTful API.
+
+Postman oferuje intuicyjny interfejs graficzny, który ułatwia tworzenie,
+wysyłanie i~analizowanie komunikatów sieciowych, a~także sprawdzanie
+odpowiedzi serwera. Przydaje się w~wielu etapach procesu tworzenia
+aplikacji, od projektowania, wczesnego testowania i~monitorowania API
+w~środowisku produkcyjnym.
+
+Przez cały proces tworzenia serwera dla aplikacji Postman był wykorzystywany
+do wspomnianych wyżej celów. Było to narzędzie kluczowe w~zapewnieniu
+sprawnego działania tej części systemu.
 
 
 \subsection{Wdrażanie i testowanie}
