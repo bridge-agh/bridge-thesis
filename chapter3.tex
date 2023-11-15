@@ -5,7 +5,7 @@ Ta sekcja pracy skupia się na opisaniu najważniejszych aspektów
 opracowanej aplikacji.
 Jej celem jest szczegółowe opisanie wybranych
 komponentów oraz przedstawienie czynników, które doprowadziły do
-problemów lub błędów w~funkcjonowaniu systemu. Dodatkowo skoncentruje
+błędów w~funkcjonowaniu systemu. Dodatkowo skoncentruje
 się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
 \section{Architektura serwera}
@@ -54,7 +54,7 @@ obiecująca, powstały obawy związane z~koniecznością ciągłego monitorowani
 potencjalnej utraty połączenia. Skłoniło nas do ostatecznej rezygnacji
 z~wdrożenia tego pomysłu.
 
-Implementacja frameworku Akka pozwoliła na ustanowienie stabilnego,
+Implementacja framework'u Akka \cite{Akka} pozwoliła na ustanowienie stabilnego,
 \textbf{reaktywnego} połączenia między klientem a~serwerem. Programowanie
 reaktywne, koncentrujące się na płynnym przepływie danych i~ich propagacji,
 umożliwiło aplikacji klienta natychmiastowo reagować na wszelkie zmiany. Jest
@@ -74,8 +74,9 @@ graczy.
 % działania.
 
 \section{Aplikacja webowa}
-Aplikacja webowa została stworzona przy użyciu platformy \textbf{Next.js} oraz
-języka programowania \textbf{Typescript}, będącego rozszerzeniem JavaScript'u
+Aplikacja webowa została stworzona przy użyciu platformy Next.js
+\cite{NextJS} oraz języka programowania Typescript \cite{Typescript},
+będącego rozszerzeniem JavaScript'u
 o~statyczne typowanie. Ta część projektu została zrealizowana zgodnie
 z~pierwotnymi założeniami. Jednakże wyjątkiem było wdrożenie funkcji
 rozgrywki w~brydża. Ze względu na złożoność problemów i~wymagania
@@ -91,7 +92,8 @@ Szczegółowy opis części znajduje się w~podrozdziale \nameref{subsec:silnik_
 Biblioteka React oferuje potężne narzędzie w~postaci \textbf{hooków},
 które umożliwiają efektywne zarządzanie stanem i~cyklem życia komponentów.
 W~naszym projekcie, do obsługi zapytań klienta do serwera, zdecydowaliśmy się
-skorzystać z~hook'ów biblioteki \textbf{SWR}. Jest to efektywne rozwiązanie do
+skorzystać z~hook'ów biblioteki SWR \cite{SWR}.
+Jest to efektywne rozwiązanie do
 pobierania danych rozwiązujące wiele problemów implementacynych takich jak
 cache'owanie i~deduplikacje danych, ponawianie żądań czy weryfikacja połączenia
 %%% TODO - slownik deduplikacja
@@ -119,7 +121,8 @@ tworzenie UI nie musiały aktualizować kodu komponentów zawierających je.
 
 \subsection{Efektywne opisywanie stylu}
 W~celu nadania stylów komponentom naszej aplikacji internetowej posłużyliśmy się
-framework'iem \textbf{Tailwind CSS}. W~połączeniu z~biblioteką Daisy UI, która
+framework'iem Tailwind CSS. W~połączeniu z~biblioteką Daisy UI
+\cite{DaisyUI}, która
 w~pełni wspiera ten framework, możliwe było zastosowanie gotowych klas
 stylistycznych. Oferują one nie tylko samą edycję pojedynczych elementów, ale też
 utworzenie zaprojektowanych, w~pełni animowanych obiektów.
@@ -145,27 +148,33 @@ użytkowników, oferując konkurencyjne rozwiązanie dla obecnych na rynku produ
 
 \subsection{Framework Three.js}
 Podczas próby implementacji środowiska do gry, powstał problem z~zarządzaniem
-elementami kart i~ich przemieszczaniem po ekranie użytkownika. Animacje, takie jak
-ruch kart, z~wykorzystaniem wyłącznie komponentów React okazały się nadmiernie
-pracochłonne i~nieefektywne. Użytkownik mobilny miał problemy z~ładowaniem kart
+elementami kart i~ich przemieszczaniem po ekranie użytkownika. Animacje,
+takie jak ruch kart, z~wykorzystaniem wyłącznie komponentów React
+okazały się nadmiernie pracochłonne i~nieefektywne. Użytkownik
+mobilny miał problemy z~ładowaniem kart
 i~ich płynnym animowaniem. Jest to spowodowane inną architekturą procesorów
 mobilnych w~porównaniu do rozwiązań desktopowych. Nie są one przystosowane
 do wykonania najmocniejszych obliczeń, ale oferują niskie użycie energii. \\
 
 Wymusiło to rezygnację z~dotychczasowego podejścia. Dokonano zmiany na bardzo
-efektywny framework umożliwiający renderowanie elementów 3D - \textbf{Three.js}.
+efektywny framework umożliwiający renderowanie elementów 3D - Three.js
+\cite{ThreeJS}.
 
 Posiada on wszystkie potrzebne funkcje, których brakło w~naszym początkowym
-podejściu. Udostępnia on: \textit{canvas} -- którego zadaniem jest zdefiniowanie
-obszaru, na którym znajdują się wyświetlane elementy;  \textit{przestrzeń 3D} - w której możemy umieszczać
-karty i~przemieszczać niezależnie od struktury komponentów; \textit{kamerę} -- pozwalającą
-na wykorzystanie perspektywy w~środowisku 3D, przez co gracze mogą mieć wizualne
+podejściu. Udostępnia on:
+\textit{canvas} -- którego zadaniem jest zdefiniowanie
+obszaru, na którym znajdują się wyświetlane elementy;
+\textit{przestrzeń 3D} - w której możemy umieszczać
+karty i~przemieszczać niezależnie od struktury komponentów;
+\textit{kamerę} -- pozwalającą na wykorzystanie perspektywy
+w~środowisku 3D, przez co gracze mogą mieć wizualne
 odczucie realnej rozgrywki gry w~brydża.
 
 %%% TODO zdjęcie planszy gry 3D (orbithelper w gamescene)
 
 Dodatkowo framework ten wybrany został ze względu na swoją niezwykłą wydajność.
-Do renderowania elementów wykorzystuję on potencjał \textbf{WebGL}. Jest to API
+Do renderowania elementów wykorzystuję on potencjał WebGL \cite{WebGL}.
+Jest to API
 w~języku JavaScript, które jest standardem webowym wykorzystywanym
 w~przeglądarkach. Umożliwia on wykorzystanie akceleracji sprzętowej kart
 graficznych, które są przystosowane do przetwarzania fizyki, zdjęć
@@ -181,8 +190,9 @@ ponad 140\footnote{
 
 \subsection{Integracja silnika z React'em}
 Three.js oprócz wspomnianych zalet jest też wspierany w~postaci komponentów React.
-Rozwiązania, które są wykorzystane w~aplikacji to \textbf{React Three Fiber}
-i~\textbf{React drei}. Oba oferują wspomniane komponenty, jak i~dodatkowe moduły
+Rozwiązania, które są wykorzystane w~aplikacji to React Three Fiber
+\cite{ReactThreeFiber} i~React drei \cite{ReactDrei}. Oba oferują
+wspomniane komponenty, jak i~dodatkowe moduły
 wspierające prace Three.js w~środowisku React. Uniknięto w~ten sposób korzystania
 z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty
 

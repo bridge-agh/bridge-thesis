@@ -70,7 +70,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               release_id: newRelease.data.id,
-              name: fileName.replace(" ", "_");,
+              name: fileName.replace(" ", "_"),
               data: require("fs").readFileSync("main.pdf")
             });
             
