@@ -51,36 +51,52 @@ defernumbers=false,
 backend=biber]{biblatex}
 \addbibresource{main.bib}
 
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, await, function, return, null, undefined, void, catch, switch, var, if, in, while, do, else, case, break},
+  ndkeywords={class, export, async, boolean, throw, implements, import, this},
+  % identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]"
+}
+
 \lstset{
-  %language=Python, %% PHP, C, Java, etc.
-  basicstyle=\ttfamily\footnotesize,
+  language=JavaScript,
   backgroundcolor=\color{gray!5},
   commentstyle=\it\color{Green},
   keywordstyle=\color{Red},
+  ndkeywordstyle=\color{Red},
   stringstyle=\color{Blue},
-  numberstyle=\tiny\color{Black},    
-  % morekeywords={TestKeyword},
-  % mathescape=true,
-  escapeinside=`',
-  frame=single, %shadowbox, 
-  tabsize=2,
+  numberstyle=\tiny\color{Black}, 
+  extendedchars=true,
+  basicstyle=\footnotesize\ttfamily,
+  % frame=single, %shadowbox, 
   rulecolor=\color{black!30},
   title=\lstname,
   breaklines=true,
   breakatwhitespace=true,
   framextopmargin=2pt,
   framexbottommargin=2pt,
-  extendedchars=false,
-  captionpos=b,
-  abovecaptionskip=5pt,
-  keepspaces=true,            
-  numbers=left,                    
-  numbersep=5pt,                  
-  showspaces=false,                
   showstringspaces=false,
-  showtabs=false,
-  tabsize=2
+  showspaces=false,
+  numbers=left,
+  numberstyle=\footnotesize,
+  numbersep=5pt,
+  tabsize=2,
+  breaklines=true,
+  showtabs=false,        
+  showstringspaces=false,
+  captionpos=b,
+  escapeinside=`',
+  literate={`}{\textasciigrave}1,
+  mathescape=true,
 }
+
+\newcommand{\dollar}{\mbox{\textdollar}}
+
 
 \SetAlgorithmName{\LangAlgorithm}{\LangAlgorithmRef}{\LangListOfAlgorithms}
 \newcommand{\listofalgorithmes}{\tocfile{\listalgorithmcfname}{loa}}

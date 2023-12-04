@@ -76,37 +76,35 @@ graczy.
 \section{Aplikacja webowa}
 Aplikacja webowa została stworzona przy użyciu platformy Next.js
 \cite{NextJS} oraz języka programowania Typescript \cite{Typescript},
-będącego rozszerzeniem JavaScript'u
-o~statyczne typowanie. Ta część projektu została zrealizowana zgodnie
-z~pierwotnymi założeniami. Jednakże wyjątkiem było wdrożenie funkcji
-rozgrywki w~brydża. Ze względu na złożoność problemów i~wymagania
-dotyczące wydajności, zdecydowano się na implementację tego elementu za
-pomocą technologii wcześniej nieuwzględnionej.
+będącego rozszerzeniem języka JavaScript o~statyczne typowanie.
+Jednakże ze względu na problemy wydajnościowe rozgrywki
+i~słabą responsywność interfejsu związaną z~połączeniem serwerowym
+zdecydowano się na zmianę technologii odpowiedzialnych za te zadania.
 
-Warto zaznaczyć, że implementacja rozgrywki w~brydża została logicznie
+Implementacja rozgrywki w~brydża została logicznie
 odseparowana od reszty aplikacji, choć w~pełni integruje się z~samą
 platformą i~korzysta z~wcześniej wspomnianych języków programowania.
 Szczegółowy opis części znajduje się w~podrozdziale \nameref{subsec:silnik_gry}.
 
-\subsection{Przystosowanie do backendu -- hooki}
-Biblioteka React oferuje potężne narzędzie w~postaci \textbf{hooków},
+\subsection{Mechanizmy stanu i cyklu życia komponentów}
+Biblioteka React oferuje narzędzie w~postaci \textbf{hooków},
 które umożliwiają efektywne zarządzanie stanem i~cyklem życia komponentów.
+Są to funkcje, które udostępniają stany obiektów, oferując do nich wgląd, automatyczną aktualizację
+lub zmianę wartości stanów.
+
 W~naszym projekcie, do obsługi zapytań klienta do serwera, zdecydowaliśmy się
-skorzystać z~hook'ów biblioteki SWR \cite{SWR}.
-Jest to efektywne rozwiązanie do
+skorzystać z~biblioteki SWR \cite{SWR}.
+Jest to rozwiązanie, korzystające z~hooków, do
 pobierania danych rozwiązujące wiele problemów implementacynych takich jak
-cache'owanie i~deduplikacje danych, ponawianie żądań czy weryfikacja połączenia
-%%% TODO - slownik deduplikacja
-po odzyskaniu dostępu do sieci.
+cache'owanie i~deduplikacje (usuwanie redundantnych kopii) danych, ponawianie żądań
+czy weryfikacja połączenia po odzyskaniu dostępu do sieci.
 
 Aby jeszcze bardziej zoptymalizować proces, stworzyliśmy
-również zestaw własnych, dedykowanych hook'ów. Takie podejście pozwoliło na
+również zestaw własnych, dedykowanych hooków. Takie podejście pozwoliło na
 znaczną standaryzację logiki odpowiedzialnej za aktualizacje stanów przy pomocy
-zapytań HTTP z~użyciem SWR. Przyczyniło się do drastycznego zmniejszenia ilości
-analizy kodu przez członków zespołu, gdyż założeniem hook'ów jest oferowanie
-możliwości wglądu, automatycznej aktualizacji lub zmiany stanu, które z~tych
-funkcji mogą być zaimplementowane w~różny sposób. Można porównać takie rozwiązanie
-do interfejsu oferującego niezmienne funkcjonalności.
+zapytań HTTP z~użyciem SWR. Przyczyniło się do zmniejszenia ilości
+globalnych zmian kodu, gdyż zmiana implementacji nie zmieniła samego interfejsu
+hooka. Funkcjonalność pozostała niezmienna i~oferowane stany miały taką samą strukturę.
 
 %%% TODO - kod/zdjecia wybranych hook'ów (sam kod może miec dodatkowe komentarze
 %%% opisujące jakies ciekawe cechy)
@@ -114,29 +112,109 @@ do interfejsu oferującego niezmienne funkcjonalności.
 Jak zostało wspomniane we wcześniejszym podrozdziale, dotyczącym serwera aplikacji,
 zrezygnowano ze wspomnianego rozwiązania biblioteki SWR na rzecz reaktywnego
 połączenia z~serwerem. Wymusiło to zmianę implementacji wysyłania i~odbierania
-zapytań do serwera. Istotne jest, że zastosowanie własnych hook'ów pozwoliło
-jedynie na zmianę wspólnej implementacji dla wszystkich komponentów. Logika
-wykorzystania hook'ów pozostała taka sama, przez co osoby odpowiedzialne za
-tworzenie UI nie musiały aktualizować kodu komponentów zawierających je.
+zapytań do serwera. Logika
+wykorzystania hooków pozostała taka sama, przez co komponenty interfejsu
+zawierające wspomniane hooki nie musiały być aktualizowane po tej zmianie. \\
 
-\subsection{Efektywne opisywanie stylu}
-W~celu nadania stylów komponentom naszej aplikacji internetowej posłużyliśmy się
-framework'iem Tailwind CSS. W~połączeniu z~biblioteką Daisy UI
+Poniżej przedstawione zostały hooki odpowiedzialne za aktualizacje
+danych z~serwera, wykorzystując \textbf{Fetch API} do wysyłania pojedynczych
+zapytań i~\textbf{WebSockety} do ustanawiania połączenia z~serwerem
+i~ciągłą aktualizację oferowanego stanu przez serwer.
+
+\begin{lstlisting}[language=JavaScript, caption=Hooki z Fetch API, label={lst:fetch-hooks}, captionpos=b]
+export function useFetch<T, U>(fetcher: (request: T) => Promise<U>): FetchState<T, U> {
+  const [data, setData] = useState<U | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const trigger = useCallback((request: T) => {
+    if (loading) return Promise.reject();
+    setData(undefined);
+    setLoading(true);
+    return fetcher(request)
+      .then(data => {
+        setData(data);
+        return data;
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [fetcher, loading]);
+
+  return { trigger, data, loading };
+}
+
+async function createLobbyFetcher(unused: void): Promise<CreateLobbyResponse> {
+  const token = await getIdToken();
+  const res = await fetch($`$$\dollar${API_URL_SESSION_LOBBY}/create$`$, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": $`$Bearer $\dollar${token}$`$
+    },
+  });
+  if (!res.ok) return Promise.reject(res.statusText);
+  return res.json();
+}
+
+export function useCreateLobby() {
+  return useFetch(createLobbyFetcher);
+}
+\end{lstlisting}
+
+\vspace*{0.5cm}
+
+\begin{lstlisting}[language=JavaScript, caption=Hooki z WebSocketem, label={lst:websocket-hooks}, captionpos=b]
+export function useSocket<T>(url: string | undefined): SocketState<T> {
+  url = url?.replace(/^http/, "ws");
+
+  const [data, setData] = useState<T | undefined>(undefined);
+  const loading = data === undefined;
+
+  const getAuthUrl = useCallback(() => {
+    return getIdToken().then(token => {
+      return $`$$\dollar${url}?access_token=$\dollar${token}$`$;
+    });
+  }, [url]);
+
+  useWebSocket(url ? getAuthUrl : null, {
+    shouldReconnect: () => true,
+    onMessage: (event) => {
+      setData(JSON.parse(event.data));
+    },
+    reconnectInterval: 500,
+  });
+
+  return { data, loading };
+}  
+
+export interface GetInfoResponse {
+  sessionId: string
+  hostId: string
+  users: Player[]
+  started: boolean
+  gameState: GameState | null
+}
+
+export function useSessionInfo(): SocketState<GetInfoResponse> {
+  return useSocket<GetInfoResponse>($`$$\dollar${API_URL_SESSION}/info$`$);
+}
+
+\end{lstlisting}
+
+\subsection{Stylizacja interfejsu}
+W~celu nadania stylów komponentom naszej aplikacji internetowej posłużono się
+frameworkia Tailwind CSS. W~połączeniu z~biblioteką Daisy UI
 \cite{DaisyUI}, która
 w~pełni wspiera ten framework, możliwe było zastosowanie gotowych klas
 stylistycznych. Oferują one nie tylko samą edycję pojedynczych elementów, ale też
 utworzenie zaprojektowanych, w~pełni animowanych obiektów.
 
-Efektywne i~intuicyjne stylizowanie elementów interfejsu użytkownika, eliminuje
-jednocześnie potrzebę bezpośredniego zarządzania plikami CSS. Jest to szczególnie
+Ze względu na intuicyjne nazewnictwo klas stylizujących możliwe było szybkie
+projektowanie interfejsu użytkownika i~wyeliminowało
+potrzebę bezpośredniego zarządzania plikami CSS. Jest to szczególnie
 przydatne, jeżeli wykorzystywany jest React, ze względu na jego naturalny podział
-elementów na osobne komponenty. Uniknęliśmy w~ten sposób konieczność
-definicji własnych klas, co często prowadzi do utworzenia zawiłego
-i~powtarzalnego kodu. Wykorzystanie tego podejścia znacznie przyspieszyło
+elementów na osobne komponenty. Wykorzystanie tego podejścia znacznie przyspieszyło
 proces rozwoju części wizualnej aplikacji.
-
-
-\subsection{Testy E2E}
 
 
 \section{Silnik gry}
@@ -184,11 +262,11 @@ drastycznie zwiększyło efektywność i~płynność silnika gry na tych urządz
 Skok wydajności, porównując pierwotny silnik z~obecnym na urządzeniu mobilnym,
 jest na poziomie od około 15 wyświetlanych klatek na sekundę aż do
 ponad 140\footnote{
-    Porównanie zostało wykonane na urządzeniu
-    Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
+  Porównanie zostało wykonane na urządzeniu
+  Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
 }.
 
-\subsection{Integracja silnika z React'em}
+\subsection{Integracja silnika z Reactem}
 Three.js oprócz wspomnianych zalet jest też wspierany w~postaci komponentów React.
 Rozwiązania, które są wykorzystane w~aplikacji to React Three Fiber
 \cite{ReactThreeFiber} i~React drei \cite{ReactDrei}. Oba oferują
@@ -200,9 +278,6 @@ z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty
 
 \section{AI}
 
-\subsection{TBC}
-
-
 \section{System wdrażania do środowiska deweloperskiego}
 
 %%% vercel jak to dziala z githubem
@@ -212,8 +287,8 @@ z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty
 
 \section{Dodatkowe elementy aplikacji}
 
-\subsection{tryb mobilny}
+\subsection{Tryb mobilny}
 
-\subsection{light/dark mode}
+\subsection{Motywy aplikacji}
 
-\subsection{AI generated logos}
+\subsection{Grafiki wygenerowane przez AI}
