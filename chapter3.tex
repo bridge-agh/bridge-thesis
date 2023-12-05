@@ -4,8 +4,8 @@
 Ta sekcja pracy skupia się na opisaniu najważniejszych aspektów
 opracowanej aplikacji.
 Jej celem jest szczegółowe opisanie wybranych
-komponentów oraz przedstawienie czynników, które doprowadziły do
-błędów w~funkcjonowaniu systemu. Dodatkowo skoncentruje
+komponentów oraz przedstawienie czynników, które są najistotniejsze do
+funkcjonowania całości systemu. Dodatkowo skoncentruje
 się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
 \section{Architektura serwera}
@@ -19,13 +19,19 @@ Serwer napisany w języku Scala.
 
 
 
-\subsection{Połączenia z serwerem}
+\subsection{Komunikacja z serwerem}
 Wstępne założenia dotyczące infrastruktury aplikacji
 serwerowej opierały się na wykorzystaniu języka Python
-wraz z~frameworkiem FastAPI. Z~czasem jednak, w~świetle
+wraz z~frameworkiem FastAPI.
+
+% TODO od tad
+Z~czasem jednak, w~świetle
 narastających wymagań i~doświadczeń zgromadzonych
 podczas etapu tworzenia, nasz zespół podjął
 strategiczną decyzję o~ewolucji stosu technologicznego.
+% do tad do zmiany - "w~świetle
+% narastających wymagań i~doświadczeń zgromadzonych
+% podczas etapu tworzenia" totalnie wypada
 Ostatecznie, struktura serwera została skonstruowana
 w~dynamicznym języku Scala, korzystając z~potencjału
 frameworka Akka, specjalizującego się w~programowaniu
@@ -220,9 +226,10 @@ proces rozwoju części wizualnej aplikacji.
 \section{Silnik gry}
 \label{subsec:silnik_gry}
 
-Silnik wizualny rozgrywki do gry w~brydża jest jednym z~najbardziej kluczowych
-elementów aplikacji. Jest on w~stanie zaoferować przyjemną rozgrywkę dla
-użytkowników, oferując konkurencyjne rozwiązanie dla obecnych na rynku produktów.
+Silnik wizualny rozgrywki do gry w~brydża jest jednym z~kluczowych
+elementów aplikacji. Podczas tworzenia go skupiono się, aby zaoferować
+wydajność i~pełną integrację z~aplikacją webową.
+
 
 \subsection{Framework Three.js}
 Podczas próby implementacji środowiska do gry, powstał problem z~zarządzaniem
@@ -234,8 +241,9 @@ i~ich płynnym animowaniem. Jest to spowodowane inną architekturą procesorów
 mobilnych w~porównaniu do rozwiązań desktopowych. Nie są one przystosowane
 do wykonania najmocniejszych obliczeń, ale oferują niskie użycie energii. \\
 
-Wymusiło to rezygnację z~dotychczasowego podejścia. Dokonano zmiany na bardzo
-efektywny framework umożliwiający renderowanie elementów 3D - Three.js
+Wymusiło to rezygnację z~rozwiązania wykorzystującego jedynie elementy HTML.
+Dokonano zmiany na bardzo efektywny framework umożliwiający renderowanie
+środowiska i~elementów 3D - Three.js
 \cite{ThreeJS}.
 
 Posiada on wszystkie potrzebne funkcje, których brakło w~naszym początkowym
@@ -256,11 +264,15 @@ Jest to API
 w~języku JavaScript, które jest standardem webowym wykorzystywanym
 w~przeglądarkach. Umożliwia on wykorzystanie akceleracji sprzętowej kart
 graficznych, które są przystosowane do przetwarzania fizyki, zdjęć
-i~efektów wizualnych. Kluczowe jest to, że stosując wspomnianą akcelerację,
-wykorzystujemy większy potencjał urządzeń mobilnych. Zastosowanie tego rozwiązania
+i~efektów wizualnych. Kluczowe jest, że stosując wspomnianą akcelerację,
+wykorzystujemy większe możliwości sprzętowe urządzeń mobilnych, jak
+i~desktopowych, które nie były one w~pełni wykorzystywane przy zastosowaniu
+jedynie elementów HTML.
+Zastosowanie tego rozwiązania
 drastycznie zwiększyło efektywność i~płynność silnika gry na tych urządzeniach.
-Skok wydajności, porównując pierwotny silnik z~obecnym na urządzeniu mobilnym,
-jest na poziomie od około 15 wyświetlanych klatek na sekundę aż do
+Przykładowo badając skok wydajności, porównując pierwotny silnik z~obecnym,
+na urządzeniu mobilnym, różnica jest na poziomie od około 15 wyświetlanych
+klatek na sekundę aż do
 ponad 140\footnote{
   Porównanie zostało wykonane na urządzeniu
   Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.

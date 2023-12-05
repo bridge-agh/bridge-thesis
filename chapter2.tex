@@ -4,44 +4,45 @@
 
 \section{Kontekst użytkowania aplikacji}
 
-Głównym zadaniem aplikacji jest zapewnienie użytkownikom platformy
-umożliwiającej rozgrywkę w~brydża. Strona internetowa aplikacji jest
-przystosowana do każdego rozmiaru ekranu, z~której mógłby korzystać
-użytkownik. Dzięki temu można skorzystać z~aplikacji, wykorzystując
+Głównym zadaniem aplikacji jest oferowanie możliwości
+rozgrywania gry w~brydża. Strona internetowa aplikacji ma być
+przystosowana do dowolnego rozmiaru ekranu urządzenia, z~którego mógłby
+korzystać użytkownik. Dzięki temu można skorzystać z~aplikacji, wykorzystując
 telefon, komputer stacjonarny, laptop lub nawet telewizor. Wymagany
-jest tylko dostęp do Internetu.
-%Aplikacja oprócz samej rozgrywki oferuje także przejrzenie
-%wcześniejszych rozgrywek i~przeanalizowanie ich z~użyciem asystenta AI.
+jest tylko dostęp do Internetu. \\
 
 W~systemie aplikacji zdefiniowane są dwa typy użytkowników:
 \begin{itemize}
-  \item \textbf{zalogowany użytkownik} -- zalogowana osoba posiadająca konto w aplikacji, mająca dostęp do
-        jej funkcjonalności,
-
   \item \textbf{anonimowy użytkownik} -- osoba niezalogowana, która nie
-        posiada dostępu do
-        % podstawowych
-        funkcjonalności aplikacji.
-        % Natomiast ma możliwość obserwowania trwających rozgrywek.
+        posiada dostępu do funkcjonalności aplikacji związanych
+        z~rozgrywką.
+
+  \item \textbf{zalogowany użytkownik} -- zalogowana osoba posiadająca konto
+        w~aplikacji, mająca pełny dostęp do jej funkcjonalności.
 \end{itemize}
 
 Funkcjonalności dostępne dla poszczególnych użytkowników:
 \begin{itemize}
-  \item \textbf{zalogowany użytkownik}:
-        \begin{itemize}
-          \item tworzenie i dołączanie do rozgrywek w brydża --
-                gdy użytkownik założy lub zostanie jedynym
-                użytkownikiem lobby, to staje się jego
-                administratorem.
-                Może zarządzać graczami znajdującymi się w~nim
-                i~decydować ile graczy ma być zajęta przez asystenta AI.
-          \item przeglądanie i analiza wcześniejszych rozgrywek
-                z wykorzystaniem asystenta AI.
-        \end{itemize}
-
   \item \textbf{anonimowy użytkownik}:
         \begin{itemize}
-          \item obserwowanie trwających rozgrywek brydża.
+          \item rejestracja nowego konta w~systemie aplikacji.
+          \item logowanie do konta utworzonego w~systemie aplikacji.
+        \end{itemize}
+
+  \item \textbf{zalogowany użytkownik}:
+        \begin{itemize}
+          \item funkcjonalności użytkownika anonimowego.
+          \item tworzenie i~dołączanie do rozgrywek w brydża --
+                gdy użytkownik założy lub zostanie jedynym
+                użytkownikiem lobby, to staje się jego
+                hostem.
+          \item zarządzanie lobby -- może decydować o graczach znajdujących wraz
+                z~nim w~lobby. Może decydować o~ich pozycji lub ich wyrzucić
+                ze wspólnej sesji\footnote{Sesja oznacza to samo co lobby, czyli
+                  abstrakcję łączącą wielu graczy i~asystentów w~obrębie jednej
+                  rozgrywki}.
+                Może także uzupełnić wolne miejsca o~asystenta brydża z~określeniem jego
+                poziomu trudności.
         \end{itemize}
 \end{itemize}
 
@@ -66,16 +67,16 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
 
 Aby uzyskać dostęp do większości funkcjonalności aplikacji, wymagane
 jest posiadanie konta. Anonimowy użytkownik może je utworzyć, klikając
-opcję "\textbf{Register}" w~nagłówku strony. Po kliknięciu użytkownik
+opcję \textbf{"Register"} w~nagłówku strony. Po kliknięciu użytkownik
 zostanie przekierowany do formularza rejestracyjnego.
 Do utworzenia konta wymagane jest podanie własnego
 pseudonimu, adresu e-mail oraz hasła. Aby uzyskać dostęp do utworzonego
-konta, należy kliknąć "\textbf{Log in}" w~nagłówku strony, po czym
+konta, należy kliknąć \textbf{"Log in"} w~nagłówku strony, po czym
 w~formularzu podać dane wykorzystanie podczas rejestracji.
 
 W~przypadku nieprawidłowo podanych danych podczas rejestracji
-lub logowania, błędów wynikających z~połączeniem internetowym lub
-niedostępnym serwerem autentykacji użytkownik otrzyma odpowiednią
+lub logowania, wystąpienia błędów wynikających z~połączenia internetowego lub
+niedostępnego serwerem autentykacji, użytkownik otrzyma odpowiednią
 informację na ekranie.
 
 \begin{figure}[h]
@@ -89,12 +90,11 @@ informację na ekranie.
 \subsection{Tworzenie lobby}
 
 Rozpoczęcie gry w~brydża jest dostępne z~poziomu lobby. Aby utworzyć
-lobby, należy kliknąć "\textbf{Create lobby}" na głównym panelu
-aplikacji. Przekieruje ono użytkownika do nowego lobby
-z~unikalnie wygenerowanym identyfikatorem, którego staje
-się administratorem. Użytkownik może udostępnić link do adresu strony,
-na której się znajduje, aby udostępnić, np. znajomym swoje lobby, do
-którego mogą dołączyć.
+lobby, należy kliknąć \textbf{"Create lobby"} na głównym panelu
+aplikacji. Przekieruje ono użytkownika do nowego lobby, którego staje
+się administratorem. Do utworzonego lobby zostanie wygenerowany
+unikalny identyfikator, zwany dalej kodem. Użytkownik będzie mógł go skopiować
+i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć.
 
 
 \begin{figure}[h]
@@ -107,11 +107,10 @@ którego mogą dołączyć.
 
 \subsection{Dołączanie do lobby}
 
-Gdy użytkownik otrzyma link do lobby od innego użytkownika, może się
-do niego dołączyć, wykorzystując adres strony lobby lub wklejając
-identyfikator lobby w~odpowiednie pole w~głównym panelu aplikacji
-i~klikając opcję "\textbf{Join}". W~obu przypadkach użytkownik zostanie
-przekierowany do lobby.
+Gdy użytkownik otrzyma kod do lobby od innego użytkownika, może
+do niego dołączyć, poprzez główny panel aplikacji. Należy wkleić
+kod w~odpowiednie pole i~klikając opcję \textbf{"Join"}
+dołączyć do przypisanego do kodu lobby.
 
 \begin{figure}[h]
   \centering
@@ -123,16 +122,19 @@ przekierowany do lobby.
 
 \subsection{Zarządzanie lobby}
 
-Jeżeli użytkownik jest administratorem lub został jedynym
-graczem niekontrolowanym przez asystenta AI w~lobby, może on zarządzać graczami znajdującymi się
+Jeżeli użytkownik jest hostem lub został jedynym
+graczem niekontrolowanym przez asystenta w~lobby, może on zarządzać graczami
+znajdującymi się
 wewnątrz. Posiada on następujące możliwości:
 \begin{itemize}
+  \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami.
+        Może być to gracz, asystent lub puste miejsce.
   \item usunięcie gracza z lobby -- gracz opuszcza lobby i~nie będzie
-        mógł już ponownie do niego dołączyć,
-  \item przyznanie pozycji w lobby jako AI -- wybrana pozycja
-        gracza w~brydżu będzie kontrolowana przez asystenta AI
-        i~uczestniczyć w~rozgrywce jako partner lub przeciwnik,
-  \item zamknięcie lobby -- jeżeli administrator jest ostatnim ludzkim
+        mógł już ponownie do niego dołączyć.
+  \item zajęcie wolnej pozycji jako asystent brydża -- wybrana pozycja
+        w~grze będzie kontrolowana przez asystenta
+        i~uczestniczyć w~rozgrywce jako partner lub przeciwnik.
+  \item zamknięcie lobby -- jeżeli administrator jest ostatnim
         graczem w~lobby, opuszczenie go spowoduje jego automatyczne
         zamknięcie.
         %  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
