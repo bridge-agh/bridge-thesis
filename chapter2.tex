@@ -34,7 +34,7 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
                 użytkownikiem lobby, to staje się jego
                 administratorem.
                 Może zarządzać graczami znajdującymi się w~nim
-                i~decydować ile graczy ma być zajęta przez asystenta AI.
+                i~decydować, którzy gracze będą zastąpieni przez asystenta AI.
           \item przeglądanie i analiza wcześniejszych rozgrywek
                 z wykorzystaniem asystenta AI.
         \end{itemize}
@@ -45,17 +45,21 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
         \end{itemize}
 \end{itemize}
 
+Schemat interakcji użytkownika z~aplikacją przedstawiono na rysunkach
+\ref{fig:flow_user_flow} i~\ref{fig:flow_game_flow}.
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/flow-aplikacji/user_flow.png}
   \caption{Schemat interakcji użytkownika z aplikacją}
-  \label{fig:figma_userflow}
+  \label{fig:flow_user_flow}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
   \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
+  \label{fig:flow_game_flow}
 \end{figure}
 
 \FloatBarrier
@@ -71,17 +75,18 @@ zostanie przekierowany do formularza rejestracyjnego.
 Do utworzenia konta wymagane jest podanie własnego
 pseudonimu, adresu e-mail oraz hasła. Aby uzyskać dostęp do utworzonego
 konta, należy kliknąć "\textbf{Log in}" w~nagłówku strony, po czym
-w~formularzu podać dane wykorzystanie podczas rejestracji.
+w~formularzu podać dane użyte podczas rejestracji (Rys.~\ref{fig:schemat_login}).
 
 W~przypadku nieprawidłowo podanych danych podczas rejestracji
-lub logowania, błędów wynikających z~połączeniem internetowym lub
+lub logowania, błędów wynikających z~połączenia internetowego lub
 niedostępnym serwerem autentykacji użytkownik otrzyma odpowiednią
 informację na ekranie.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/login.png}
-  \caption{}
+  \caption{Schemat rejestracji/logowania do aplikacji}
+  \label{fig:schemat_login}
 \end{figure}
 
 \FloatBarrier
@@ -94,13 +99,14 @@ aplikacji. Przekieruje ono użytkownika do nowego lobby
 z~unikalnie wygenerowanym identyfikatorem, którego staje
 się administratorem. Użytkownik może udostępnić link do adresu strony,
 na której się znajduje, aby udostępnić, np. znajomym swoje lobby, do
-którego mogą dołączyć.
+którego mogą dołączyć (Rys.~\ref{fig:schemat_create_lobby}).
 
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/create_lobby.png}
-  \caption{}
+  \caption{Schemat tworzenia lobby}
+  \label{fig:schemat_create_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -111,12 +117,13 @@ Gdy użytkownik otrzyma link do lobby od innego użytkownika, może się
 do niego dołączyć, wykorzystując adres strony lobby lub wklejając
 identyfikator lobby w~odpowiednie pole w~głównym panelu aplikacji
 i~klikając opcję "\textbf{Join}". W~obu przypadkach użytkownik zostanie
-przekierowany do lobby.
+przekierowany do lobby (Rys.~\ref{fig:schemat_join_lobby}).
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{img/schematy/join_lobby.png}
-  \caption{}
+  \caption{Schemat dołączania do lobby}
+  \label{fig:schemat_join_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -125,7 +132,8 @@ przekierowany do lobby.
 
 Jeżeli użytkownik jest administratorem lub został jedynym
 graczem niekontrolowanym przez asystenta AI w~lobby, może on zarządzać graczami znajdującymi się
-wewnątrz. Posiada on następujące możliwości:
+wewnątrz (Rys.~\ref{fig:schemat_manage_lobby})
+Posiada on następujące możliwości:
 \begin{itemize}
   \item usunięcie gracza z lobby -- gracz opuszcza lobby i~nie będzie
         mógł już ponownie do niego dołączyć,
@@ -143,7 +151,8 @@ wewnątrz. Posiada on następujące możliwości:
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/manage_lobby.png}
-  \caption{}
+  \caption{Schemat zarządzania lobby}
+  \label{fig:schemat_manage_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -271,5 +280,5 @@ to godne zaufania, popularne na całym świecie narzędzia do budowy
 aplikacji webowych, a~usługa Google Firebase odciąża nas z~implementacji
 funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
 Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji
-kolejnych funkcjonalności z~najwyższą starannością.
+kolejnych funkcjonalności.
 
