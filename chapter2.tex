@@ -86,48 +86,39 @@ informację na ekranie.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/login.png}
-  \caption{Schemat rejestracji/logowania do aplikacji}
+  \caption{Schemat logowania i rejestracji użytkownika}
   \label{fig:schemat_login}
 \end{figure}
 
 \FloatBarrier
 
-\subsection{Tworzenie lobby}
+\subsection{Lobby}
+\subsubsection{Tworzenie lobby}
 
 Rozpoczęcie gry w~brydża jest dostępne z~poziomu lobby. Aby utworzyć
 lobby, należy kliknąć \textbf{"Create lobby"} na głównym panelu
 aplikacji. Przekieruje ono użytkownika do nowego lobby, którego staje
 się administratorem. Do utworzonego lobby zostanie wygenerowany
 unikalny identyfikator, zwany dalej kodem. Użytkownik będzie mógł go skopiować
-i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć (Rys.~\ref{fig:schemat_create_lobby}).
+i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć (Rys.~\ref{fig:schemat_create_join_lobby}).
 
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/schematy/create_lobby.png}
-  \caption{Schemat tworzenia lobby}
-  \label{fig:schemat_create_lobby}
-\end{figure}
-
-\FloatBarrier
-
-\subsection{Dołączanie do lobby}
+\subsubsection{Dołączanie do lobby}
 
 Gdy użytkownik otrzyma kod do lobby od innego użytkownika, może
 do niego dołączyć, poprzez główny panel aplikacji. Należy wkleić
 kod w~odpowiednie pole i~klikając opcję \textbf{"Join"}
-dołączyć do przypisanego do kodu lobby (Rys.~\ref{fig:schemat_join_lobby}).
+dołączyć do przypisanego do kodu lobby (Rys.~\ref{fig:schemat_create_join_lobby}).
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.7\textwidth]{img/schematy/join_lobby.png}
-  \caption{Schemat dołączania do lobby}
-  \label{fig:schemat_join_lobby}
+  \includegraphics[width=\textwidth]{img/schematy/create_join_lobby.png}
+  \caption{Schemat tworzenia i dołączania do lobby}
+  \label{fig:schemat_create_join_lobby}
 \end{figure}
 
 \FloatBarrier
 
-\subsection{Zarządzanie lobby}
+\subsubsection{Zarządzanie lobby}
 
 Jeżeli użytkownik jest hostem lub został jedynym
 graczem niekontrolowanym przez asystenta w~lobby, może on zarządzać graczami
@@ -157,6 +148,50 @@ wewnątrz (Rys.~\ref{fig:schemat_manage_lobby}). Posiada on następujące możli
 \end{figure}
 
 \FloatBarrier
+
+\subsubsection{Zgłoszenie gotowości}
+Użytkownik po dołączeniu do lobby może zgłosić gotowość do rozgrywki poprzez 
+naciśnięcie przycisku "\textbf{Ready}". Kiedy wszyscy użytkownicy w lobby zgłoszą
+gotowość, zaczyna się gra.
+
+\subsection{Gra w brydża}
+
+\subsubsection{Licytacja}
+Na etapie początkowym gry, uczestnicy mają możliwość zgłaszania odzywek poprzez 
+aktywację przycisków odpowiadających ich wyborom. Mogą licytować kontrakty, pasować lub
+deklarować kontrę i~rekontrę. Pierwszy licytujący jest losowo 
+wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas" zostanie zagrana 
+trzy razy z rzędu (Rys.~\ref{fig:schemat_bid}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/schematy/bid.png}
+  \caption{Schemat zgłoszenie odzywki}
+  \label{fig:schemat_bid}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Zagrywanie kart}
+
+Po zakończeniu fazy licytacji, gracz podczas swojej kolejki może zagrać kartę, 
+przesuwając kursor na nią i klikając myszką. Dodatkowo, gracz będący partnerem dziadka 
+ma możliwość zagrywania kart w jego imieniu podczas jego tury (Rys.~\ref{fig:schemat_play_card}).
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/schematy/play_card.png}
+  \caption{Schemat zagrania karty przez użytkownika}
+  \label{fig:schemat_play_card}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Zastąpienie gracza}
+W przypadku, gdy jeden z graczy opuści grę, jego miejsce zostanie automatycznie 
+zajęte przez asystenta. Jednakże, jeśli wszyscy gracze kontrolowani przez ludzi 
+zdecydują się opuścić rozgrywkę, to zostanie ona zakończona.
 
 % \subsection{Obserwowanie rozgrywek}
 
@@ -191,23 +226,24 @@ jest umożliwienie użytkownikom utworzenia konta, logowania się na
 nie i~możliwość późniejszego wylogowania. Formularz rejestracji wymaga
 podania adresu e-mail, nazwy użytkownika i~hasła. Logowanie odbywa się
 poprzez wprowadzenie swojego adresu e-mail i~hasła.
-\subsection{Utworzenie/Dołączenie do lobby}
+\subsection{Lobby}
 W celu rozegrania partii brydża przeciwko innym graczom bądź
 przeciwnikom AI, gracz musi mieć możliwość utworzenia własnej
-rozgrywki oraz dołączenia do istniejącej. Utworzenie, jak i~dołączenie do
-lobby jest dostępne z~widoku głównego aplikacji. Dołączenie do lobby
-odbywa się poprzez wprowadzenie identyfikatora gry lub wejście w~link
-otrzymany od założyciela lobby. Po utworzeniu lobby użytkownik może
-wysłać jego identyfikator innym graczom, zapraszając ich do dołączenia,
-albo zdecydować się na wypełnienie brakujących miejsc asystentami AI.
-\subsection{Wyrzucenie gracza z lobby}
-Administrator lobby może w dowolnym momencie arbitralnie wyrzucić
-każdego z pozostałych graczy.
+rozgrywki oraz dołączenia do istniejącej.
+\subsubsection{Utworzenie/Dołączenie do lobby} 
+Utworzenie, jak i~dołączenie do lobby jest dostępne z~widoku głównego aplikacji. Dołączenie do lobby
+odbywa się poprzez wprowadzenie identyfikatora gry. Po utworzeniu lobby użytkownik może
+wysłać jego identyfikator innym graczom, zapraszając ich do dołączenia.
+\subsubsection{Zarządzanie lobby}
+Host powinien mieć możliwość dostosowania lobby według swoich preferencji przed 
+rozpoczęciem gry. Host ma prawo wyrzucić gracza z~lobby, zmienić jego pozycję lub przekazać 
+mu swoje uprawnienia. Dodatkowo, host powinien móc przydzielić wybrane pozycje 
+wirtualnym asystentom.
+
 \subsection{Rozpoczęcie rozgrywki}
-Kiedy do lobby dołączą wszyscy gracze lub część miejsc zostanie
-obsadzonych asystentami AI, administrator lobby może rozpocząć
-rozgrywkę, używając odpowiedniego przycisku. Wszyscy gracze zostają
-przeniesieni do ekranu gry.
+Kiedy wszystkie miejsca w lobby zostaną zajęte przez graczy, którzy zgłoszą gotowość do gry 
+lub część miejsc zostanie obsadzonych asystentami AI, rozgrywka zostaje rozpoczęta. 
+Wszyscy użytkownicy zostają przeniesieni do ekranu gry.
 \subsection{Rozgrywka}
 Głównym celem i~podstawową funkcjonalnością naszej aplikacji jest
 rozgrywka w brydża. Każda runda zaczyna się od licytacji, po której
@@ -224,7 +260,10 @@ podczas licytacji w~przyszłych rozgrywkach.
 \subsection{Opuszczenie rozgrywki}
 Użytkownik może nie tylko wyjść z~lobby, ale także w~dowolnym momencie
 opuścić rozgrywkę. W~takim przypadku miejsce gracza zastępuje
-asystent AI.
+wirtualny asystent.
+
+
+
 % TODO
 
 \section{Specyfikacja wymagań niefunkcjonalnych}
