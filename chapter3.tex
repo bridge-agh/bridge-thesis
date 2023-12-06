@@ -290,6 +290,193 @@ z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty
 
 \section{AI}
 
+Główne funkcje asystenta AI wykorzystują informację o najlepszych ruchach
+dostępnych dla gracza w danym momencie rozgrywki.
+W ten sposób może on pełnić funkcję wirtualnego gracza lub
+udzielać wskazówek graczom w trakcie rozgrywki.
+Analiza najlepszych ruchów wykorzystuje dedykowane algorytmy AI
+do fazy licytacji i~fazy gry.
+
+\subsection{Faza licytacji}
+
+Licytacja w~brydżu jest otwartym problemem w~dziedzinie AI.
+Pozostaje ona wyzwaniem dla naukowców.
+Zdecydowano się na implementację algorytmu AlphaZero \cite{AlphaZeroPaper},
+po przystosowaniu do gry w~brydża.
+
+\subsubsection{AlphaZero}
+
+AlphaZero jest algorytmem uczenia maszynowego, który rozwija
+algorytm Monte Carlo Tree Search (MCTS) o~sieć neuronową do ewaluacji
+stanów gry.
+Analogicznie do MCTS, AlphaZero eksploruje drzewo stanów gry,
+symulując możliwe ruchy wszystkich graczy.
+MCTS ocenia jakość stanu metodą Random Rollout, czyli
+losowym symulowaniem ruchów do końca gry.
+AlphaZero ocenia stan gry za pomocą sieci neuronowej $v$.
+Druga sieć neuronowa $\pi$ przewiduje rozkład
+prawdopodobieństwa wyboru każdego ruchu.
+W~implementacji obie sieci neuronowe są połączone w~jedną
+sieć o dwóch wyjściach.
+Dodatkowo zastosowano modyfikację
+Gumbel AlphaZero \cite{GumbelAZ},
+która gwarantuje poprawę funkcji polityki $\pi$, pod warunkiem
+dobrej oceny stanu $v$.
+
+
+\subsubsection{Przystosowanie do gry w~brydża}
+
+Formalnie, brydż to gra:
+\begin{itemize}
+  \item czteroosobowa,
+  \item niedeterministyczna,
+  \item o sumie zerowej,
+  \item z~niepełną informacją.
+\end{itemize}
+
+AlphaZero został zaprojektowany do gier:
+\begin{itemize}
+  \item dwuosobowych,
+  \item deterministycznych,
+  \item o sumie zerowej,
+  \item z~pełną informacją.
+\end{itemize}
+
+W brydżu występuje szczególny przypadek niedeterminizmu,
+czyli niedeterminizm konfiguracji początkowej.
+Skutki wykonania każdego ruchu są deterministyczne,
+natomiast początkowe rozdanie kart podlega losowości.
+Z tego powodu możemy traktować fazę gry po rozdaniu jako
+grę deterministyczną.
+
+Algorytmy MCTS i~AlphaZero wymagają pełnej informacji o~stanie gry.
+W~brydżu gracz nie zna kart przeciwników i~partnera.
+Z~tego powodu nie jest możliwe symulowanie ruchów przeciwników.
+Dokonano pewnej obserwacji, która pozwala użyć AlphaZero do gier
+z~niepełną informacją.
+AlphaZero wykorzystuje sieć neuronową $\pi$ do predykcji
+prawdopodobieństwa wyboru każdego ruchu.
+Sieć $\pi$ uczona jest poprzez minimalizację funkcji kosztu,
+która zdefiniowana jest jako entropia krzyżowa pomiędzy
+przewidzianym rozkładem a~wynikiem algorytmu MCTS.
+Sam MCTS również wykorzystuje $pi$ jako rozkład
+\textit{a~priori} w każdym węźle.
+Finalny wynik MCTS po określonej liczbie iteracji
+to rozkład prawdopodobieństwa wyboru każdego ruchu,
+który maksymalizuje wartość oczekiwaną nagrody.
+Dla stanów nieterminalnych nagroda jest przewidywana
+przez sieć $v$.
+Przy liczbie iteracji MCTS dążącej do nieskończoności,
+algorytm zbiega się do rozwiązania MiniMax, czyli optymalnego.
+Można zatem wnioskować, że sieć $\pi$ również zbiega się
+do rozwiązania MiniMax, ponieważ \textit{internalizuje}
+wyszukiwanie MCTS. W~literaturze MCTS opisywany jest jako
+\textit{policy improvement operator} \cite{MuZeroPaper,EfficientZeroPaper},
+czyli metoda poprawy funkcji $\pi$.
+W~procesie uczenia sieć $\pi$ uczy się przewidywać wynik MCTS,
+dlatego dla nieskończonej liczby iteracji MCTS,
+sieć $\pi$ zbiega się do rozwiązania MiniMax.
+
+Skoro udowodniono, że sieć $\pi$ uczy się przewidywać
+optymalny ruch (pod kątem maksymalizacji oczekiwanej nagrody),
+można wykorzystać samą sieć, bez MCTS, do wyboru ruchu.
+W~praktyce MCTS zwraca lepszy wynik, ale wymaga
+symulacji ruchów przeciwników.
+W~naszym przypadku nie jest to możliwe, dlatego
+zdecydowano się na wykorzystanie samej sieci $\pi$,
+która w~czasie $O(1)$ wybiera ruch na podstawie obserwacji stanu gry.
+Sieć była uczona za pomocą algorytmu MCTS (\textit{policy improvement operator}),
+który znał pełny stan gry.
+Sieć $\pi$ nie zna pełnego stanu gry, ale zna obserwację stanu gry
+z~punktu widzenia jednego z~graczy.
+Jest zatem w~stanie przewidzieć optymalny ruch,
+mając dostęp jedynie do kart jednego gracza.
+
+AlphaZero wymaga gier dwuosobowych.
+W~brydżu uczestniczy czterech graczy w~dwóch drużynach.
+Można zatem potraktować drużynę jako \textit{abstrakcyjnego gracza}.
+Finalna nagroda zdefiniowana jest następująco:
+\begin{itemize}
+  \item 1 -- wygrana drużyny,
+  \item 0 -- remis,
+  \item -1 -- przegrana drużyny.
+\end{itemize}
+Każda drużyna podejmuje decyzje maksymalizujące swoją nagrodę.
+W~przypadku kolejności \textit{fizycznych graczy}
+N -- E -- S -- W, kolejność graczy abstrakcyjnych to
+NS -- EW -- NS -- EW.
+Można to interpretować jako grę dwuosobową,
+gdzie gracze ,,przesiadają się'', zapominając o~swoich kartach.
+Decyzje mogą być podejmowane tylko na podstawie kart, które
+są widoczne dla gracza w~danej turze.
+Taka modyfikacja gry pozwala na zastosowanie AlphaZero.
+
+\subsubsection{Implementacja}
+
+Algorytm AlphaZero został zaimplementowany w~języku Python,
+wykorzystując biblioteki:
+\begin{itemize}
+  \item JAX \cite{JAX} -- backend do obliczeń numerycznych,
+  \item Haiku \cite{Haiku} -- biblioteka do tworzenia sieci neuronowych,
+  \item PGX \cite{PGX} -- implementacja gry w~brydża,
+  \item ekosystem DeepMind JAX \cite{JAXEcosystem} -- biblioteki pomocnicze.
+\end{itemize}
+
+Sieć neuronowa bazuje na architekturze opisanej w \cite{AlphaZeroPaper}.
+Jest to konwolucyjna wieża rezydualna z~dwoma głowicami -- $\pi$ i $v$.
+Obserwacja w~brydżu kodowana jest jako wektor jednowymiarowy.
+Aby zastosować konwolucje, dodatkowa pierwsza warstwa
+oblicza liniową projekcję obserwacji do tensora
+o wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
+Wynikiem jest rozkład $\pi$ na 38 możliwych ruchów oraz
+ocena $v$ stanu gry po aktywacji $tanh$.
+
+Agent był uczony poprzez granie sam ze sobą.
+W~procesie uczenia zaobserwował 110,886,912 ruchów,
+co odpowiada około 10 mln gier, zakładając średnią
+długość licytacji 11 ruchów.
+W~celach ewaluacji agenta, przeprowadzane
+były gry pomiędzy agentem a~graczem wykonującym
+losowe ruchy.
+Nie jest to najlepszy przeciwnik, ale pozwala
+ocenić, czy agent polepsza swoje umiejętności.
+Ewaluacja wykorzystywała samą sieć $\pi$,
+agent nie widział kart przeciwnika.
+Wyniki przedstawia Rys. \ref{fig:bzero-eval}.
+Agent szybko osiąga do 95\% wygranych.
+Brak 100\% wygranych wynika z~faktu, że
+ewaluacja nie wybiera zawsze optymalnego ruchu,
+tylko losuje ruch z~prawdopodobieństwa
+wygenerowanego przez $\pi$.
+Służy to zróżnicowaniu gier i~umożliwia
+dokładniejszą ocenę umiejętności agenta.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
+  \caption{Proces uczenia AlphaZero vs. losowy gracz}
+  \label{fig:bzero-eval}
+\end{figure}
+
+
+\subsection{Faza gry}
+
+Ze względu na ograniczony czas na realizację projektu,
+zdecydowano się na uproszczone podejście do fazy gry.
+Zgodnie z~założeniami projektu, asystent AI powinien umożliwić
+graczom doskonalenie swoich umiejętności w~grze w~brydża.
+Aby zagwarantować wysoki poziom umiejętności AI, zdecydowano się
+na wykorzystanie algorytmu Double Dummy Solver (DDS) \cite{DDS}.
+Jest to algorytm, który wykorzystuje pełną wiedzę o~rozdaniu kart
+w~celu znalezienia optymalnej sekwencji ruchów dla graczy.
+Wymagane jest podanie kart wszystkich graczy, dlatego
+metoda może być wykorzystana tylko przez serwer, który zna stan całej gry.
+Dostosowanie poziomu trudności polega na wybieraniu nieoptymalnych ruchów
+z~pewnym prawdopodobieństwem, konfigurowalnym przez użytkownika.
+
+
+
 \section{System wdrażania do środowiska deweloperskiego}
 
 %%% vercel jak to dziala z githubem
