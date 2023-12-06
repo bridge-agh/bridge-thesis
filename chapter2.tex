@@ -60,7 +60,7 @@ Schemat interakcji użytkownika z~aplikacją przedstawiono na rysunkach
   \centering
   \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
   \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
-\label{fig:flow_game_flow}
+  \label{fig:flow_game_flow}
 \end{figure}
 
 \FloatBarrier
@@ -87,7 +87,7 @@ informację na ekranie.
   \centering
   \includegraphics[width=\textwidth]{img/schematy/login.png}
   \caption{Schemat logowania i rejestracji użytkownika}
-\label{fig:schemat_login}
+  \label{fig:schemat_login}
 \end{figure}
 
 \FloatBarrier
@@ -113,7 +113,7 @@ dołączyć do przypisanego do kodu lobby (Rys.~\ref{fig:schemat_create_join_lob
   \centering
   \includegraphics[width=\textwidth]{img/schematy/create_join_lobby.png}
   \caption{Schemat tworzenia i dołączania do lobby}
-\label{fig:schemat_create_join_lobby}
+  \label{fig:schemat_create_join_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -144,39 +144,39 @@ wewnątrz (Rys.~\ref{fig:schemat_manage_lobby}). Posiada on następujące możli
   \centering
   \includegraphics[width=\textwidth]{img/schematy/manage_lobby.png}
   \caption{Schemat zarządzania lobby}
-\label{fig:schemat_manage_lobby}
+  \label{fig:schemat_manage_lobby}
 \end{figure}
 
 \FloatBarrier
 
 \subsubsection{Zgłoszenie gotowości}
-Użytkownik po dołączeniu do lobby może zgłosić gotowość do rozgrywki poprzez 
+Użytkownik po dołączeniu do lobby może zgłosić gotowość do rozgrywki poprzez
 naciśnięcie przycisku "\textbf{Ready}". Kiedy wszyscy użytkownicy w lobby zgłoszą
 gotowość, zaczyna się gra.
 
 \subsection{Gra w brydża}
 
 \subsubsection{Licytacja}
-Na etapie początkowym gry, uczestnicy mają możliwość zgłaszania odzywek poprzez 
+Na etapie początkowym gry, uczestnicy mają możliwość zgłaszania odzywek poprzez
 aktywację przycisków odpowiadających ich wyborom. Mogą licytować kontrakty, pasować lub
-deklarować kontrę i~rekontrę. Pierwszy licytujący jest losowo 
-wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas" zostanie zagrana 
+deklarować kontrę i~rekontrę. Pierwszy licytujący jest losowo
+wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas" zostanie zagrana
 trzy razy z rzędu (Rys.~\ref{fig:schemat_bid}).
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/bid.png}
   \caption{Schemat zgłoszenie odzywki}
-\label{fig:schemat_bid}
+  \label{fig:schemat_bid}
 \end{figure}
 
 \FloatBarrier
 
 \subsubsection{Zagrywanie kart}
 
-Po zakończeniu fazy licytacji, gracz podczas swojej kolejki może zagrać kartę, 
-przesuwając kursor na nią i klikając myszką. Dodatkowo, gracz będący partnerem dziadka 
-ma możliwość zagrywania kart w jego imieniu podczas jego tury (Rys.~\ref{fig:schemat_play_card}). 
+Po zakończeniu fazy licytacji, gracz podczas swojej kolejki może zagrać kartę,
+przesuwając kursor na nią i klikając myszką. Dodatkowo, gracz będący partnerem dziadka
+ma możliwość zagrywania kart w jego imieniu podczas jego tury (Rys.~\ref{fig:schemat_play_card}).
 
 
 \begin{figure}[h]
@@ -189,8 +189,8 @@ ma możliwość zagrywania kart w jego imieniu podczas jego tury (Rys.~\ref{fig:
 \FloatBarrier
 
 \subsubsection{Zastąpienie gracza}
-W przypadku, gdy jeden z graczy opuści grę, jego miejsce zostanie automatycznie 
-zajęte przez asystenta. Jednakże, jeśli wszyscy gracze kontrolowani przez ludzi 
+W przypadku, gdy jeden z graczy opuści grę, jego miejsce zostanie automatycznie
+zajęte przez asystenta. Jednakże, jeśli wszyscy gracze kontrolowani przez ludzi
 zdecydują się opuścić rozgrywkę, to zostanie ona zakończona.
 
 % \subsection{Obserwowanie rozgrywek}
@@ -211,8 +211,8 @@ zdecydują się opuścić rozgrywkę, to zostanie ona zakończona.
 
 
 \section{Specyfikacja wymagań funkcjonalnych}
-Aplikacja musi sprostać określonym kryteriom, umożliwiając odpowiednie funkcje, 
-aby była użyteczna dla swoich użytkowników. W~niniejszym podrozdziale 
+Aplikacja musi sprostać określonym kryteriom, umożliwiając odpowiednie funkcje,
+aby była użyteczna dla swoich użytkowników. W~niniejszym podrozdziale
 postawione są te wymagania.
 \subsection{Logowanie i rejestracja nowych użytkowników}
 Żeby uzyskać dostęp do funkcjonalności naszej aplikacji, potrzebne
@@ -223,30 +223,30 @@ poprzez wprowadzenie swojego adresu e-mail i~hasła.
 W celu rozegrania partii brydża przeciwko innym graczom bądź
 przeciwnikom AI, gracz musi mieć możliwość utworzenia własnej
 rozgrywki oraz dołączenia do istniejącej.
-\subsubsection{Utworzenie/Dołączenie do lobby} 
+\subsubsection{Utworzenie/Dołączenie do lobby}
 Utworzenie, jak i~dołączenie do lobby jest dostępne z~widoku głównego aplikacji. Dołączenie do lobby
 odbywa się poprzez wprowadzenie kodu gry. Po utworzeniu lobby użytkownik może
 wysłać jego kod innym graczom, zapraszając ich do dołączenia.
 \subsubsection{Zarządzanie lobby}
-Host powinien mieć możliwość dostosowania lobby według swoich preferencji przed 
-rozpoczęciem gry. Host ma prawo wyrzucić gracza z~lobby, zmienić jego pozycję lub przekazać 
-mu swoje uprawnienia. Dodatkowo, host powinien móc przydzielić wybrane pozycje 
+Host powinien mieć możliwość dostosowania lobby według swoich preferencji przed
+rozpoczęciem gry. Host ma prawo wyrzucić gracza z~lobby, zmienić jego pozycję lub przekazać
+mu swoje uprawnienia. Dodatkowo, host powinien móc przydzielić wybrane pozycje
 wirtualnym asystentom.
 \subsection{Regulacja poziomu gry asystenta}
-Host lobby powinien mieć możliwość określenia poziomu trudności asystenta przed rozpoczęciem 
-rozgrywki. Jest to ważne, ponieważ stały, z góry ustalony poziom mógłby być zbyt wymagający 
-dla nowicjuszy, jednocześnie nie stanowiąc wyzwania dla doświadczonych graczy. 
+Host lobby powinien mieć możliwość określenia poziomu trudności asystenta przed rozpoczęciem
+rozgrywki. Jest to ważne, ponieważ stały, z góry ustalony poziom mógłby być zbyt wymagający
+dla nowicjuszy, jednocześnie nie stanowiąc wyzwania dla doświadczonych graczy.
 
 \subsection{Rozpoczęcie rozgrywki}
-Kiedy wszystkie miejsca w lobby zostaną zajęte przez graczy, którzy zgłoszą gotowość do gry 
-lub część miejsc zostanie obsadzonych asystentami AI, rozgrywka zostaje rozpoczęta. 
+Kiedy wszystkie miejsca w lobby zostaną zajęte przez graczy, którzy zgłoszą gotowość do gry
+lub część miejsc zostanie obsadzonych asystentami AI, rozgrywka zostaje rozpoczęta.
 Wszyscy użytkownicy zostają przeniesieni do ekranu gry.
 \subsection{Rozgrywka}
-Podstawową funkcjonalnością naszej aplikacji jest rozgrywka w brydża. 
-Gracze powinni mieć możliwość deklarowania wybranych kontraktów 
-w~trakcie licytacji oraz wykładania kart na stół po zakończeniu tej fazy gry. 
-Konieczne jest utrzymanie odpowiedniej kolejności ruchów graczy i zapewnienie, aby 
-dostępne były tylko te ruchy, które są zgodne z zasadami gry. Istotną kwestią jest 
+Podstawową funkcjonalnością naszej aplikacji jest rozgrywka w brydża.
+Gracze powinni mieć możliwość deklarowania wybranych kontraktów
+w~trakcie licytacji oraz wykładania kart na stół po zakończeniu tej fazy gry.
+Konieczne jest utrzymanie odpowiedniej kolejności ruchów graczy i zapewnienie, aby
+dostępne były tylko te ruchy, które są zgodne z zasadami gry. Istotną kwestią jest
 również synchronizacja stanu gry między wszystkimi graczami.
 \subsection{Wyświetlenie wyników}
 Ważne jest, żeby gracze po skończeniu partii mogli zobaczyć
@@ -317,6 +317,6 @@ odpowiednich technologii do jej realizacji. Next.js oraz FastAPI %%% TODO dowód
 to godne zaufania, popularne na całym świecie narzędzia do budowy
 aplikacji webowych, a~usługa Google Firebase odciąża nas z~implementacji
 funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
-Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji 
+Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji
 kolejnych funkcjonalności.
 
