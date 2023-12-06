@@ -36,27 +36,31 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
                 gdy użytkownik założy lub zostanie jedynym
                 użytkownikiem lobby, to staje się jego
                 hostem.
-          \item zarządzanie lobby -- może decydować o graczach znajdujących wraz
+          \item zarządzanie lobby -- może decydować o graczach znajdujących się wraz
                 z~nim w~lobby. Może decydować o~ich pozycji lub ich wyrzucić
                 ze wspólnej sesji\footnote{Sesja oznacza to samo co lobby, czyli
                   abstrakcję łączącą wielu graczy i~asystentów w~obrębie jednej
                   rozgrywki}.
-                Może także uzupełnić wolne miejsca o~asystenta brydża z~określeniem jego
+                Może także uzupełnić wolne miejsca o~asystenta AI z~określeniem jego
                 poziomu trudności.
         \end{itemize}
 \end{itemize}
+
+Schemat interakcji użytkownika z~aplikacją przedstawiono na rysunkach
+\ref{fig:flow_user_flow} i~\ref{fig:flow_game_flow}.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/flow-aplikacji/user_flow.png}
   \caption{Schemat interakcji użytkownika z aplikacją}
-  \label{fig:figma_userflow}
+  \label{fig:flow_user_flow}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
   \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
+  \label{fig:flow_game_flow}
 \end{figure}
 
 \FloatBarrier
@@ -72,7 +76,7 @@ zostanie przekierowany do formularza rejestracyjnego.
 Do utworzenia konta wymagane jest podanie własnego
 pseudonimu, adresu e-mail oraz hasła. Aby uzyskać dostęp do utworzonego
 konta, należy kliknąć \textbf{"Log in"} w~nagłówku strony, po czym
-w~formularzu podać dane wykorzystanie podczas rejestracji.
+w~formularzu podać dane użyte podczas rejestracji (Rys.~\ref{fig:schemat_login}).
 
 W~przypadku nieprawidłowo podanych danych podczas rejestracji
 lub logowania, wystąpienia błędów wynikających z~połączenia internetowego lub
@@ -82,7 +86,8 @@ informację na ekranie.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/login.png}
-  \caption{Schemat logowania i rejstracji użytkownika}
+  \caption{Schemat logowania i rejestracji użytkownika}
+  \label{fig:schemat_login}
 \end{figure}
 
 \FloatBarrier
@@ -95,19 +100,20 @@ lobby, należy kliknąć \textbf{"Create lobby"} na głównym panelu
 aplikacji. Przekieruje ono użytkownika do nowego lobby, którego staje
 się administratorem. Do utworzonego lobby zostanie wygenerowany
 unikalny identyfikator, zwany dalej kodem. Użytkownik będzie mógł go skopiować
-i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć.
+i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć (Rys.~\ref{fig:schemat_create_join_lobby}).
 
 \subsubsection{Dołączanie do lobby}
 
 Gdy użytkownik otrzyma kod do lobby od innego użytkownika, może
 do niego dołączyć, poprzez główny panel aplikacji. Należy wkleić
 kod w~odpowiednie pole i~klikając opcję \textbf{"Join"}
-dołączyć do przypisanego do kodu lobby.
+dołączyć do przypisanego do kodu lobby (Rys.~\ref{fig:schemat_create_join_lobby}).
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/create_join_lobby.png}
   \caption{Schemat tworzenia i dołączania do lobby}
+  \label{fig:schemat_create_join_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -117,7 +123,7 @@ dołączyć do przypisanego do kodu lobby.
 Jeżeli użytkownik jest hostem lub został jedynym
 graczem niekontrolowanym przez asystenta w~lobby, może on zarządzać graczami
 znajdującymi się
-wewnątrz. Posiada on następujące możliwości:
+wewnątrz (Rys.~\ref{fig:schemat_manage_lobby}). Posiada on następujące możliwości:
 \begin{itemize}
   \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami.
         Może być to gracz, asystent lub puste miejsce.
@@ -138,6 +144,7 @@ wewnątrz. Posiada on następujące możliwości:
   \centering
   \includegraphics[width=\textwidth]{img/schematy/manage_lobby.png}
   \caption{Schemat zarządzania lobby}
+  \label{fig:schemat_manage_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -154,12 +161,13 @@ Na etapie początkowym gry, uczestnicy mają możliwość zgłaszania odzywek po
 aktywację przycisków odpowiadających ich wyborom. Mogą licytować kontrakty, pasować lub
 deklarować kontrę i~rekontrę. Pierwszy licytujący jest losowo 
 wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas" zostanie zagrana 
-trzy razy z rzędu.
+trzy razy z rzędu (Rys.~\ref{fig:schemat_bid}).
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/bid.png}
   \caption{Schemat zgłoszenie odzywki}
+  \label{fig:schemat_bid}
 \end{figure}
 
 \FloatBarrier
@@ -168,13 +176,14 @@ trzy razy z rzędu.
 
 Po zakończeniu fazy licytacji, gracz podczas swojej kolejki może zagrać kartę, 
 przesuwając kursor na nią i klikając myszką. Dodatkowo, gracz będący partnerem dziadka 
-ma możliwość zagrywania kart w jego imieniu podczas jego tury.
+ma możliwość zagrywania kart w jego imieniu podczas jego tury (Rys.~\ref{fig:schemat_play_card}).
 
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/play_card.png}
   \caption{Schemat zagrania karty przez użytkownika}
+  \label{fig:schemat_play_card}
 \end{figure}
 
 \FloatBarrier
@@ -311,5 +320,5 @@ to godne zaufania, popularne na całym świecie narzędzia do budowy
 aplikacji webowych, a~usługa Google Firebase odciąża nas z~implementacji
 funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
 Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji
-kolejnych funkcjonalności z~najwyższą starannością.
+kolejnych funkcjonalności.
 
