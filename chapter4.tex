@@ -82,6 +82,13 @@ kolejnych części i~kluczowych etapów procesu tworzenia aplikacji.
 
 \FloatBarrier
 
+Również dużym plusem tego rozwiązania była integracja
+z~platformą GitHub\cite{Github}, która pozwoliła na
+szybkie wyszukiwanie zmian w~kodzie projektu. Poprzez
+zastosowane unikalnych identyfikatorów każde zadanie
+znajdujące się w~Shortcut mogło mieć odpowiednio przypisaną
+zmianę, która zaszła w~projekcie.
+
 
 \subsubsection{Figma}
 
@@ -115,7 +122,7 @@ obrazu na żywo.
 Aby synchronizować postępy pracy i~ich historię zastosowano
 system kontroli wersji Git \cite{Git}. Wraz z~nim, do przechowywania
 repozytoriów z kodem aplikacji, jak i~dokumentacji wykorzystano
-platformę GitHub \cite{Github}.
+platformę GitHub.
 
 \subsection{Tworzenie dokumentacji}
 
@@ -143,15 +150,20 @@ technologiach.
 Visual Studio Code \cite{VSCode}, dalej opisywany jako VSCode,
 to zaawansowany edytor kodu stworzony
 przez Microsoft, który stał się jednym z~najpopularniejszych narzędzi
-wśród programistów.
+wśród programistów\cite{IDEIndex}.
 VSCode wspiera wiele języków programowania i~znaczników od JavaScript,
-TypeScript, Python, PHP, C++ po HTML, CSS, JSON i~wiele innych.
-Do tego oferuje zaawansowane funkcje autouzupełniania kodu, informacje
-o~typach, podpowiedzi dotyczące parametrów funkcji, info o~definicjach
-i~dokumentację.
+TypeScript, Python, C++, Rust po HTML, CSS, JSON i~wiele innych.
 Dużą zaletą VSCode jest również możliwość personalizacji. Dostępne są
 tysiące rozszerzeń, które pozwalają na dostosowanie edytora do własnych
-potrzeb. Użycie tego edytora znacznie usprawniło rozwój wizualny aplikacji.
+potrzeb. Użycie tego edytora znacznie usprawniło rozwój aplikacji.
+
+Ze względu na możliwość dostosowania go do różnych języków programowania
+i~technologii, stosowano go przy tworzeniu każdego elementu projektu.
+
+Oprócz tworzenia samego oprogramowania w~tym narzędziu wykorzystano go także
+do stworzenia dokumentacji aplikacji wraz z~użyciem systemu kontroli wersji Git.
+Usprawniło to przebieg pracy nad dokumentem, jak i~wzajemną kontrolę
+współtworzenia tekstu.
 
 \subsubsection{Produkty Jetbrains}
 
@@ -189,12 +201,71 @@ do wspomnianych wyżej celów. Było to narzędzie kluczowe w~zapewnieniu
 sprawnego działania tej części systemu.
 
 
-\subsection{Wdrażanie i testowanie}
+\subsection{Integracja i testowanie}
 
-\subsubsection{Github Actions (deploy \& tests)}
+Podział elementów systemu na wiele części
+takich jak aplikacja webowa, serwer, asystent AI
+i~dokumentacja wymagał stworzenia odpowiedniego
+przepływu pracy zwanego \textbf{CI/CD}. Akronim ten oznacza
+ciągłą integrację/ciągłe wdrażanie. Jest on stosowany
+w~celu szybkiego likwidowania błędów, przeprowadzania
+testów, analizą działania i~integracją elementów systemu
+aplikacji. Również pozwala on przyrostowe implementowanie
+projektu i~możliwość otrzymania od klienta zwrotnych
+informacji o~działaniu systemu.
 
-%%%\subsubsubsection{Konteneryzacja (repozytorium)}
+Zastosowanie tego rozwiązania pozwoliło na
+prezentowanie klientowi kolejnych etapów aplikacji, jak
+również pozwoliło na niezależne rozwijanie
+i~testowanie osobnych części systemu.
 
-\subsubsection{Oracle Cloud (backend)}
+Poniżej opisano technologie i~zaprojektowane systemy,
+które pozwoliły na skonstruowanie systemu CI/CD dla
+tworzonego projektu.
 
-\subsubsection{Vercel (front)}
+
+\subsubsection{Github Actions}
+
+Najważniejszym elementem całego systemu było zintegrowanie
+repozytorium kodu
+wraz z~resztą technologii. Platforma GitHub, na której
+znajduje się kod tworzonej aplikacji, oferuje swoje
+rozwiązanie GitHub Actions\cite{GithubActions} pozwalające
+na zaawansowaną realizację CI/CD. Dla każdego elementu
+projektu zostały utworzone instrukcje w~postaci plików JSON,
+które były uruchamiane, gdy kod był aktualizowany.
+
+\subsubsection{Vercel}
+
+\begin{figure}[b!]
+    \centering
+    \includegraphics[width=\textwidth]{img/github/github-vercel.png}
+    \caption{Wycinek integracji platformy Vercel z~GitHub dla jednej z~gałęzi kodu aplikacji webowej}
+    \label{fig:github-vercel}
+\end{figure}
+
+Aplikacje webowa była udostępniania na platformie
+Vercel\cite{Vercel}. Posiada ona wsparcie \mbox{z~GitHubem},
+przez co tworzenie instrukcji odbywa się automatycznie.
+Vercel, dla głównej gałęzi kodu \textit{"master"} oraz
+gałęzi implementujących dodatkowe funkcje, budował aplikację
+i~udostępniał na swojej platformie. W~przypadku aktualizacji
+kodu, na odpowiednich gałęziach, przystępował on do ponownego
+budowania aplikacji i~zastępował starą. Dla każdej gałęzi
+generowany był osobny adres, więc w~przypadku zmian zawsze
+najnowsza wersja aplikacji, z~danej gałęzi, była dostępna pod
+tym samem odpowiadającym jej adresem. Na rysunku
+\ref{fig:github-vercel} można zauważyć, jak dla jednej
+z~gałęzi został wygenerowany adres do aplikacji
+("Visit Preview") oraz że budowanie przebiegło bez problemów
+(zielone zaznaczenie).
+
+\FloatBarrier
+
+\subsubsection{Oracle Cloud}
+
+
+
+
+
+\subsubsection{title}
