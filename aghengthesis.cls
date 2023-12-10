@@ -43,8 +43,7 @@
 \newcommand*{\LangAgh}{Akademia Górniczo-Hutnicza im. Stanisława Staszica
   w Krakowie}
 
-\newcommand*{\LangFaculty}{Wydział Informatyki, Elektroniki i
-  Telekomunikacji}
+\newcommand*{\LangFaculty}{Wydział Informatyki}
 
 \newcommand*{\LangInstitute}{Instytut Informatyki}
 

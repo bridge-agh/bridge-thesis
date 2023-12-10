@@ -120,8 +120,8 @@ wykorzystania hooków pozostała taka sama, przez co komponenty interfejsu
 zawierające wspomniane hooki nie musiały być aktualizowane po tej zmianie. \\
 
 Poniżej przedstawione zostały hooki odpowiedzialne za aktualizacje
-danych z~serwera, wykorzystując Fetch API\cite{FetchAPI} do wysyłania pojedynczych
-zapytań i~WebSockety\cite{WebSockets} do ustanawiania połączenia z~serwerem
+danych z~serwera, wykorzystując Fetch API \cite{FetchAPI} do wysyłania pojedynczych
+zapytań i~WebSockety \cite{WebSockets} do ustanawiania połączenia z~serwerem
 i~ciągłą aktualizację oferowanego stanu przez serwer.
 
 \begin{lstlisting}[language=JavaScript, caption=Hooki z Fetch API, label={lst:fetch-hooks}, captionpos=b]
@@ -229,6 +229,14 @@ wysoką wydajność i~pełną integrację z~aplikacją webową.
 
 
 \subsection{Framework Three.js}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/bridge-engine/orbit.png}
+  \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
+  \label{fig:engine_orbit}
+\end{figure}
+
 Podczas tworzenia środowiska gry, powstał problem z~zarządzaniem
 elementami kart i~ich przemieszczaniem na ekranie użytkownika. Animacje,
 takie jak ruch kart, z~wykorzystaniem wyłącznie komponentów React
@@ -243,8 +251,8 @@ ich płynność. \\
 
 Wymusiło to rezygnację z~rozwiązania wykorzystującego jedynie elementy HTML.
 Dokonano zmiany na framework umożliwiający renderowanie
-środowiska i~elementów 3D - Three.js
-\cite{ThreeJS} (Rys.~\ref{fig:engine_orbit}).
+środowiska i~elementów
+\mbox{3D -- Three.js~\cite{ThreeJS}~(Rys.~\ref{fig:engine_orbit})}.
 
 Posiada on wszystkie potrzebne funkcje, które pozwalają na zaawansowane
 zarządzanie aspektami wizualnymi. Udostępnia on:
@@ -255,15 +263,6 @@ karty i~przemieszczać niezależnie od struktury komponentów;
 \textit{kamerę} -- pozwalającą na wykorzystanie perspektywy
 w~środowisku 3D, przez co gracze mogą mieć wizualne
 odczucie realnej rozgrywki gry w~brydża.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/bridge-engine/orbit.png}
-  \caption{Widok boczny z~trójwymiarowej przestrzeni silnika gry.}
-  \label{fig:engine_orbit}
-\end{figure}
-
-\FloatBarrier
 
 Dodatkowo framework ten został wybrany ze względu na swoją wydajność.
 Do renderowania elementów wykorzystuję on potencjał WebGL \cite{WebGL}.
@@ -284,6 +283,8 @@ klatek na sekundę\footnote{
   Porównanie zostało wykonane na urządzeniu
   Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
 }.
+
+\FloatBarrier
 
 \subsection{Integracja silnika z Reactem}
 Three.js oprócz wspomnianych zalet jest też wspierany w~postaci komponentów React.

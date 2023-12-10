@@ -4,6 +4,19 @@
 
 \section{Kontekst użytkowania aplikacji}
 
+\begin{figure}[b!]
+  \centering
+  \includegraphics[width=\textwidth]{img/flow-aplikacji/user_flow.png}
+  \caption{Schemat interakcji użytkownika z aplikacją}
+  \label{fig:figma_userflow}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
+  \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
+\end{figure}
+
 Głównym zadaniem aplikacji jest oferowanie możliwości
 rozgrywania gry w~brydża. Strona internetowa aplikacji ma być
 przystosowana do dowolnego rozmiaru ekranu urządzenia, z~którego mógłby
@@ -46,24 +59,17 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
         \end{itemize}
 \end{itemize}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/flow-aplikacji/user_flow.png}
-  \caption{Schemat interakcji użytkownika z aplikacją}
-  \label{fig:figma_userflow}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
-  \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
-\end{figure}
-
 \FloatBarrier
 
 \section{Przypadki użycia}
 
 \subsection{Rejestracja/Logowanie do aplikacji}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/schematy/login.png}
+  \caption{Schemat logowania i rejstracji użytkownika}
+\end{figure}
 
 Aby uzyskać dostęp do większości funkcjonalności aplikacji, wymagane
 jest posiadanie konta. Anonimowy użytkownik może je utworzyć, klikając
@@ -78,12 +84,6 @@ W~przypadku nieprawidłowo podanych danych podczas rejestracji
 lub logowania, wystąpienia błędów wynikających z~połączenia internetowego lub
 niedostępnego serwerem autentykacji, użytkownik otrzyma odpowiednią
 informację na ekranie.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/schematy/login.png}
-  \caption{Schemat logowania i rejstracji użytkownika}
-\end{figure}
 
 \FloatBarrier
 
@@ -104,7 +104,7 @@ do niego dołączyć, poprzez główny panel aplikacji. Należy wkleić
 kod w~odpowiednie pole i~klikając opcję \textbf{"Join"}
 dołączyć do przypisanego do kodu lobby.
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/create_join_lobby.png}
   \caption{Schemat tworzenia i dołączania do lobby}
@@ -113,6 +113,12 @@ dołączyć do przypisanego do kodu lobby.
 \FloatBarrier
 
 \subsubsection{Zarządzanie lobby}
+
+\begin{figure}[b!]
+  \centering
+  \includegraphics[width=\textwidth]{img/schematy/manage_lobby.png}
+  \caption{Schemat zarządzania lobby}
+\end{figure}
 
 Jeżeli użytkownik jest hostem lub został jedynym
 graczem niekontrolowanym przez asystenta w~lobby, może on zarządzać graczami
@@ -134,12 +140,6 @@ wewnątrz. Posiada on następujące możliwości:
 
 \end{itemize}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/schematy/manage_lobby.png}
-  \caption{Schemat zarządzania lobby}
-\end{figure}
-
 \FloatBarrier
 
 \subsubsection{Zgłoszenie gotowości}
@@ -156,7 +156,7 @@ deklarować kontrę i~rekontrę. Pierwszy licytujący jest losowo
 wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas" zostanie zagrana
 trzy razy z rzędu.
 
-\begin{figure}[h]
+\begin{figure}[!]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/bid.png}
   \caption{Schemat zgłoszenie odzywki}
@@ -170,8 +170,7 @@ Po zakończeniu fazy licytacji, gracz podczas swojej kolejki może zagrać kart�
 przesuwając kursor na nią i klikając myszką. Dodatkowo, gracz będący partnerem dziadka
 ma możliwość zagrywania kart w jego imieniu podczas jego tury.
 
-
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\textwidth]{img/schematy/play_card.png}
   \caption{Schemat zagrania karty przez użytkownika}
