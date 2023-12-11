@@ -63,24 +63,24 @@ Praktycznie zawsze w~trakcie tworzenia oprogramowania wymagane jest
 narzędzie lub platforma udostępniająca możliwość tworzenia zadań,
 zależności między nimi oraz dzielenia na większe zbiory zadań.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_backlog.png}
+    \caption{Backlog z zadaniami}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_epic.png}
+    \caption{Epic dotyczący systemu lobby wraz z~zadaniami i~ich statusami}
+\end{figure}
+
 Zdecydowano się na narzędzie Shortcut \cite{Shortcut}, które oferuje
 wszystkie potrzebne funkcjonalności. Pozwala na podział zadań na tzw.
 epici -- elementy pracy zawierające wystarczająco dużo zadań do realizacji,
 których nie da się ukończyć w~krótkim czasie. Dla każdego milestone'a
 utworzono odpowiedni epic, dzięki czemu możliwe było prezentowanie
 kolejnych części i~kluczowych etapów procesu tworzenia aplikacji.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{img/shortcut/shortcut_backlog.png}
-    \caption{Backlog z zadaniami}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{img/shortcut/shortcut_epic.png}
-    \caption{Epic dotyczący systemu lobby wraz z~zadaniami i~ich statusami}
-\end{figure}
 
 \FloatBarrier
 
@@ -99,17 +99,16 @@ Służy ono do projektowania graficznego, takich prac jak szkielety stron
 internetowych, prototypy interfejsów użytkownika czy też otwartych przestrzeni
 do zarządzania i~planowania.
 
-Warto wspomnieć, że tak jak w~\ref{fig:figma_login} lub
-\ref{fig:figma_userflow} wykorzystano Figmę do stworzenia mocków i~schematów.
-
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{img/schematy/milestones.png}
+    \includegraphics[width=0.9\textwidth]{img/schematy/milestones.png}
     \caption{Szczegółowy podział milestone'ów na zadania}
 \end{figure}
 
-\FloatBarrier
+Warto wspomnieć, że tak jak w~\ref{fig:figma_login} lub
+\ref{fig:figma_userflow} wykorzystano Figmę do stworzenia mocków i~schematów.
 
+\FloatBarrier
 
 \subsection{Komunikacja wewnętrzna}
 
@@ -123,9 +122,9 @@ obrazu na żywo.
 \subsection{System kontroli wersji}
 
 Aby synchronizować postępy pracy i~ich historię zastosowano
-system kontroli wersji Git \cite{Git}. Wraz z~nim, do przechowywania
+system kontroli wersji Git~\cite{Git}. Wraz z~nim, do przechowywania
 repozytoriów z kodem aplikacji, jak i~dokumentacji wykorzystano
-platformę GitHub.
+platformę GitHub \cite{Github}.
 
 
 \subsection{Tworzenie oprogramowania}
@@ -236,13 +235,6 @@ po aktualizacji kodu.
 
 \subsubsection{Vercel}
 
-\begin{figure}[b!]
-    \centering
-    \includegraphics[width=\textwidth]{img/github/github-vercel.png}
-    \caption{Wycinek integracji platformy Vercel z~GitHub dla jednej z~gałęzi kodu aplikacji webowej}
-    \label{fig:github-vercel}
-\end{figure}
-
 Platforma Vercel\cite{Vercel} była odpowiedzialna za
 udostępnianie aplikacji webowej. Posiada ona wsparcie \mbox{z~GitHubem},
 przez co tworzenie instrukcji odbywa się automatycznie.
@@ -256,7 +248,16 @@ najnowsza wersja aplikacji, z~danej gałęzi, była dostępna pod
 tym samem odpowiadającym jej adresem. Co więcej, w przypadku
 problemów lub błędów podczas budowania aplikacji, informuje
 on o~tym i~udostępnienia zapisy logów, aby można było je
-zweryfikować. Na rysunku
+zweryfikować.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/github/github-vercel.png}
+    \caption{Wycinek integracji platformy Vercel z~GitHub dla jednej z~gałęzi kodu aplikacji webowej}
+    \label{fig:github-vercel}
+\end{figure}
+
+Na rysunku
 \ref{fig:github-vercel} można zauważyć, jak dla jednej
 z~gałęzi został wygenerowany adres do aplikacji
 ("Visit Preview") oraz że budowanie przebiegło bez problemów
@@ -289,9 +290,21 @@ inny hash\footnote{hash -- wartość wyliczana przez tzw. "funkcję
 odpowiedni skrypt uruchamiał on nową wersję kontenera.
 Każda gałąź kodu, podobnie jak w~przypadku aplikacji
 webowej, posiadała osobny kontener uruchomiony na serwerze
-Oracle. Dzięki temu aplikację webową można było połączyć
+Oracle, do którego tworzony był osobny adres za pomocą
+autorskich skryptów i~oprogramowania Traefik \cite{Traefik}.
+Dzięki temu aplikację webową można było połączyć
 z~dowolnie wybraną wersją serwera gry, na przykład, aby
-przetestować nową funkcjonalność.
+przetestować nową funkcjonalność. Na rysunku
+\ref{fig:traefik-dashboard} przedstawiono panel, na którym
+znajduje się lista serwerów udostępnionych dla
+odpowiadających im gałęzi kodu.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/traefik/dashboard.png}
+    \caption{Panel serwisów udostępnionych przez Traefik.}
+    \label{fig:traefik-dashboard}
+\end{figure}
 
 
 \subsection{Tworzenie dokumentacji}

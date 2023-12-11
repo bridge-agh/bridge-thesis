@@ -29,6 +29,28 @@ grę oraz możliwość nauki i~doskonalenia umiejętności gry w~brydża.
 
 \section{Motywacja projektu}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/brydz-platformy/bridgebase.png}
+  \caption{Rozgrywka brydża na platformie Bridge Base}
+  \label{fig:bridge-base}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \subfloat[Główny ekran rozgrywki]{
+    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay1.jpg}
+    \label{fig:neural-play-1}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Historia bieżącej rozgrywki]{
+    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay2.jpg}
+    \label{fig:neural-play-2}
+  }%
+  \caption{Rozgrywka brydża w aplikacji Bridge by NeuralPlay}
+  \label{fig:neural-play}
+\end{figure}
+
 Wirtualny asystent AI może stanowić rozwiązanie dla tych problemów. Poprzez
 zintegrowanie sztucznej inteligencji z~brydżem, aplikacja będzie w~stanie
 zapewnić użytkownikom nie tylko wskazówki dotyczące gry, ale także możliwość
@@ -67,29 +89,8 @@ i~rywalizację z~innymi graczami oraz posiadało intuicyjny i~przyjazny
 interfejs graficzny. Naszym celem jest połączenie większości tych funkcji
 w~naszej własnej aplikacji.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/brydz-platformy/bridgebase.png}
-  \caption{Rozgrywka brydża na platformie Bridge Base}
-  \label{fig:bridge-base}
-\end{figure}
 
-\begin{figure}[h]
-  \centering
-  \hfill
-  \subfloat[Główny ekran rozgrywki]{
-    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay1.jpg}
-    \label{fig:neural-play-1}
-  }%
-  \hfill
-  \subfloat[Historia bieżącej rozgrywki]{
-    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay2.jpg}
-    \label{fig:neural-play-2}
-  }%
-  \hfill
-  \caption{Rozgrywka brydża w aplikacji Bridge by NeuralPlay}
-  \label{fig:neural-play}
-\end{figure}
+
 \FloatBarrier
 
 \section{Wizja produktu}
@@ -147,7 +148,7 @@ najprostszego w implementacji, są to:
   \item implementacja algorytmu IS-MCTS z biblioteki OpenSpiel \cite{LanctotEtAl2019OpenSpiel},
   \item program AI do brydża GIB \cite{Ginsberg1999GIBST},
   \item algorytm Pure Monte Carlo Tree Search \cite{pmcts}.
-  % \item algorytm o nazwie „random move”.
+        % \item algorytm o nazwie „random move”.
 \end{enumerate}
 
 Opcja 1. dotyczy implementacji algorytmu przedstawionego w~artykule
@@ -197,45 +198,36 @@ w~oparciu o~komputer osobisty lub mikrokomputer, np. Raspberry Pi \cite{RPi}.
 
 %%%
 
+\newpage
+
 \section{Szkic aplikacji}
 
 Zostały przygotowane szkice interfejsu aplikacji
 (Rys.~\ref{fig:figma_login}--\ref{fig:figma_game}).
 
-% \begin{figure}[h]
-%   \centering
-%   \includegraphics[width=\textwidth]{img/user_flow.png}
-%   \caption{Schemat interakcji z aplikacją}
-% \end{figure}
-
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/1.png}
-  \caption{Ekran logowania}
-  \label{fig:figma_login}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/2.png}
-  \caption{Ekran główny}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/3.png}
-  \caption{Ekran lobby}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/4.png}
-  \caption{Ekran gry}
-  \label{fig:figma_game}
+  \subfloat[Ekran logowania]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/1.png}
+    \label{fig:figma_login}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Ekran główny]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/2.png}
+  }%
+  \\
+  \subfloat[Ekran lobby]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/3.png}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Ekran gry]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/4.png}
+    \label{fig:figma_game}
+  }%
+  \caption{Szkice interfejsu aplikacji}
 \end{figure}
 
 \FloatBarrier
-
 
 \section{Słownik pojęć}
 
