@@ -230,13 +230,6 @@ wysoką wydajność i~pełną integrację z~aplikacją webową.
 
 \subsection{Framework Three.js}
 
-\begin{figure}[!]
-  \centering
-  \includegraphics[width=\textwidth]{img/bridge-engine/orbit.png}
-  \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
-  \label{fig:engine_orbit}
-\end{figure}
-
 Podczas tworzenia środowiska gry, powstał problem z~zarządzaniem
 elementami kart i~ich przemieszczaniem na ekranie użytkownika. Animacje,
 takie jak ruch kart, z~wykorzystaniem wyłącznie komponentów React
@@ -253,6 +246,13 @@ Wymusiło to rezygnację z~rozwiązania wykorzystującego jedynie elementy HTML.
 Dokonano zmiany na framework umożliwiający renderowanie
 środowiska i~elementów
 \mbox{3D -- Three.js~\cite{ThreeJS}~(Rys.~\ref{fig:engine_orbit})}.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
+    \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
+    \label{fig:engine_orbit}
+\end{figure}
 
 Posiada on wszystkie potrzebne funkcje, które pozwalają na zaawansowane
 zarządzanie aspektami wizualnymi. Udostępnia on:
@@ -280,8 +280,8 @@ Przykładowo badając skok wydajności, porównując pierwotny silnik z~obecnym,
 na urządzeniu mobilnym, różnica jest na poziomie od około 15 aż do
 ponad 140 wyświetlanych
 klatek na sekundę\footnote{
-  Porównanie zostało wykonane na urządzeniu
-  Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
+    Porównanie zostało wykonane na urządzeniu
+    Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
 }.
 
 \FloatBarrier
