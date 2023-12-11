@@ -196,9 +196,9 @@ do wspomnianych wyżej celów. Było to narzędzie kluczowe w~zapewnieniu
 sprawnego działania tej części systemu.
 
 
-\subsection{Integracja i testowanie}
+\subsection{Integracja elementów systemu}
 
-Podział elementów systemu na wiele części
+Podział tworzonego systemu na wiele części
 takich jak aplikacja webowa, serwer, asystent AI
 i~dokumentacja wymagał stworzenia odpowiedniego
 przepływu pracy zwanego \textbf{CI/CD}. Akronim ten oznacza
@@ -286,7 +286,7 @@ cyklicznie był sprawdzany rejestr w~celu wykrycia
 nowo powstałego obrazu kontenera. Gdy obraz posiadał
 inny hash\footnote{hash -- wartość wyliczana przez tzw. "funkcję
     hashującą", która dla otrzymanych na wejściu tych
-    samych danych zwraca tę samą wartość.}
+    samych danych zwraca tę samą wyliczoną wartość.}
 odpowiedni skrypt uruchamiał on nową wersję kontenera.
 Każda gałąź kodu, podobnie jak w~przypadku aplikacji
 webowej, posiadała osobny kontener uruchomiony na serwerze
@@ -304,6 +304,40 @@ odpowiadających im gałęzi kodu.
     \includegraphics[width=0.9\textwidth]{img/traefik/dashboard.png}
     \caption{Panel serwisów udostępnionych przez Traefik.}
     \label{fig:traefik-dashboard}
+\end{figure}
+
+
+\subsection{Testowanie oprogramowania}
+
+Najważniejszym w~kontekście działania całego systemu
+było zapewnienie prawidłowego funkcjonowania
+serwera gry, logiki gry brydża i~asystenta.
+Jest to bardzo istotne w~procesie tworzenia oprogramowania,
+który opiera się na ciągłym dodawaniem kolejnych
+funkcjonalności, gdyż każdy dodany element może doprowadzić
+do wadliwego działania poprzez najdrobniejszy błąd.
+
+Aby zapobiec takim zdarzeniom, zdecydowano się na utworzenie
+testów, które obejmowały znaczną część kodu w~wymienionych
+wyżej elementach aplikacji. Przy aktualizacji kodu,
+podobnie jak we wspomnianym wcześniej systemie integracji,
+testy były uruchamiane automatycznie. Podczas wystąpienia
+błędu na platformie GitHub widoczna jest informacja
+o~nieudanym przeprowadzeniu testów
+(Rys. \ref{fig:github-commits}, \ref{fig:github-tests}).
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/github/github-commits.png}
+    \caption{Lista commitów z informacją o przebiegu testów dla Bridge Core}
+    \label{fig:github-commits}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/github/github-commits.png}
+    \caption{Lista uruchomionych testów przez GitHub Actions dla Bridge Core}
+    \label{fig:github-tests}
 \end{figure}
 
 
