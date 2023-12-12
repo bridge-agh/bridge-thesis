@@ -448,6 +448,9 @@ o wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
 Wynikiem jest rozkład $\pi$ na 38 możliwych ruchów oraz
 ocena $v$ stanu gry po aktywacji $tanh$.
 
+\subsubsection{Wyniki}
+% TODO: gdzie to dać?
+
 Agent był uczony poprzez granie sam ze sobą.
 W~procesie uczenia zaobserwował ponad 110~mln ruchów,
 co odpowiada około 10 mln gier, zakładając średnią
@@ -468,11 +471,30 @@ wygenerowanego przez $\pi$.
 Służy to zróżnicowaniu gier i~umożliwia
 dokładniejszą ocenę umiejętności agenta.
 
+Ze względu na brak odpowiedniego modelu
+bazowego (baseline) przeciwnika,
+przeprowadzono test zaimplementowanego algorytmu
+na grze Othello \cite{Othello}.
+Uruchomiono identyczny proces uczenia,
+wykorzystując implementację Othello oraz
+model AI baseline z~\cite{PGX}.
+Wyniki uczenia przedstawia Rys.~\ref{fig:othello-eval}.
+Nasze AI uzyskuje stosunek wygranych do przegranych
+kontra model AI baseline na poziomie 9:1.
+Można zatem wnioskować, że nasza implementacja
+AlphaZero jest poprawna.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
+  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
+  \label{fig:othello-eval}
+\end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
-  \caption{Proces uczenia AlphaZero vs. losowy gracz}
+  \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
   \label{fig:bzero-eval}
 \end{figure}
 
