@@ -405,6 +405,9 @@ z~punktu widzenia jednego z~graczy.
 Jest zatem w~stanie przewidzieć optymalny ruch,
 mając dostęp jedynie do kart jednego gracza.
 
+Analogicznie do \cite{rong19,gong20,tian20,lockhart20}, zastosowano
+algorytm Double Dummy Solver (DDS) \cite{DDS} do generowania
+nagród dla stanów terminalnych licytacji.
 AlphaZero wymaga gier dwuosobowych.
 W~brydżu uczestniczy czterech graczy w~dwóch drużynach.
 Można zatem potraktować drużynę jako \textit{abstrakcyjnego gracza}.
@@ -437,7 +440,8 @@ wykorzystując biblioteki:
 
 Sieć neuronowa bazuje na architekturze opisanej w \cite{AlphaZeroPaper}.
 Jest to konwolucyjna wieża rezydualna z~dwoma głowicami -- $\pi$ i $v$.
-Obserwacja w~brydżu kodowana jest jako wektor jednowymiarowy.
+Obserwacja kodowana jest jako wektor jednowymiarowy,
+bazując na \cite{lockhart20}.
 Aby zastosować konwolucje, dodatkowa pierwsza warstwa
 oblicza liniową projekcję obserwacji do tensora
 o wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
@@ -458,7 +462,7 @@ agent nie widział kart przeciwnika.
 Wyniki przedstawia Rys. \ref{fig:bzero-eval}.
 Agent szybko osiąga do 95\% wygranych.
 Brak 100\% wygranych wynika z~faktu, że
-ewaluacja nie wybiera zawsze optymalnego ruchu,
+podczas ewaluacji agent nie wybiera zawsze optymalnego ruchu,
 tylko losuje ruch z~prawdopodobieństwa
 wygenerowanego przez $\pi$.
 Służy to zróżnicowaniu gier i~umożliwia
