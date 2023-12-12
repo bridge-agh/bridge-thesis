@@ -8,6 +8,11 @@ komponentów oraz przedstawienie czynników, które są najistotniejsze do
 funkcjonowania całości systemu. Dodatkowo skoncentruje
 się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
+\section{Podział tworzonego systemu}
+
+%%% ile repo, co za co odpowiada
+
+
 \section{Architektura serwera}
 %%% TODO expand basic info
 Serwer napisany w języku Scala.
@@ -112,9 +117,6 @@ zapytań HTTP z~użyciem SWR. Przyczyniło się do zmniejszenia ilości
 globalnych zmian kodu, gdyż zmiana implementacji nie zmieniła samego interfejsu
 hooka. Funkcjonalność pozostała niezmienna i~oferowane stany miały taką samą strukturę.
 
-%%% TODO - kod/zdjecia wybranych hook'ów (sam kod może miec dodatkowe komentarze
-%%% opisujące jakies ciekawe cechy)
-
 Jak zostało wspomniane we wcześniejszym podrozdziale, dotyczącym serwera aplikacji,
 zrezygnowano ze wspomnianego rozwiązania biblioteki SWR na rzecz reaktywnego
 połączenia z~serwerem. Wymusiło to zmianę implementacji wysyłania i~odbierania
@@ -123,8 +125,8 @@ wykorzystania hooków pozostała taka sama, przez co komponenty interfejsu
 zawierające wspomniane hooki nie musiały być aktualizowane po tej zmianie. \\
 
 Poniżej przedstawione zostały hooki odpowiedzialne za aktualizacje
-danych z~serwera, wykorzystując \textbf{Fetch API} do wysyłania pojedynczych
-zapytań i~\textbf{WebSockety} do ustanawiania połączenia z~serwerem
+danych z~serwera, wykorzystując Fetch API \cite{FetchAPI} do wysyłania pojedynczych
+zapytań i~WebSockety \cite{WebSockets} do ustanawiania połączenia z~serwerem
 i~ciągłą aktualizację oferowanego stanu przez serwer.
 
 \begin{lstlisting}[language=JavaScript, caption=Hooki z Fetch API, label={lst:fetch-hooks}, captionpos=b]
@@ -226,28 +228,39 @@ proces rozwoju części wizualnej aplikacji.
 \section{Silnik gry}
 \label{subsec:silnik_gry}
 
-Silnik wizualny rozgrywki do gry w~brydża jest jednym z~kluczowych
-elementów aplikacji. Podczas tworzenia go skupiono się, aby zaoferować
-wydajność i~pełną integrację z~aplikacją webową.
+Silnik wizualny rozgrywki do gry w~brydża jest kluczowym elementem aplikacji.
+Podczas tworzenia go skupiono się, aby zaoferować
+wysoką wydajność i~pełną integrację z~aplikacją webową.
 
 
 \subsection{Framework Three.js}
-Podczas próby implementacji środowiska do gry, powstał problem z~zarządzaniem
-elementami kart i~ich przemieszczaniem po ekranie użytkownika. Animacje,
+
+Podczas tworzenia środowiska gry, powstał problem z~zarządzaniem
+elementami kart i~ich przemieszczaniem na ekranie użytkownika. Animacje,
 takie jak ruch kart, z~wykorzystaniem wyłącznie komponentów React
 okazały się nadmiernie pracochłonne i~nieefektywne. Użytkownik
 mobilny miał problemy z~ładowaniem kart
-i~ich płynnym animowaniem. Jest to spowodowane inną architekturą procesorów
+i~ich płynnym animowaniem w~przeglądarce. Jest to spowodowane inną architekturą procesorów
 mobilnych w~porównaniu do rozwiązań desktopowych. Nie są one przystosowane
-do wykonania najmocniejszych obliczeń, ale oferują niskie użycie energii. \\
+do wykonania najmocniejszych obliczeń, ale oferują niskie zużycie energii.
+Również na wydajność wpłynęło wykorzystanie grafik wektorowych SVG,
+które podczas animacji bardzo obciążały przeglądarkę i~zmniejszały
+ich płynność. \\
 
 Wymusiło to rezygnację z~rozwiązania wykorzystującego jedynie elementy HTML.
-Dokonano zmiany na bardzo efektywny framework umożliwiający renderowanie
-środowiska i~elementów 3D - Three.js
-\cite{ThreeJS}.
+Dokonano zmiany na framework umożliwiający renderowanie
+środowiska i~elementów
+\mbox{3D -- Three.js~\cite{ThreeJS}~(Rys.~\ref{fig:engine_orbit})}.
 
-Posiada on wszystkie potrzebne funkcje, których brakło w~naszym początkowym
-podejściu. Udostępnia on:
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
+    \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
+    \label{fig:engine_orbit}
+\end{figure}
+
+Posiada on wszystkie potrzebne funkcje, które pozwalają na zaawansowane
+zarządzanie aspektami wizualnymi. Udostępnia on:
 \textit{canvas} -- którego zadaniem jest zdefiniowanie
 obszaru, na którym znajdują się wyświetlane elementy;
 \textit{przestrzeń 3D} - w której możemy umieszczać
@@ -256,39 +269,39 @@ karty i~przemieszczać niezależnie od struktury komponentów;
 w~środowisku 3D, przez co gracze mogą mieć wizualne
 odczucie realnej rozgrywki gry w~brydża.
 
-%%% TODO zdjęcie planszy gry 3D (orbithelper w gamescene)
-
-Dodatkowo framework ten wybrany został ze względu na swoją niezwykłą wydajność.
+Dodatkowo framework ten został wybrany ze względu na swoją wydajność.
 Do renderowania elementów wykorzystuję on potencjał WebGL \cite{WebGL}.
-Jest to API
+Jest to API utworzone
 w~języku JavaScript, które jest standardem webowym wykorzystywanym
-w~przeglądarkach. Umożliwia on wykorzystanie akceleracji sprzętowej kart
+w~przeglądarkach. Umożliwia ono wykorzystanie akceleracji sprzętowej kart
 graficznych, które są przystosowane do przetwarzania fizyki, zdjęć
 i~efektów wizualnych. Kluczowe jest, że stosując wspomnianą akcelerację,
 wykorzystujemy większe możliwości sprzętowe urządzeń mobilnych, jak
-i~desktopowych, które nie były one w~pełni wykorzystywane przy zastosowaniu
+i~desktopowych, które nie były w~pełni wykorzystywane z~użyciem
 jedynie elementów HTML.
 Zastosowanie tego rozwiązania
-drastycznie zwiększyło efektywność i~płynność silnika gry na tych urządzeniach.
+znacznie zwiększyło efektywność i~płynność silnika gry na tych urządzeniach.
 Przykładowo badając skok wydajności, porównując pierwotny silnik z~obecnym,
-na urządzeniu mobilnym, różnica jest na poziomie od około 15 wyświetlanych
-klatek na sekundę aż do
-ponad 140\footnote{
-  Porównanie zostało wykonane na urządzeniu
-  Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
+na urządzeniu mobilnym, różnica jest na poziomie od około 15 aż do
+ponad 140 wyświetlanych
+klatek na sekundę\footnote{
+    Porównanie zostało wykonane na urządzeniu
+    Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
 }.
+
+\FloatBarrier
 
 \subsection{Integracja silnika z Reactem}
 Three.js oprócz wspomnianych zalet jest też wspierany w~postaci komponentów React.
 Rozwiązania, które są wykorzystane w~aplikacji to React Three Fiber
 \cite{ReactThreeFiber} i~React drei \cite{ReactDrei}. Oba oferują
 wspomniane komponenty, jak i~dodatkowe moduły
-wspierające prace Three.js w~środowisku React. Uniknięto w~ten sposób korzystania
-z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty
+wspomagające prace Three.js w~środowisku React. Uniknięto w~ten sposób korzystania
+z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty.
 
 
 
-\section{AI}
+\section{Asystent AI}
 
 Główne funkcje asystenta AI wykorzystują informację o najlepszych ruchach
 dostępnych dla gracza w danym momencie rozgrywki.

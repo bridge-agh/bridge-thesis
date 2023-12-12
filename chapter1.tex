@@ -20,7 +20,7 @@ i~umiejętności. Dodatkowo, niektórzy mogą nie być w stanie znaleźć
 partnera, który miałby taki sam styl gry lub nie rozumieją strategii,
 które chcieliby zastosować.
 
-W~związku z~powyższymi problemami, zidentyfikowano potrzebę stworzenia
+W~związku z~powyższymi problemami, zidentyfikowano potrzebę opracowania
 aplikacji do gry w brydża, która umożliwiłaby grę z~automatycznym
 partnerem na odpowiednim poziomie umiejętności, zapewniającym satysfakcjonującą
 grę oraz możliwość nauki i~doskonalenia umiejętności gry w~brydża.
@@ -29,11 +29,33 @@ grę oraz możliwość nauki i~doskonalenia umiejętności gry w~brydża.
 
 \section{Motywacja projektu}
 
-Wirtualny asystent AI może stanowić idealne rozwiązanie dla tych problemów. Poprzez
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/brydz-platformy/bridgebase.png}
+  \caption{Rozgrywka brydża na platformie Bridge Base}
+  \label{fig:bridge-base}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \subfloat[Główny ekran rozgrywki]{
+    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay1.jpg}
+    \label{fig:neural-play-1}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Historia bieżącej rozgrywki]{
+    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay2.jpg}
+    \label{fig:neural-play-2}
+  }%
+  \caption{Rozgrywka brydża w aplikacji Bridge by NeuralPlay}
+  \label{fig:neural-play}
+\end{figure}
+
+Wirtualny asystent AI może stanowić rozwiązanie dla tych problemów. Poprzez
 zintegrowanie sztucznej inteligencji z~brydżem, aplikacja będzie w~stanie
 zapewnić użytkownikom nie tylko wskazówki dotyczące gry, ale także możliwość
 rozgrywania partii z~wirtualnym partnerem, który będzie reagował na decyzje
-gracza i~pomagał mu w~rozwijaniu swoich umiejętności.
+gracza i~pomagał mu w~rozwijaniu jego umiejętności.
 
 Dzięki temu projektowi, gracze będą mieli możliwość łatwiejszego i~bardziej
 efektywnego nauczania się gry w~brydża, oraz lepszego dostępu do partnerów
@@ -54,7 +76,7 @@ przechodząc kursy. Po zakończeniu rozgrywki, użytkownik może przeanalizować
 swoje błędy, jednak dostęp do tej opcji wymaga wykupienia konta premium.
 Bridge Base oferuje wiele trybów gry, zarówno przeciwko botom jak i~innym
 graczom, jednak jego minus stanowi mało intuicyjny interfejs graficzny
-\ref{fig:bridge-base}. Aplikacja NeuralPlay oferuje pełną rozgrywkę w~brydża
+Rys.~\ref{fig:bridge-base}. Aplikacja NeuralPlay oferuje pełną rozgrywkę w~brydża
 z~wykorzystaniem zaprojektowanego AI, które zna wybrane metody licytowania.
 Niestety, nawet rozgrywka przeciwko najtrudniejszemu poziomowi sztucznej
 inteligencji, może być wygrana przez osobę mało doświadczoną.
@@ -67,29 +89,8 @@ i~rywalizację z~innymi graczami oraz posiadało intuicyjny i~przyjazny
 interfejs graficzny. Naszym celem jest połączenie większości tych funkcji
 w~naszej własnej aplikacji.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/brydz-platformy/bridgebase.png}
-  \caption{Rozgrywka brydża na platformie Bridge Base}
-  \label{fig:bridge-base}
-\end{figure}
 
-\begin{figure}[h]
-  \centering
-  \hfill
-  \subfloat[Główny ekran rozgrywki]{
-    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay1.jpg}
-    \label{fig:neural-play-1}
-  }%
-  \hfill
-  \subfloat[Historia bieżącej rozgrywki]{
-    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay2.jpg}
-    \label{fig:neural-play-2}
-  }%
-  \hfill
-  \caption{Rozgrywka brydża w aplikacji Bridge by NeuralPlay}
-  \label{fig:neural-play}
-\end{figure}
+
 \FloatBarrier
 
 \section{Wizja produktu}
@@ -138,7 +139,7 @@ prawdopodobieństwo wygrania każdej z~par graczy oraz listę
 najlepszych ruchów, jakie mogą być wykonane przez następnego gracza.
 
 Została przewidziana możliwość zastosowania wielu algorytmów AI
-do brydża. W~kolejności od najbardziej ambitnego do
+do brydża. W~kolejności od najbardziej złożonego do
 najprostszego w implementacji, są to:
 \begin{enumerate}
   \item algorytm Regularized Nash Dynamics \cite{doi:10.1126/science.add4679},
@@ -146,8 +147,8 @@ najprostszego w implementacji, są to:
         z algorytmem IS-MCTS \cite{6203567},
   \item implementacja algorytmu IS-MCTS z biblioteki OpenSpiel \cite{LanctotEtAl2019OpenSpiel},
   \item program AI do brydża GIB \cite{Ginsberg1999GIBST},
-  \item algorytm Pure Monte Carlo Tree Search \cite{pmcts},
-  \item algorytm o nazwie „random move”.
+  \item algorytm Pure Monte Carlo Tree Search \cite{pmcts}.
+        % \item algorytm o nazwie „random move”.
 \end{enumerate}
 
 Opcja 1. dotyczy implementacji algorytmu przedstawionego w~artykule
@@ -158,7 +159,7 @@ determinizacji stanu gry, która jest potrzebna w~algorytmie IS-MCTS.
 Następnie, algorytm AlphaZero zostałby zastosowany do przeszukiwania
 drzewa zbiorów informacji tworzonego przez IS-MCTS.
 Pozostałe opcje polegają na zastosowaniu gotowych rozwiązań lub
-prymitywnych algorytmów.
+klasycznych algorytmów.
 
 %%%
 
@@ -167,11 +168,11 @@ prymitywnych algorytmów.
 Gra w~brydża jest jedną z~najtrudniejszych gier strategicznych na świecie.
 Do tej pory nie powstał żaden system AI grający na mistrzowskim poziomie
 uwzględniający pełną wersję gry z~licytacją \cite{Bethe2021AdvancesIC}.
-Stworzenie gracza AI o~wystarczająco wysokim poziomie umiejętności może być
+Implementacja gracza AI o~wystarczająco wysokim poziomie umiejętności może być
 trudne. W~literaturze zostało opisane wiele metod AI do brydża
 \cite{Zhang2019DesignAD,Zhang2022TheSO,Zhang2022AIEB,Ginsberg1999GIBST}
 co sugeruje, że jest to temat dalej otwarty i~ciągle rozwijany.
-Przedstawiliśmy 6 różnych możliwości implementacji AI.
+Przedstawiliśmy 5~różnych możliwości implementacji AI.
 W~razie problemów z~implementacją jednej z~nich, pozostałe
 zostaną wykorzystane jako plany awaryjne.
 
@@ -197,41 +198,36 @@ w~oparciu o~komputer osobisty lub mikrokomputer, np. Raspberry Pi \cite{RPi}.
 
 %%%
 
+\newpage
+
 \section{Szkic aplikacji}
 
-% \begin{figure}[h]
-%   \centering
-%   \includegraphics[width=\textwidth]{img/user_flow.png}
-%   \caption{Schemat interakcji z aplikacją}
-% \end{figure}
+Zostały przygotowane szkice interfejsu aplikacji
+(Rys.~\ref{fig:figma_login}--\ref{fig:figma_game}).
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/1.png}
-  \caption{Ekran logowania}
-  \label{fig:figma_login}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/2.png}
-  \caption{Ekran główny}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/3.png}
-  \caption{Ekran lobby}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/figma-szkic/4.png}
-  \caption{Ekran gry}
+  \subfloat[Ekran logowania]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/1.png}
+    \label{fig:figma_login}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Ekran główny]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/2.png}
+  }%
+  \\
+  \subfloat[Ekran lobby]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/3.png}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Ekran gry]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/4.png}
+    \label{fig:figma_game}
+  }%
+  \caption{Szkice interfejsu aplikacji}
 \end{figure}
 
 \FloatBarrier
-
 
 \section{Słownik pojęć}
 
