@@ -15,7 +15,72 @@ się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
 \section{Architektura serwera}
 %%% TODO expand basic info
-Serwer napisany w języku Scala.
+Serwer został zaimplementowany w języku Scala,
+wykorzystując framework Akka \cite{Akka}.
+Zaprojektowano dwupoziomową architekturę serwera
+(Rys.~\ref{fig:akka-highlevel}).
+
+Pierwszy poziom to serwer HTTP, który obsługuje
+zapytania API oraz połączenia WebSocket.
+Jest odpowiedzialny za tłumaczenie zapytań HTTP na
+komunikaty wewnętrzne, które są przekazywane do
+aktorów drugiego poziomu.
+Za pomocą systemu autoryzacji JSON Web Token (JWT)
+oraz serwisu Firebase Authentication,
+serwer HTTP odczytuje identyfikatory $UserId$ oraz
+$SessionId$ powiązane z~danym użytkownikiem.
+
+Drugi poziom to system aktorów, który jest
+odpowiedzialny za logikę biznesową.
+Główny aktor \verb|Backend| zarządza mapowaniami
+$SessionId \to Session$ oraz $UserId \to User$.
+Każda sesja i~użytkownik reprezentowane są
+przez własnego aktora.
+Aktor \verb|Backend| wysyła komendy sterujące do
+aktorów \verb|User|, którzy sami zarządzają swoim stanem.
+Zaimplementowano obsługę błędów wynikających z~podania
+niepoprawnych danych przez użytkownika.
+Komunikaty wykorzystywane w~tym celu mają postać
+\verb|Either[Error, Success]|.
+Pozostałe błędy będące wynikiem wewnętrznych błędów
+serwera są obsługiwane przez odrzucenie błędnego
+komunikatu oraz przez mechanizm timeout.
+W~takim przypadku klient uzyska odpowiedź
+\verb|HTTP Timeout|, a~serwer pozostanie w~poprawnym stanie.
+Cały protokół aktorów oraz ich maszyny stanowe zaprojektowane
+zostały tak, aby uniemożliwić wystąpienie niespójności stanu serwera.
+Schematy wybranych interakcji Klient-Serwer zostały przedstawione
+na rysunkach \ref{fig:akka-createsession} -- \ref{fig:akka-sessioninfo}.
+
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/HighLevel.png}
+  \caption{Wysokopoziomowy schemat architektury serwera.}
+  \label{fig:akka-highlevel}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/CreateSession.png}
+  \caption{Schemat tworzenia sesji.}
+  \label{fig:akka-createsession}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/JoinSession.png}
+  \caption{Schemat dołączania do sesji.}
+  \label{fig:akka-joinsession}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/SessionInfo.png}
+  \caption{Schemat pobierania informacji o sesji.}
+  \label{fig:akka-sessioninfo}
+\end{figure}
 
 
 %%% jak działa lobby bo ciekawe
