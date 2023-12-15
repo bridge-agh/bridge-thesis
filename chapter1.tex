@@ -22,8 +22,8 @@ które chcieliby zastosować.
 
 W~związku z~powyższymi problemami, zidentyfikowano potrzebę opracowania
 aplikacji do gry w brydża, która umożliwiłaby grę z~wirtualnym asystentem
-na odpowiednim poziomie umiejętności, zapewniającym satysfakcjonującą
-grę oraz możliwość nauki i~doskonalenia umiejętności gry w~brydża.
+na poziomie umiejętności dostosowanym do użytkownika, zapewniającym satysfakcjonującą
+rozgrywkę oraz możliwość nauki i~doskonalenia umiejętności gry w~brydża.
 
 %%%
 
@@ -99,7 +99,7 @@ Produkt będzie aplikacją webową umożliwiająca grę w~brydża,
 bez konieczności posiadania znajomych do gry.
 Partnera lub przeciwnika będzie mógł zastąpić Wirtualny Asystent.
 Jego zadaniem jest zapewnienie odpowiedniego
-towarzysza dla użytkownika, którego poziom jest zależny od wybranej
+dla użytkownika towarzysza, którego poziom jest zależny od wybranej
 preferencji. Użytkownicy będą mogli dostosować trudność, aby asystent osiągnął
 planowane przez nich cele, takie jak nauka, rozgrywka na podobnym poziomie
 lub zostać wyzwaniem dla doświadczonych zawodników.
@@ -118,7 +118,7 @@ Aplikacja internetowa zostanie napisana w~frameworku React \cite{React}.
 Zdecydowaliśmy się na ten wybór, ze względu na dużą popularność tej
 technologii. W~2022 roku serwis Stack Overflow \cite{StackOverflow} przeprowadził ankietę dotyczącą między innymi wykorzystywanych technologii
 webowych \cite{React-stack}. Aż 42.62\% respondentów wybrało React,
-zajmując 2 miejsce w~rankingu. Jako, że wykorzystuje on język Javascript,
+zajmując 2 miejsce w~rankingu. Jako że wykorzystuje on język Javascript,
 który według wspomnianej ankiety jest najpopularniejszym językiem programowania,
 dostępna jest olbrzymia baza bibliotek i~sprawdzonych rozwiązań. Za wizualną
 część projektu będzie odpowiedzialny framework Tailwind CSS \cite{Tailwind}.
@@ -128,8 +128,8 @@ napisana w~języku Python \cite{Python} za pomocą biblioteki FastAPI
 \cite{FastAPI}. Funkcjonalność związana z~obsługą użytkowników i~gromadzenia
 danych będzie wykorzystywała usługę Google Firebase \cite{Firebase}.
 
-Wirtualny Asystent zostanie zrealizowany jako osobny program serwerowy
-udostępniający własne API. Backend obsługujący sesje gier
+Wirtualny Asystent zostanie zrealizowany jako osobna biblioteka udostępniająca
+własne API. Backend obsługujący sesje gier, po dołączeniu biblioteki asystenta,
 będzie mógł wysłać do API Asystenta aktualny stan gry, aby otrzymać
 odpowiedź zawierającą analizę tego stanu, między innymi
 prawdopodobieństwo wygrania każdej z~par graczy oraz listę
@@ -173,8 +173,8 @@ najprostszego w implementacji są to:
 Gra w~brydża jest jedną z~najtrudniejszych gier strategicznych na świecie.
 Do tej pory nie powstał żaden system AI grający na mistrzowskim poziomie
 uwzględniający pełną wersję gry z~licytacją \cite{Bethe2021AdvancesIC}.
-Implementacja gracza AI o~wystarczająco wysokim poziomie umiejętności może być
-trudne. W~literaturze zostało opisane wiele metod AI do brydża
+Implementacja gracza AI o~wystarczająco wysokim poziomie umiejętności może
+być znacznym wyzwaniem. W~literaturze zostało opisane wiele metod AI do brydża
 \cite{Zhang2019DesignAD,Zhang2022TheSO,Zhang2022AIEB,Ginsberg1999GIBST}
 co sugeruje, że jest to temat dalej otwarty i~ciągle rozwijany.
 Przedstawiliśmy 5~różnych możliwości implementacji AI.

@@ -50,13 +50,13 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
                 gdy użytkownik założy lub zostanie jedynym
                 użytkownikiem lobby, to staje się jego
                 hostem.
-          \item zarządzanie lobby -- może decydować o~graczach znajdujących wraz
+          \item zarządzanie lobby -- może decydować o~graczach znajdujących się wraz
                 z~nim w~lobby. Może decydować o~ich pozycji lub ich wyrzucić
                 ze wspólnej sesji\footnote{Sesja oznacza to samo co lobby, czyli
                   abstrakcję łączącą wielu graczy i~asystentów w~obrębie jednej
                   rozgrywki}.
-                Może także uzupełnić wolne miejsca o~asystenta brydża z~określeniem jego
-                poziomu trudności.
+                Może także uzupełnić wolne miejsca wirtualnym asystentem
+                z~określeniem jego poziomu trudności.
         \end{itemize}
 \end{itemize}
 
@@ -120,19 +120,18 @@ dołączyć do przypisanego do kodu lobby.
 \subsubsection{Zarządzanie lobby}
 
 Jeżeli użytkownik jest hostem lub został jedynym
-graczem niekontrolowanym przez asystenta w~lobby, może on zarządzać graczami
-znajdującymi się
-wewnątrz. Posiada on następujące możliwości:
+użytkownikiem w~lobby, może on zarządzać innymi graczami.
+Posiada on następujące możliwości:
 \begin{itemize}
   \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami.
-        Może być to gracz, asystent lub puste miejsce.
+        Może być to gracz lub puste miejsce.
   \item usunięcie gracza z lobby -- gracz opuszcza lobby i~nie będzie
         mógł już ponownie do niego dołączyć.
-  \item zajęcie wolnej pozycji jako asystent brydża -- wybrana pozycja
+  \item zajęcie wolnej pozycji jako wirtualny asystent -- wybrana pozycja
         w~grze będzie kontrolowana przez asystenta
         i~uczestniczyć w~rozgrywce jako partner lub przeciwnik.
   \item zamknięcie lobby -- jeżeli administrator jest ostatnim
-        graczem w~lobby, opuszczenie go spowoduje jego automatyczne
+        użytkownikiem w~lobby, opuszczenie go spowoduje jego automatyczne
         zamknięcie.
         %  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
         %         dostępność rozgrywki rozpoczętej przez lobby w~panelu
@@ -177,8 +176,8 @@ trzy razy z rzędu.
 \subsubsection{Zagrywanie kart}
 
 Po zakończeniu fazy licytacji, gracz podczas swojej kolejki może zagrać kartę,
-przesuwając kursor na nią i klikając myszką. Dodatkowo, gracz będący partnerem dziadka
-ma możliwość zagrywania kart w jego imieniu podczas jego tury.
+przesuwając kursor na nią i~klikając myszką. Dodatkowo, gracz będący partnerem dziadka
+ma możliwość zagrywania kart w~jego imieniu podczas jego tury.
 
 \begin{figure}[hbt!]
   \centering
@@ -190,8 +189,8 @@ ma możliwość zagrywania kart w jego imieniu podczas jego tury.
 
 
 \subsubsection{Zastąpienie gracza}
-W przypadku, gdy jeden z graczy opuści grę, jego miejsce zostanie automatycznie
-zajęte przez asystenta. Jednakże, jeśli wszyscy gracze kontrolowani przez ludzi
+W przypadku, gdy jeden z użytkowników opuści grę, jego miejsce zostanie automatycznie
+zajęte przez wirtualnego asystenta. Jednakże, jeśli wszyscy użytkownicy
 zdecydują się opuścić rozgrywkę, to zostanie ona zakończona.
 
 % \subsection{Obserwowanie rozgrywek}
@@ -217,7 +216,7 @@ Aplikacja nie tylko powinna być dobrze zaprojektowana i~wygodna
 w~użyciu, ale także funkcjonalna. Musi spełniać założone wymagania,
 udostępniając odpowiednie funkcjonalności, żeby była przydatna dla
 jej użytkowników. Nie da się używać wirtualnego asystenta do gry
-w~brydża, jeśli brakuje w nim asystenta AI, czy w~ogóle elementu
+w~brydża, jeśli brakuje w nim algorytmu AI, czy w~ogóle elementu
 rozgrywki. Bez spełnienia kluczowych wymagań funkcjonalnych,
 aplikacja praktycznie nie istnieje. W~tym podrozdziale przedstawiamy
 te wymagania.
@@ -233,14 +232,14 @@ poprzez wprowadzenie swojego adresu e-mail i~hasła.
 
 
 \subsection{Lobby}
-W celu rozegrania partii brydża przeciwko innym graczom bądź
-przeciwnikom AI, gracz musi mieć możliwość utworzenia własnej
+W celu rozegrania partii brydża przeciwko innym graczom,
+użytkownik musi mieć możliwość utworzenia własnej
 rozgrywki oraz dołączenia do istniejącej.
 
 \subsubsection{Utworzenie/Dołączenie do lobby}
 Utworzenie, jak i~dołączenie do lobby jest dostępne z~widoku głównego aplikacji. Dołączenie do lobby
 odbywa się poprzez wprowadzenie identyfikatora gry. Po utworzeniu lobby użytkownik może
-wysłać jego identyfikator innym graczom, zapraszając ich do dołączenia.
+wysłać jego identyfikator innym użytkownikom, zapraszając ich do dołączenia.
 
 \subsubsection{Zarządzanie lobby}
 Host powinien mieć możliwość dostosowania lobby według swoich preferencji przed
@@ -251,7 +250,7 @@ wirtualnym asystentom.
 
 \subsection{Rozpoczęcie rozgrywki}
 Kiedy wszystkie miejsca w lobby zostaną zajęte przez graczy, którzy zgłoszą gotowość do gry
-lub część miejsc zostanie obsadzonych asystentami AI, rozgrywka zostaje rozpoczęta.
+lub są wirtualnymi asystentami, rozgrywka zostaje rozpoczęta.
 Wszyscy użytkownicy zostają przeniesieni do ekranu gry.
 
 
@@ -264,17 +263,17 @@ rozgrywce użytkownikowi wyświetlany jest ekran z~wynikami.
 
 
 \subsection{Wyświetlenie wyników}
-Ważne jest, żeby gracze po skończeniu partii mogli zobaczyć
+Ważne jest, żeby użytkownicy po skończeniu partii mogli zobaczyć
 podsumowanie całej rozgrywki. Użytkownikowi wyświetlany jest ostateczny
 wynik gry, a~także liczba zdobytych punktów przez jego zespół na
-podstawie zdobytych lew. Dzięki temu gracze mogą dokładniej
+podstawie zdobytych lew. Dzięki temu użytkownicy mogą dokładniej
 przeanalizować rozegraną partię i~lepiej oceniać swoje możliwości
 podczas licytacji w~przyszłych rozgrywkach.
 
 
 \subsection{Opuszczenie rozgrywki}
 Użytkownik może nie tylko wyjść z~lobby, ale także w~dowolnym momencie
-opuścić rozgrywkę. W~takim przypadku miejsce gracza zastępuje
+opuścić rozgrywkę. W~takim przypadku miejsce użytkownika zastępuje
 wirtualny asystent.
 
 
@@ -320,13 +319,13 @@ wyświetlane.
 \subsection{Niezawodność}
 Wirtualny asystent do gry w brydża tworzony jest z~myślą o~nauce
 i~doskonaleniu umiejętności, ale także konkurencji i~wzajemnym
-rozgrywkom pomiędzy graczami. Konieczne jest więc wprowadzenie logiki
+rozgrywkom pomiędzy użytkownikami. Konieczne jest więc wprowadzenie logiki
 gry z~największą dokładnością. Błędy w działaniu aplikacji podczas
-rozgrywki mogłyby wpłynąć na wynik gry oraz wprowadzić nowych graczy
+rozgrywki mogłyby wpłynąć na wynik gry oraz wprowadzić nowych użytkowników
 w~zakłopotanie, a~bardziej doświadczonych w~stan irytacji.
 Niezwykle istotne jest również uniknięcie sytuacji, w~których
 dochodziłoby do utraty połączenia lub braku synchronizacji pomiędzy
-graczami. Takie incydenty mogą zrujnować całą rozgrywkę i~zdecydowanie
+użytkownikami. Takie incydenty mogą zrujnować całą rozgrywkę i~zdecydowanie
 obniżyć wartość jednej z~kluczowych funkcjonalności aplikacji, jaką
 jest możliwość rozgrywania partii między użytkownikami.
 Pierwszym krokiem w~stronę niezawodności aplikacji było wybranie
@@ -335,5 +334,5 @@ to godne zaufania, popularne na całym świecie narzędzia do budowy
 aplikacji webowych, a~usługa Google Firebase odciąża nas z~implementacji
 funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
 Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji
-kolejnych funkcjonalności z~najwyższą starannością.
+kolejnych funkcjonalności.
 
