@@ -14,7 +14,14 @@ się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
 
 \section{Architektura serwera}
-%%% TODO expand basic info
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/HighLevel.png}
+  \caption{Wysokopoziomowy schemat architektury serwera.}
+  \label{fig:akka-highlevel}
+\end{figure}
+
 Serwer został zaimplementowany w języku Scala,
 wykorzystując framework Akka \cite{Akka}.
 Zaprojektowano dwupoziomową architekturę serwera
@@ -29,6 +36,29 @@ Za pomocą systemu autoryzacji JSON Web Token (JWT)
 oraz serwisu Firebase Authentication,
 serwer HTTP odczytuje identyfikatory $UserId$ oraz
 $SessionId$ powiązane z~danym użytkownikiem.
+
+\FloatBarrier
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/CreateSession.png}
+  \caption{Schemat tworzenia sesji.}
+  \label{fig:akka-createsession}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/JoinSession.png}
+  \caption{Schemat dołączania do sesji.}
+  \label{fig:akka-joinsession}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/SessionInfo.png}
+  \caption{Schemat pobierania informacji o sesji.}
+  \label{fig:akka-sessioninfo}
+\end{figure}
 
 Drugi poziom to system aktorów, który jest
 odpowiedzialny za logikę biznesową.
@@ -54,34 +84,8 @@ na rysunkach \ref{fig:akka-createsession} -- \ref{fig:akka-sessioninfo}.
 
 
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/HighLevel.png}
-  \caption{Wysokopoziomowy schemat architektury serwera.}
-  \label{fig:akka-highlevel}
-\end{figure}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/CreateSession.png}
-  \caption{Schemat tworzenia sesji.}
-  \label{fig:akka-createsession}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/JoinSession.png}
-  \caption{Schemat dołączania do sesji.}
-  \label{fig:akka-joinsession}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/SessionInfo.png}
-  \caption{Schemat pobierania informacji o sesji.}
-  \label{fig:akka-sessioninfo}
-\end{figure}
-
+\FloatBarrier
 
 %%% jak działa lobby bo ciekawe
 
@@ -131,7 +135,7 @@ potencjalnej utraty połączenia. Skłoniło nas do ostatecznej rezygnacji
 z~wdrożenia tego pomysłu.
 
 Implementacja frameworka Akka \cite{Akka} pozwoliła na ustanowienie stabilnego,
-\textbf{reaktywnego} połączenia między klientem a~serwerem. Programowanie
+reaktywnego połączenia między klientem a~serwerem. Programowanie
 reaktywne, koncentrujące się na płynnym przepływie danych i~ich propagacji,
 umożliwiło aplikacji klienta natychmiastowo reagować na wszelkie zmiany. Jest
 to szczególnie istotne w~kontekście naszej aplikacji, która charakteryzuje
@@ -318,10 +322,10 @@ Dokonano zmiany na framework umożliwiający renderowanie
 \mbox{3D -- Three.js~\cite{ThreeJS}~(Rys.~\ref{fig:engine_orbit})}.
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
-    \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
-    \label{fig:engine_orbit}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
+  \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
+  \label{fig:engine_orbit}
 \end{figure}
 
 Posiada on wszystkie potrzebne funkcje, które pozwalają na zaawansowane
@@ -350,8 +354,8 @@ Przykładowo badając skok wydajności, porównując pierwotny silnik z~obecnym,
 na urządzeniu mobilnym, różnica jest na poziomie od około 15 aż do
 ponad 140 wyświetlanych
 klatek na sekundę\footnote{
-    Porównanie zostało wykonane na urządzeniu
-    Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
+  Porównanie zostało wykonane na urządzeniu
+  Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
 }.
 
 \FloatBarrier
@@ -514,7 +518,9 @@ Wynikiem jest rozkład $\pi$ na 38 możliwych ruchów oraz
 ocena $v$ stanu gry po aktywacji $tanh$.
 
 \subsubsection{Wyniki}
-% TODO: gdzie to dać?
+% TODO: wyniki uczenia przenosimy do rozdzialu 5
+
+
 
 Agent był uczony poprzez granie sam ze sobą.
 W~procesie uczenia zaobserwował ponad 110~mln ruchów,
@@ -536,6 +542,20 @@ wygenerowanego przez $\pi$.
 Służy to zróżnicowaniu gier i~umożliwia
 dokładniejszą ocenę umiejętności agenta.
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
+  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
+  \label{fig:othello-eval}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
+  \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
+  \label{fig:bzero-eval}
+\end{figure}
+
 Ze względu na brak odpowiedniego modelu
 bazowego (baseline) przeciwnika,
 przeprowadzono test zaimplementowanego algorytmu
@@ -549,20 +569,7 @@ kontra model AI baseline na poziomie 9:1.
 Można zatem wnioskować, że nasza implementacja
 AlphaZero jest poprawna.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
-  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
-  \label{fig:othello-eval}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
-  \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
-  \label{fig:bzero-eval}
-\end{figure}
-
+\FloatBarrier
 
 \subsection{Faza gry}
 
@@ -578,15 +585,6 @@ Wymagane jest podanie kart wszystkich graczy, dlatego
 metoda może być wykorzystana tylko przez serwer, który zna stan całej gry.
 Dostosowanie poziomu trudności polega na wybieraniu nieoptymalnych ruchów
 z~pewnym prawdopodobieństwem, konfigurowalnym przez użytkownika.
-
-
-
-\section{System wdrażania do środowiska deweloperskiego}
-
-%%% vercel jak to dziala z githubem
-
-%%% jak stworzono backend deploy z githubem i docekrem
-%%% ze github oferuje docker-repo
 
 \section{Dodatkowe elementy aplikacji}
 
