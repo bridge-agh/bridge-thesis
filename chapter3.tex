@@ -10,11 +10,63 @@ się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
 \section{Podział tworzonego systemu}
 
-%%% ile repo, co za co odpowiada
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/schematy/schemat_systemu.png}
+  \caption{Schemat podziału i~zależności elementów systemu wraz z~wykorzystywanymi przez nie technologiami.}
+  \label{fig:akka-highlevel}
+\end{figure}
+
+Aby usprawnić pracę nad produktem, podzieliliśmy system na osobne
+fragmenty. Każdy z~nich odpowiedzialny był za inną jego część.
+Podczas pracy nad osobnymi elementami ważne było, aby mogły się one
+ze sobą komunikować. W~tym celu w~trakcie projektowania
+całości systemu zostały stworzone odpowiednie schematy definiujące
+odpowiedzialność każdego elementu, jak i~w~jaki sposób ma się odbywać
+dialog pomiędzy nimi. Opisane w~nich też zostały abstrakcyjne
+obiekty dzielące odpowiedzialność za przechowywanie informacji
+potrzebnych do działania systemu. Pozwoliło to na zdefiniowanie,
+za co ma odpowiadać każdy z~elementów.
+
+Podzielono system na następujące elementy:
+\begin{itemize}
+  \item Bridge Core -- główna logika gry w~brydża; stworzona
+        w~języku Python,
+
+  \item Wirtualny asystent -- biblioteka pozwalająca na uczestniczenie
+        w~brydzu jako gracz; stworzony w~środowisku JAX.
+
+  \item Aplikacja webowa -- główny interfejs dla użytkowników,
+        aby móc rozgrywać grę; stworzone przy zastosowaniu
+        frameworków Next.js i~Tailwind.css w~językach HTML, \mbox{Javascript}
+        oraz CSS,
+
+  \item Serwer gry -- centralny serwer, którego zadaniem jest
+        łączenie graczy do sesji, przeprowadzanie gier i~zarządzaie
+        w~nich asystentem; stworzony przy użyciu języku Scala
+        \mbox{i~frameworku} Akka,
+
+  \item Bridge Engine -- interfejs gry brydża; stworzony
+        z~użyciem frameworka Three.js i~języku Javascript,
+
+  \item Google Firebase -- osobny system Google'a, który
+        odpowiada za zarządzanie i~uwierzytelnianie użytkowników.
+\end{itemize}
+
+%%% TODO schemat abstrakcyjnego podziału systemu (sesja, lobby, sesja gry, uzytkwonicy, ai)
+
+\FloatBarrier
 
 
 \section{Architektura serwera}
-%%% TODO expand basic info
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/HighLevel.png}
+  \caption{Wysokopoziomowy schemat architektury serwera.}
+  \label{fig:akka-highlevel}
+\end{figure}
+
 Serwer został zaimplementowany w języku Scala,
 wykorzystując framework Akka \cite{Akka}.
 Zaprojektowano dwupoziomową architekturę serwera
@@ -29,6 +81,29 @@ Za pomocą systemu autoryzacji JSON Web Token (JWT)
 oraz serwisu Firebase Authentication,
 serwer HTTP odczytuje identyfikatory $UserId$ oraz
 $SessionId$ powiązane z~danym użytkownikiem.
+
+%%% TODO powiekszenie schematow
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/CreateSession.png}
+  \caption{Schemat tworzenia sesji.}
+  \label{fig:akka-createsession}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/JoinSession.png}
+  \caption{Schemat dołączania do sesji.}
+  \label{fig:akka-joinsession}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/akka/SessionInfo.png}
+  \caption{Schemat pobierania informacji o sesji.}
+  \label{fig:akka-sessioninfo}
+\end{figure}
 
 Drugi poziom to system aktorów, który jest
 odpowiedzialny za logikę biznesową.
@@ -52,57 +127,15 @@ zostały tak, aby uniemożliwić wystąpienie niespójności stanu serwera.
 Schematy wybranych interakcji Klient-Serwer zostały przedstawione
 na rysunkach \ref{fig:akka-createsession} -- \ref{fig:akka-sessioninfo}.
 
-
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/HighLevel.png}
-  \caption{Wysokopoziomowy schemat architektury serwera.}
-  \label{fig:akka-highlevel}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/CreateSession.png}
-  \caption{Schemat tworzenia sesji.}
-  \label{fig:akka-createsession}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/JoinSession.png}
-  \caption{Schemat dołączania do sesji.}
-  \label{fig:akka-joinsession}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/SessionInfo.png}
-  \caption{Schemat pobierania informacji o sesji.}
-  \label{fig:akka-sessioninfo}
-\end{figure}
-
-
-%%% jak działa lobby bo ciekawe
-
-%%% utrata dostepow do endpointow w przypadku zmiany stanow lobby/gry
-
-
+\FloatBarrier
 
 \subsection{Komunikacja z serwerem}
 Wstępne założenia dotyczące infrastruktury aplikacji
 serwerowej opierały się na wykorzystaniu języka Python
 wraz z~frameworkiem FastAPI.
 
-% TODO od tad
-Z~czasem jednak, w~świetle
-narastających wymagań i~doświadczeń zgromadzonych
-podczas etapu tworzenia, nasz zespół podjął
-strategiczną decyzję o~ewolucji stosu technologicznego.
-% do tad do zmiany - "w~świetle
-% narastających wymagań i~doświadczeń zgromadzonych
-% podczas etapu tworzenia" totalnie wypada
-Ostatecznie, struktura serwera została skonstruowana
+Ze względu na problemy komunikacyjne aplikacji
+z~serwerem, zdecydowano się na skonstruowanie struktury serwera
 w~dynamicznym języku Scala, korzystając z~potencjału
 frameworka Akka, specjalizującego się w~programowaniu
 współbieżnym oraz rozproszonym, bazującym na
@@ -131,7 +164,7 @@ potencjalnej utraty połączenia. Skłoniło nas do ostatecznej rezygnacji
 z~wdrożenia tego pomysłu.
 
 Implementacja frameworka Akka \cite{Akka} pozwoliła na ustanowienie stabilnego,
-\textbf{reaktywnego} połączenia między klientem a~serwerem. Programowanie
+reaktywnego połączenia między klientem a~serwerem. Programowanie
 reaktywne, koncentrujące się na płynnym przepływie danych i~ich propagacji,
 umożliwiło aplikacji klienta natychmiastowo reagować na wszelkie zmiany. Jest
 to szczególnie istotne w~kontekście naszej aplikacji, która charakteryzuje
@@ -318,10 +351,10 @@ Dokonano zmiany na framework umożliwiający renderowanie
 \mbox{3D -- Three.js~\cite{ThreeJS}~(Rys.~\ref{fig:engine_orbit})}.
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
-    \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
-    \label{fig:engine_orbit}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
+  \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
+  \label{fig:engine_orbit}
 \end{figure}
 
 Posiada on wszystkie potrzebne funkcje, które pozwalają na zaawansowane
@@ -350,8 +383,8 @@ Przykładowo badając skok wydajności, porównując pierwotny silnik z~obecnym,
 na urządzeniu mobilnym, różnica jest na poziomie od około 15 aż do
 ponad 140 wyświetlanych
 klatek na sekundę\footnote{
-    Porównanie zostało wykonane na urządzeniu
-    Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
+  Porównanie zostało wykonane na urządzeniu
+  Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
 }.
 
 \FloatBarrier
@@ -514,7 +547,9 @@ Wynikiem jest rozkład $\pi$ na 38 możliwych ruchów oraz
 ocena $v$ stanu gry po aktywacji $tanh$.
 
 \subsubsection{Wyniki}
-% TODO: gdzie to dać?
+% TODO: wyniki uczenia przenosimy do rozdzialu 5
+
+
 
 Agent był uczony poprzez granie sam ze sobą.
 W~procesie uczenia zaobserwował ponad 110~mln ruchów,
@@ -536,6 +571,20 @@ wygenerowanego przez $\pi$.
 Służy to zróżnicowaniu gier i~umożliwia
 dokładniejszą ocenę umiejętności agenta.
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
+  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
+  \label{fig:othello-eval}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
+  \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
+  \label{fig:bzero-eval}
+\end{figure}
+
 Ze względu na brak odpowiedniego modelu
 bazowego (baseline) przeciwnika,
 przeprowadzono test zaimplementowanego algorytmu
@@ -549,20 +598,7 @@ kontra model AI baseline na poziomie 9:1.
 Można zatem wnioskować, że nasza implementacja
 AlphaZero jest poprawna.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
-  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
-  \label{fig:othello-eval}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
-  \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
-  \label{fig:bzero-eval}
-\end{figure}
-
+\FloatBarrier
 
 \subsection{Faza gry}
 
@@ -578,15 +614,6 @@ Wymagane jest podanie kart wszystkich graczy, dlatego
 metoda może być wykorzystana tylko przez serwer, który zna stan całej gry.
 Dostosowanie poziomu trudności polega na wybieraniu nieoptymalnych ruchów
 z~pewnym prawdopodobieństwem, konfigurowalnym przez użytkownika.
-
-
-
-\section{System wdrażania do środowiska deweloperskiego}
-
-%%% vercel jak to dziala z githubem
-
-%%% jak stworzono backend deploy z githubem i docekrem
-%%% ze github oferuje docker-repo
 
 \section{Dodatkowe elementy aplikacji}
 
