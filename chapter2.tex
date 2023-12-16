@@ -282,46 +282,52 @@ wirtualny asystent.
 % TODO
 
 \section{Specyfikacja wymagań niefunkcjonalnych}
-W naszym projekcie aplikacji -- wirtualnego asystenta do gry w~brydża,
+W naszym projekcie aplikacji do gry w~brydża
 istotą jest zapewnienie nie tylko wszystkich potrzebnych wymagań
-funkcjonalnych, ale także wygodnej i~przyjemnej rozgrywki oraz
-korzystania z reszty funkcjonalności. Niewiele osób będzie chętnie
-korzystać z~aplikacji, choćby miała ona wyjątkowo rozbudowane spektrum
-funkcji, jeśli jej działanie będzie niestabilne i~pozbawione
+funkcjonalnych, ale także wygodnej i~intuicyjnej. Niewiele osób
+będzie chętnie korzystać z~aplikacji, choćby miała ona rozbudowane
+spektrum funkcji, jeśli jej działanie będzie niestabilne i~pozbawione
 intuicyjności. W~tym podrozdziale przedstawiamy wymagania
 niefunkcjonalne aplikacji, które są równie ważne, jak zdefiniowane
 wcześniej wymagania funkcjonalne.
+
+
 \subsection{Dostępność}
-Rozwijany przez nas wirtualny asystent do gry w~brydża jest aplikacją
-webową. Dzięki temu będzie on dostępny zarówno dla użytkowników
+Zdecydowano, aby tworzona aplikacja była dostępna w~formie webowej.
+Dzięki temu będzie on dostępny zarówno dla użytkowników
 Windows, MacOS, Linux, jak i~innych systemów operacyjnych posiadających
-przeglądarkę wspierającą najnowsze standardy. Co więcej, starannie
-zaprojektowane interfejsy użytkownika (UI) zostały dostosowane tak,
+przeglądarkę wspierającą najnowsze standardy.
+Kluczowe jest dostosowanie interfejsów tak,
 aby były wygodne i~funkcjonalne nawet na urządzeniach o~niewielkich
 rozmiarach ekranu, umożliwiając płynne korzystanie z~aplikacji również
 na urządzeniach mobilnych.
+
+
 \subsection{Użyteczność}
-Priorytetem naszej aplikacji jest zapewnienie łatwości obsługi
-i~zrozumiałości. Niezwykle istotne jest, aby interfejs użytkownika
-był intuicyjny, estetyczny i~nie zniechęcał potencjalnych użytkowników,
-ani nie utrudniał korzystania z~aplikacji. Dlatego podczas projektowania
-interfejsu użytkownika kierowaliśmy się zasadami dobrego UI/UX.
-Stworzyliśmy minimalistyczny i~uporządkowany interfejs, który eliminuje
-chaos i~zapewnia spójność na wszystkich podstronach aplikacji.
-Wykorzystaliśmy ikony o~jednakowym znaczeniu na wszystkich stronach,
-co ułatwia nawigację. Dodatkowo zastosowaliśmy stałą gamę starannie
-dobranych kolorów dla elementów interfejsu, co pozwoliło nam utrzymać
-spójny styl podczas projektowania kolejnych widoków. Aplikacja oferuje
-tryb jasny i~ciemny, aby użytkownicy mogli wygodnie korzystać z~niej
-w~zależności od preferencji lub pory dnia. Ponadto, wszystkie podstrony
-są responsywne, co oznacza, że elementy interfejsu zachowują pełną
-funkcjonalność, niezależnie od zmiany rozmiaru ekranu, na którym są
-wyświetlane.
+Priorytetem aplikacji jest zapewnienie łatwości obsługi
+i~zrozumiałości działania elementów interfejsu.
+Istotne jest, aby interfejs użytkownika
+był intuicyjny, estetyczny i~nie zniechęcał potencjalnych użytkowników
+oraz nie utrudniał korzystania z~aplikacji. Ustalono, aby podczas
+projektowania interfejsu użytkownika kierować się zasadami
+dobrego UI/UX.
+Za cel postanowiono stworzenie minimalistycznego i~uporządkowanego
+interfejsu, który zapewniłby spójność na wszystkich podstronach aplikacji.
+Wykorzystamy ikony o~jednakowym znaczeniu na wszystkich stronach,
+co ułatwi nawigację. Dodatkowo zastosujemy stałą gamę starannie
+dobranych kolorów dla elementów interfejsu, co pozwoli nam utrzymać
+spójny styl podczas projektowania kolejnych widoków. Aplikacja
+będzie oferować tryb jasny i~ciemny, aby użytkownicy mogli wygodnie
+korzystać z~niej w~zależności od preferencji lub pory dnia.
+Ponadto, wszystkie podstrony będą responsywne, co będzie oznaczać,
+że elementy interfejsu będą zachowywać pełną funkcjonalność,
+niezależnie od rozmiaru okna przeglądarki, na którym są wyświetlane.
+
 \subsection{Niezawodność}
-Wirtualny asystent do gry w brydża tworzony jest z~myślą o~nauce
+Wirtualny asystent do gry w~brydża ma być tworzony z~myślą o~nauce
 i~doskonaleniu umiejętności, ale także konkurencji i~wzajemnym
 rozgrywkom pomiędzy graczami. Konieczne jest więc wprowadzenie logiki
-gry z~największą dokładnością. Błędy w działaniu aplikacji podczas
+gry z~największą dokładnością. Błędy w~działaniu aplikacji podczas
 rozgrywki mogłyby wpłynąć na wynik gry oraz wprowadzić nowych graczy
 w~zakłopotanie, a~bardziej doświadczonych w~stan irytacji.
 Niezwykle istotne jest również uniknięcie sytuacji, w~których
@@ -329,11 +335,16 @@ dochodziłoby do utraty połączenia lub braku synchronizacji pomiędzy
 graczami. Takie incydenty mogą zrujnować całą rozgrywkę i~zdecydowanie
 obniżyć wartość jednej z~kluczowych funkcjonalności aplikacji, jaką
 jest możliwość rozgrywania partii między użytkownikami.
-Pierwszym krokiem w~stronę niezawodności aplikacji było wybranie
-odpowiednich technologii do jej realizacji. Next.js oraz FastAPI %%% TODO dowód?
-to godne zaufania, popularne na całym świecie narzędzia do budowy
-aplikacji webowych, a~usługa Google Firebase odciąża nas z~implementacji
-funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
-Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji
-kolejnych funkcjonalności z~najwyższą starannością.
+Również błędy implementacyjne logiki gry sprawiłyby problemy
+z~działaniem asystenta. Nie jest to dopuszczalne, zważając na to,
+że asystent ma być konkurencyjnym i~sprawnie działającym rozwiązaniem.
 
+Pierwszym krokiem w~stronę niezawodności aplikacji było wybranie
+odpowiednich technologii do jej realizacji. Narzędzia Next.js
+oraz FastAPI służące do budowy aplikacji webowych zostały
+przez nas uznane, jako godne zaufania, a~zarazem są
+popularne na całym świecie. Usługa Google Firebase odciąża nas z~implementacji
+funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
+Mając odpowiedni stos technologiczny, który jest wspierany
+i~rozwijany, pozwoli także na rozszerzenie przyszłych funkcjonalności
+aplikacji.
