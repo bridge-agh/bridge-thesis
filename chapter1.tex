@@ -97,7 +97,7 @@ w~naszej własnej aplikacji.
 
 Produkt będzie aplikacją webową umożliwiająca grę w~brydża,
 bez konieczności posiadania znajomych do gry.
-Partnera lub przeciwnika będzie mógł zastąpić Wirtualny Asystent.
+Partnera lub przeciwnika będzie mógł zastąpić wirtualny asystent.
 Jego zadaniem jest zapewnienie odpowiedniego
 dla użytkownika towarzysza, którego poziom jest zależny od wybranej
 preferencji. Użytkownicy będą mogli dostosować trudność, aby asystent osiągnął
@@ -128,9 +128,9 @@ napisana w~języku Python \cite{Python} za pomocą biblioteki FastAPI
 \cite{FastAPI}. Funkcjonalność związana z~obsługą użytkowników i~gromadzenia
 danych będzie wykorzystywała usługę Google Firebase \cite{Firebase}.
 
-Wirtualny Asystent zostanie zrealizowany jako osobna biblioteka udostępniająca
+Wirtualny asystent zostanie zrealizowany jako osobna biblioteka udostępniająca
 własne API. Backend obsługujący sesje gier, po dołączeniu biblioteki asystenta,
-będzie mógł wysłać do API Asystenta aktualny stan gry, aby otrzymać
+będzie mógł wysłać do API asystenta aktualny stan gry, aby otrzymać
 odpowiedź zawierającą analizę tego stanu, między innymi
 prawdopodobieństwo wygrania każdej z~par graczy oraz listę
 najlepszych ruchów, jakie mogą być wykonane przez następnego gracza.
@@ -239,10 +239,10 @@ Zostały przygotowane szkice interfejsu aplikacji
 \begin{enumerate}
   \item Brydż -- karciana gra strategiczna rozgrywana przez dwie pary graczy,
   \item Użytkownik -- człowiek korzystający z aplikacji,
-  \item Wirtualny Asystent -- algorytm posiadający możliwość analizy rozgrywki w celu nauki, współpracy lub konkurencji z użytkownikiem,
-  \item Gracz -- użytkownik lub Wirtualny Asystent biorący udział w rozgrywce,
+  \item Wirtualny asystent -- algorytm posiadający możliwość analizy rozgrywki w celu nauki, współpracy lub konkurencji z użytkownikiem,
+  \item Gracz -- użytkownik lub wirtualny asystent biorący udział w rozgrywce,
   \item Partner -- drugi gracz grający w parze danego gracza,
   \item Przeciwnik -- jeden z graczy z pary grającej przeciwko danemu graczowi,
-  \item Wirtualny Partner -- partner będący Wirtualnym Asystentem,
-  \item Wirtualny Przeciwnik -- przeciwnik będący Wirtualnym Asystentem,
+  \item Wirtualny partner -- partner będący wirtualnym asystentem,
+  \item Wirtualny przeciwnik -- przeciwnik będący wirtualnym asystentem,
 \end{enumerate}
