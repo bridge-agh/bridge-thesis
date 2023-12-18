@@ -57,22 +57,15 @@ Podzielono system na następujące elementy:
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/schematy/schemat_systemu.png}
+  \includegraphics[width=0.9\textwidth]{img/schematy/schemat_systemu.png}
   \caption{Schemat podziału i~zależności elementów systemu wraz z~wykorzystywanymi przez nie technologiami.}
-  \label{fig:akka-highlevel}
+  \label{fig:system-scheme}
 \end{figure}
 
 \FloatBarrier
 
 
 \section{Architektura serwera}
-
-\begin{figure}[!]
-  \centering
-  \includegraphics[width=\textwidth]{img/akka/HighLevel.png}
-  \caption{Wysokopoziomowy schemat architektury serwera.}
-  \label{fig:akka-highlevel}
-\end{figure}
 
 Serwer został zaimplementowany w języku Scala,
 wykorzystując framework Akka \cite{Akka}.
@@ -89,25 +82,30 @@ oraz serwisu Firebase Authentication,
 serwer HTTP odczytuje identyfikatory $UserId$ oraz
 $SessionId$ powiązane z~danym użytkownikiem.
 
-%%% TODO powiekszenie schematow
-
-\begin{figure}[!]
+\begin{figure}[hp!]
   \centering
-  \includegraphics[width=\textwidth]{img/akka/CreateSession.png}
+  \includegraphics[width=0.9\textwidth]{img/akka/HighLevel.png}
+  \caption{Wysokopoziomowy schemat architektury serwera.}
+  \label{fig:akka-highlevel}
+\end{figure}
+
+\begin{figure}[hp!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/akka/CreateSession.png}
   \caption{Schemat tworzenia sesji.}
   \label{fig:akka-createsession}
 \end{figure}
 
-\begin{figure}[!]
+\begin{figure}[hp!]
   \centering
-  \includegraphics[width=\textwidth]{img/akka/JoinSession.png}
+  \includegraphics[width=0.9\textwidth]{img/akka/JoinSession.png}
   \caption{Schemat dołączania do sesji.}
   \label{fig:akka-joinsession}
 \end{figure}
 
-\begin{figure}[!]
+\begin{figure}[hp!]
   \centering
-  \includegraphics[width=\textwidth]{img/akka/SessionInfo.png}
+  \includegraphics[width=0.9\textwidth]{img/akka/SessionInfo.png}
   \caption{Schemat pobierania informacji o sesji.}
   \label{fig:akka-sessioninfo}
 \end{figure}
@@ -333,7 +331,8 @@ proces rozwoju części wizualnej aplikacji.
 \section{Silnik gry}
 \label{subsec:silnik_gry}
 
-Silnik wizualny rozgrywki do gry w~brydża jest kluczowym elementem aplikacji.
+Silnik wizualny rozgrywki do gry w~brydża jest elementem, który miał na celu
+być minimalistycznym i~przyjaznym wizualnie dla użytkowników.
 Podczas tworzenia go skupiono się, aby zaoferować
 wysoką wydajność i~pełną integrację z~aplikacją webową.
 
