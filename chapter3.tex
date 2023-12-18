@@ -10,23 +10,25 @@ się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
 \section{Podział tworzonego systemu}
 
-\begin{figure}[!]
-  \centering
-  \includegraphics[width=\textwidth]{img/schematy/schemat_systemu.png}
-  \caption{Schemat podziału i~zależności elementów systemu wraz z~wykorzystywanymi przez nie technologiami.}
-  \label{fig:akka-highlevel}
-\end{figure}
-
 Aby usprawnić pracę nad produktem, podzieliliśmy system na osobne
 fragmenty. Każdy z~nich odpowiedzialny był za inną jego część.
-Podczas pracy nad osobnymi elementami ważne było, aby mogły się one
-ze sobą komunikować. W~tym celu w~trakcie projektowania
-całości systemu zostały stworzone odpowiednie schematy definiujące
-odpowiedzialność każdego elementu, jak i~w~jaki sposób ma się odbywać
-dialog pomiędzy nimi. Opisane w~nich też zostały abstrakcyjne
-obiekty dzielące odpowiedzialność za przechowywanie informacji
-potrzebnych do działania systemu. Pozwoliło to na zdefiniowanie,
-za co ma odpowiadać każdy z~elementów.
+Pozwoliło to na stworzenie odpowiednich mechanizmów dla każdego
+z~nich, których zadaniem byłoby między innymi automatyczne
+wdrażanie nowych wersji i~testowanie. Podział był też powiązany
+z~wykorzystywanym językiem programowania i~technologią danego elementu.
+
+Ważne jest też, że niektóre elementy nie były od razu wymagane do
+działania reszty systemu. Przykładowo wirtualny asystent był tworzony
+w~końcowych fazach rozwoju projektu. Wymagał tego proces
+badania, opisu i~testowania algorytmu uczenia. Sama część systemu
+odpowiedzialna za rozgrywkę nie wymagała w~pierwszej kolejności
+asystenta, gdyż głównie potrzebna była logika gry w~brydża
+i~synchronizacja aplikacji webowej z~serwerem. Dzięki takiemu
+podziałowi już na samym etapie planowania, mimo braku jednego
+z~elementów, można było stwierdzić jak cały system będzie się
+komunikować, a~informacje otrzymywane od nieutworzonych
+elementów zastąpić zadeklarowanymi danymi, aby przetestować
+działanie systemu. \\
 
 Podzielono system na następujące elementy:
 \begin{itemize}
@@ -53,7 +55,12 @@ Podzielono system na następujące elementy:
         odpowiada za zarządzanie i~uwierzytelnianie użytkowników.
 \end{itemize}
 
-%%% TODO schemat abstrakcyjnego podziału systemu (sesja, lobby, sesja gry, uzytkwonicy, ai)
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/schematy/schemat_systemu.png}
+  \caption{Schemat podziału i~zależności elementów systemu wraz z~wykorzystywanymi przez nie technologiami.}
+  \label{fig:akka-highlevel}
+\end{figure}
 
 \FloatBarrier
 
