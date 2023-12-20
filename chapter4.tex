@@ -100,15 +100,15 @@ narzędzie lub platforma udostępniająca możliwość tworzenia zadań,
 zależności między nimi oraz dzielenia na większe zbiory zadań.
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_backlog.png}
-    \caption{Backlog z zadaniami}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_backlog.png}
+  \caption{Backlog z zadaniami}
 \end{figure}
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_epic.png}
-    \caption{Epic dotyczący systemu lobby wraz z~zadaniami i~ich statusami}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_epic.png}
+  \caption{Epic dotyczący systemu lobby wraz z~zadaniami i~ich statusami}
 \end{figure}
 
 Zdecydowano się na narzędzie Shortcut \cite{Shortcut}, które oferuje
@@ -136,9 +136,9 @@ internetowych, prototypy interfejsów użytkownika czy też otwartych przestrzen
 do zarządzania i~planowania.
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/schematy/milestones.png}
-    \caption{Szczegółowy podział milestone'ów na zadania}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/schematy/milestones.png}
+  \caption{Szczegółowy podział milestone'ów na zadania}
 \end{figure}
 
 Warto wspomnieć, że tak jak w~\ref{fig:figma_login} lub
@@ -235,7 +235,7 @@ sprawnego działania tej części systemu.
 \subsection{Integracja elementów systemu}
 
 Podział tworzonego systemu na wiele części
-takich jak aplikacja webowa, serwer, asystent AI
+takich jak aplikacja webowa, serwer, wirtualny asystent
 i~dokumentacja wymagał stworzenia odpowiedniego
 przepływu pracy zwanego \textbf{CI/CD}. Akronim ten oznacza
 ciągłą integrację/ciągłe wdrażanie. Jest on stosowany
@@ -272,10 +272,10 @@ po aktualizacji kodu.
 \subsubsection{Vercel}
 
 \begin{figure}[!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/github/github-vercel.png}
-    \caption{Wycinek integracji platformy Vercel z~GitHub dla jednej z~gałęzi kodu aplikacji webowej}
-    \label{fig:github-vercel}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/github/github-vercel.png}
+  \caption{Wycinek integracji platformy Vercel z~GitHub dla jednej z~gałęzi kodu aplikacji webowej}
+  \label{fig:github-vercel}
 \end{figure}
 
 Platforma Vercel\cite{Vercel} była odpowiedzialna za
@@ -305,10 +305,10 @@ z~gałęzi został wygenerowany adres do aplikacji
 \subsubsection{Oracle Cloud}
 
 \begin{figure}[!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/traefik/dashboard.png}
-    \caption{Panel serwisów udostępnionych przez Traefik.}
-    \label{fig:traefik-dashboard}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/traefik/dashboard.png}
+  \caption{Panel serwisów udostępnionych przez Traefik.}
+  \label{fig:traefik-dashboard}
 \end{figure}
 
 Do uruchomienia serwera naszego systemu wymagane było
@@ -328,8 +328,8 @@ platformie GitHub. Następnie po stronie serwera Oracle
 cyklicznie był sprawdzany rejestr w~celu wykrycia
 nowo powstałego obrazu kontenera. Gdy obraz posiadał
 inny hash\footnote{hash -- wartość wyliczana przez tzw. "funkcję
-    hashującą", która dla otrzymanych na wejściu tych
-    samych danych zwraca tę samą wyliczoną wartość.}
+  hashującą", która dla otrzymanych na wejściu tych
+  samych danych zwraca tę samą wyliczoną wartość.}
 odpowiedni skrypt uruchamiał on nową wersję kontenera.
 Każda gałąź kodu, podobnie jak w~przypadku aplikacji
 webowej, posiadała osobny kontener uruchomiony na serwerze
@@ -365,17 +365,17 @@ o~nieudanym przeprowadzeniu testów
 (Rys. \ref{fig:github-commits}, \ref{fig:github-tests}).
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/github/github-commits.png}
-    \caption{Lista commitów z informacją o przebiegu testów dla Bridge Core}
-    \label{fig:github-commits}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/github/github-commits.png}
+  \caption{Lista commitów z informacją o przebiegu testów dla Bridge Core}
+  \label{fig:github-commits}
 \end{figure}
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/github/github-tests.png}
-    \caption{Lista uruchomionych testów przez GitHub Actions dla Bridge Core}
-    \label{fig:github-tests}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/github/github-tests.png}
+  \caption{Lista uruchomionych testów przez GitHub Actions dla Bridge Core}
+  \label{fig:github-tests}
 \end{figure}
 
 
