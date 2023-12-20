@@ -426,7 +426,8 @@ po przystosowaniu do gry w~brydża.
 AlphaZero jest algorytmem uczenia maszynowego, który rozwija
 algorytm Monte Carlo Tree Search (MCTS) o~sieć neuronową do ewaluacji
 stanów gry.
-Analogicznie do MCTS, AlphaZero eksploruje drzewo stanów gry,
+Analogicznie do MCTS (Rys.~\ref{fig:ai-alphazero}),
+AlphaZero eksploruje drzewo stanów gry,
 symulując możliwe ruchy wszystkich graczy.
 MCTS ocenia jakość stanu metodą Random Rollout, czyli
 losowym symulowaniem ruchów do końca gry.
@@ -439,6 +440,14 @@ Dodatkowo zastosowano modyfikację
 Gumbel AlphaZero \cite{GumbelAZ},
 która gwarantuje poprawę funkcji polityki $\pi$, pod warunkiem
 dobrej oceny stanu $v$.
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/ai/alphazero.png}
+  \caption{Schemat działania algorytmu AlphaZero.}
+  \label{fig:ai-alphazero}
+\end{figure}
 
 
 \subsubsection{Przystosowanie do gry w~brydża}
@@ -551,6 +560,14 @@ oblicza liniową projekcję obserwacji do tensora
 o wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
 Wynikiem jest rozkład $\pi$ na 38 możliwych ruchów oraz
 ocena $v$ stanu gry po aktywacji $tanh$.
+Architektura przedstawiona jest na Rys.~\ref{fig:ai-arch}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/ai/arch.png}
+  \caption{Architektura sieci neuronowej AlphaZero.}
+  \label{fig:ai-arch}
+\end{figure}
 
 \subsubsection{Wyniki}
 % TODO: wyniki uczenia przenosimy do rozdzialu 5
