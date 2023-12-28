@@ -29,11 +29,75 @@ asystenta \nameref{subsubsec:mocai}.
 
 \subsection{Interfejs aplikacji}
 
+Interfejs aplikacji był tworzony z~uwagą na postawione wymagania funkcjonalne. 
+Zapewnia on użytkownikowi dostęp do wszystkich funkcji niezbędnych do korzystania 
+z~aplikacji. Widoki aplikacji są w~znacznym stopniu podobne do szkiców wykonanych na etapie 
+rozpoczęcia prac. Różnią się nieznacznie stylem ze względu na użycie innych narzędzi 
+do ich utworzenia. Są też bardziej szczegółowe od szkiców, ponieważ nie planowano 
+rozmieszczenia najdrobniejszych elementów interfejsu, takich jak przyciski akcji hosta 
+w lobby czy oznaczenia pozycji graczy na ekranie gry. Przykładowe porównania końcowych 
+rezultatów ze szkicami są przedstawione na rysunkach \ref{fig:compare_lobby} i 
+\ref{fig:compare_game}.
+
+\begin{figure}[h!]
+    \centering
+    \subfloat[Ekran lobby]{
+      \includegraphics[width=0.45\textwidth]{img/widoki/lobby.png}
+    }%
+    \hspace*{0.5cm}
+    \subfloat[Szkic lobby]{
+      \includegraphics[width=0.45\textwidth]{img/figma-szkic/3.png}
+    }%
+    \caption{Porównanie ekranu lobby z początkowym szkicem}
+    \label{fig:compare_lobby}
+  \end{figure}
+  
+  \FloatBarrier
+
+\begin{figure}[h!]
+    \centering
+    \subfloat[Ekran lobby]{
+      \includegraphics[width=0.45\textwidth]{img/figma-szkic/1.png}
+      \label{fig:figma_login2}
+    }%
+    \hspace*{0.5cm}
+    \subfloat[Szkic lobby]{
+      \includegraphics[width=0.45\textwidth]{img/figma-szkic/2.png}
+    }%
+    \caption{Porównanie ekranu gry z początkowym szkicem}
+    \label{fig:compare_game}
+  \end{figure}
+  
+\FloatBarrier
+ 
 \subsubsection{Tworzenie i dołączenie do gry}
+
+Na stronie głównej aplikacji użytkownik może utworzyć nową rozgrywkę 
+poprzez naciśnięcie przycisku "Create game" lub dołączyć do istniejącej poprzez 
+wpisanie kodu gry otrzymanego od innego użytkownika i~naciśnięcie przycisku "Join".
+
 \subsubsection{Lobby}
+
+Strona lobby służy do zebrania graczy przed rozpoczęciem gry i~ustawienia ich 
+na opdowiednich pozycjach. Widok zawiera cztery pozycje z~pseudonimami graczy,
+którzy się na nich znajdują. Host jest oznaczony ikoną korony, znajdującą się nad nazwą 
+jego pozycji.
+
 \subsubsection{Host}
+
+Zgodnie z~założeniami, host ma możliwość wyrzucania graczy z~lobby, zmieniania ich pozycji 
+oraz obsadzania pustych miejsc graczami-asystentami. Ponadto, host może oddać swoje 
+uprawnienia innemu graczowi-użytkownikowi. Te akcje może wykonywać poprzez użycie odpowiednich 
+przycisków znajdujących się nad pozycjami graczy.
+
 \subsubsection{Użytkownik}
 
+Użytkownik ma możliwość w~dowolnym momencie opuścić lobby, naciskając przycisk "Leave", 
+oraz zgłosić gotowość do rozpoczęcia rozgrywki, poprzez naciśnięcie przycisku "Ready". 
+Dodatkowo, może skopiować kod gry za pomocą przycisku "Copy ID" i~przesłać go innemu 
+użytkownikowi. Warto zaznaczyć, że kod nie jest widoczny w~żadnym momencie, co może być 
+przydatne dla graczy udostępniających ekran podczas rozgrywki, aby zabezpieczyć się przed 
+nieproszonymi uczestnikami.
 
 \subsection{Gra w brydża}
 
