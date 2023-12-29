@@ -27,58 +27,62 @@ asystenta \nameref{subsubsec:mocai}.
 
 \section{Przegląd zrealizowanych funkcjonalności}
 
+Poniższa sekcja opisuje wyniki zrealizowanego przez zespół
+projektu. Przedstawiona jest aplikacja oraz wyniki, jakie
+osiąga wirtualny asystent.
+
 \subsection{Interfejs aplikacji}
 
-Interfejs aplikacji był tworzony z~uwagą na postawione wymagania funkcjonalne. 
-Zapewnia on użytkownikowi dostęp do wszystkich funkcji niezbędnych do korzystania 
-z~aplikacji. Widoki aplikacji są w~znacznym stopniu podobne do szkiców wykonanych na etapie 
-rozpoczęcia prac. Różnią się nieznacznie stylem ze względu na użycie innych narzędzi 
-do ich utworzenia. Są też bardziej szczegółowe od szkiców, ponieważ nie planowano 
-rozmieszczenia najdrobniejszych elementów interfejsu, takich jak przyciski akcji hosta 
-w lobby czy oznaczenia pozycji graczy na ekranie gry. Przykładowe porównania końcowych 
-rezultatów ze szkicami są przedstawione na rysunkach \ref{fig:compare_lobby} i 
+Interfejs aplikacji był tworzony z~uwagą na postawione wymagania funkcjonalne.
+Zapewnia on użytkownikowi dostęp do wszystkich funkcji niezbędnych do korzystania
+z~aplikacji. Widoki aplikacji są w~znacznym stopniu podobne do szkiców wykonanych na etapie
+rozpoczęcia prac. Różnią się nieznacznie stylem ze względu na użycie innych narzędzi
+do ich utworzenia. Są też bardziej szczegółowe od szkiców, ponieważ nie planowano
+rozmieszczenia najdrobniejszych elementów interfejsu, takich jak przyciski akcji hosta
+w lobby czy oznaczenia pozycji graczy na ekranie gry. Przykładowe porównania końcowych
+rezultatów ze szkicami są przedstawione na rysunkach \ref{fig:compare_lobby} i
 \ref{fig:compare_game}.
 
 \begin{figure}[h!]
-    \centering
-    \subfloat[Ekran lobby]{
-      \includegraphics[width=0.45\textwidth]{img/widoki/lobby.png}
-    }%
-    \hspace*{0.5cm}
-    \subfloat[Szkic lobby]{
-      \includegraphics[width=0.45\textwidth]{img/figma-szkic/3.png}
-    }%
-    \caption{Porównanie ekranu lobby z początkowym szkicem}
-    \label{fig:compare_lobby}
-  \end{figure}
-  
-  \FloatBarrier
+  \centering
+  \subfloat[Ekran lobby]{
+    \includegraphics[width=0.45\textwidth]{img/widoki/lobby.png}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Szkic lobby]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/3.png}
+  }%
+  \caption{Porównanie ekranu lobby z początkowym szkicem}
+  \label{fig:compare_lobby}
+\end{figure}
+
+\FloatBarrier
 
 \begin{figure}[h!]
-    \centering
-    \subfloat[Ekran gry]{
-      \includegraphics[width=0.45\textwidth]{img/widoki/game.png}
-    }%
-    \hspace*{0.5cm}
-    \subfloat[Szkic gry]{
-      \includegraphics[width=0.45\textwidth]{img/figma-szkic/4.png}
-    }%
-    \caption{Porównanie ekranu gry z początkowym szkicem}
-    \label{fig:compare_game}
-  \end{figure}
-  
+  \centering
+  \subfloat[Ekran gry]{
+    \includegraphics[width=0.45\textwidth]{img/widoki/game.png}
+  }%
+  \hspace*{0.5cm}
+  \subfloat[Szkic gry]{
+    \includegraphics[width=0.45\textwidth]{img/figma-szkic/4.png}
+  }%
+  \caption{Porównanie ekranu gry z początkowym szkicem}
+  \label{fig:compare_game}
+\end{figure}
+
 \FloatBarrier
- 
+
 \subsubsection{Tworzenie i dołączenie do gry}
 
-Na stronie głównej aplikacji (Rys. \ref{fig:home}) użytkownik może utworzyć nową 
-rozgrywkę poprzez naciśnięcie przycisku "Create a game" lub dołączyć do istniejącej 
-poprzez wpisanie kodu gry otrzymanego od innego użytkownika i~naciśnięcie 
+Na stronie głównej aplikacji (Rys. \ref{fig:home}) użytkownik może utworzyć nową
+rozgrywkę poprzez naciśnięcie przycisku "Create a game" lub dołączyć do istniejącej
+poprzez wpisanie kodu gry otrzymanego od innego użytkownika i~naciśnięcie
 przycisku "Join".
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/widoki/home.png}
+  \includegraphics[width=0.9\textwidth]{img/widoki/home.png}
   \caption{Strona główna aplikacji}
   \label{fig:home}
 \end{figure}
@@ -87,14 +91,16 @@ przycisku "Join".
 
 \subsubsection{Lobby}
 
-Strona lobby (Rys. \ref{fig:lobby}) służy do zebrania graczy przed rozpoczęciem gry i~ustawienia ich 
-na opdowiednich pozycjach. Widok zawiera cztery pozycje z~pseudonimami graczy,
-którzy się na nich znajdują. Host jest oznaczony ikoną korony, znajdującą się nad nazwą 
+Strona lobby (Rys. \ref{fig:lobby}) służy do zebrania
+użytkowników przed rozpoczęciem gry i~ustawienia ich
+na odpowiednich pozycjach. Widok zawiera cztery pozycje
+z~pseudonimami graczy, którzy się na nich znajdują.
+Host jest oznaczony ikoną korony, znajdującą się nad nazwą
 jego pozycji.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/widoki/lobby.png}
+  \includegraphics[width=0.9\textwidth]{img/widoki/lobby.png}
   \caption{Strona lobby}
   \label{fig:lobby}
 \end{figure}
@@ -103,18 +109,20 @@ jego pozycji.
 
 \subsubsection{Host}
 
-Zgodnie z~założeniami, host ma możliwość wyrzucania graczy z~lobby, zmieniania ich pozycji 
-oraz obsadzania pustych miejsc graczami-asystentami. Ponadto, host może oddać swoje 
-uprawnienia innemu graczowi-użytkownikowi. Te akcje może wykonywać poprzez użycie odpowiednich 
-przycisków znajdujących się nad pozycjami graczy.
+Zgodnie z~założeniami, host ma możliwość wyrzucania graczy
+z~lobby, zmieniania ich pozycji oraz obsadzania pustych
+miejsc graczami-asystentami. Ponadto, host może oddać swoje
+uprawnienia innemu graczowi-użytkownikowi. Te akcje może
+wykonywać poprzez użycie odpowiednich przycisków w~postaci
+ikon znajdujących się nad pozycjami graczy (Rys. \ref{fig:host_actions_ui}).
 
 \subsubsection{Użytkownik}
 
-Użytkownik ma możliwość w~dowolnym momencie opuścić lobby, naciskając przycisk "Leave", 
-oraz zgłosić gotowość do rozpoczęcia rozgrywki, poprzez naciśnięcie przycisku "Ready". 
-Dodatkowo, może skopiować kod gry za pomocą przycisku "Copy ID" i~przesłać go innemu 
-użytkownikowi. Warto zaznaczyć, że kod nie jest widoczny w~żadnym momencie, co może być 
-przydatne dla graczy udostępniających ekran podczas rozgrywki, aby zabezpieczyć się przed 
+Użytkownik ma możliwość w~dowolnym momencie opuścić lobby, naciskając przycisk "Leave",
+oraz zgłosić gotowość do rozpoczęcia rozgrywki, poprzez naciśnięcie przycisku "Ready".
+Dodatkowo może skopiować kod gry za pomocą przycisku "Copy ID" i~przesłać go innemu
+użytkownikowi. Warto zaznaczyć, że kod nie jest widoczny w~żadnym momencie, co może być
+przydatne dla graczy udostępniających ekran podczas rozgrywki, aby zabezpieczyć się przed
 nieproszonymi uczestnikami.
 
 \subsection{Gra w brydża}
