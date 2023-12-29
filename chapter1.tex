@@ -30,25 +30,25 @@ rozgrywkę oraz możliwość nauki i~doskonalenia umiejętności gry w~brydża.
 \section{Motywacja projektu}
 
 \begin{figure}
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/brydz-platformy/bridgebase.png}
-  \caption{Rozgrywka brydża na platformie Bridge Base}
-  \label{fig:bridge-base}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/brydz-platformy/bridgebase.png}
+    \caption{Rozgrywka brydża na platformie Bridge Base}
+    \label{fig:bridge-base}
 \end{figure}
 
 \begin{figure}
-  \centering
-  \subfloat[Główny ekran rozgrywki]{
-    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay1.jpg}
-    \label{fig:neural-play-1}
-  }%
-  \hspace*{0.5cm}
-  \subfloat[Historia bieżącej rozgrywki]{
-    \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay2.jpg}
-    \label{fig:neural-play-2}
-  }%
-  \caption{Rozgrywka brydża w aplikacji Bridge by NeuralPlay}
-  \label{fig:neural-play}
+    \centering
+    \subfloat[Główny ekran rozgrywki]{
+        \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay1.jpg}
+        \label{fig:neural-play-1}
+    }%
+    \hspace*{0.5cm}
+    \subfloat[Historia bieżącej rozgrywki]{
+        \includegraphics[width=.4\textwidth]{img/brydz-platformy/neuralplay2.jpg}
+        \label{fig:neural-play-2}
+    }%
+    \caption{Rozgrywka brydża w aplikacji Bridge by NeuralPlay}
+    \label{fig:neural-play}
 \end{figure}
 
 Wirtualny asystent może stanowić rozwiązanie dla tych problemów. Poprzez
@@ -140,35 +140,36 @@ które będą rozważane do zastosowania w~projekcie asystenta.
 W~kolejności od najbardziej złożonego do
 najprostszego w implementacji są to:
 \begin{enumerate}
-  \item \textbf{Algorytm Regularized Nash Dynamics \cite{doi:10.1126/science.add4679}}\\
-        Algorytm oparty na teorii gier, który wykorzystuje sieć neuronową do
-        predykcji najlepszego ruchu. Istnieje dowód formalny, że algorytm
-        zbiega do równowagi Nasha, czyli optymalnej strategii.
+    \item \textbf{Algorytm Regularized Nash Dynamics \cite{doi:10.1126/science.add4679}}\\
+          Algorytm oparty na teorii gier, który wykorzystuje sieć neuronową do
+          predykcji najlepszego ruchu. Istnieje dowód formalny, że algorytm
+          zbiega do równowagi Nasha, czyli optymalnej strategii.
 
-  \item \textbf{Algorytm AlphaZero \cite{AlphaZeroPaper} połączony z algorytmem IS-MCTS \cite{6203567}}\\
-        Algorytm AlphaZero jest wariantem algorytmu Monte Carlo Tree Search,
-        który wykorzystuje sieć neuronową do oceny stanu gry.
-        Algorytm Information Set MCTS (IS-MCTS) jest modyfikacją algorytmu MCTS, która pozwala na
-        przeszukiwanie drzewa stanów gry o~niepełnej informacji.
-        Możliwe jest połączenie tych dwóch algorytmów, aby uzyskać
-        Information Set AlphaZero.
+    \item \textbf{Algorytm AlphaZero \cite{AlphaZeroPaper} połączony z algorytmem IS-MCTS \cite{6203567}}\\
+          Algorytm AlphaZero jest wariantem algorytmu Monte Carlo Tree Search,
+          który wykorzystuje sieć neuronową do oceny stanu gry.
+          Algorytm Information Set MCTS (IS-MCTS) jest modyfikacją algorytmu MCTS, która pozwala na
+          przeszukiwanie drzewa stanów gry o~niepełnej informacji.
+          Możliwe jest połączenie tych dwóch algorytmów, aby uzyskać
+          Information Set AlphaZero.
 
-  \item \textbf{Implementacja algorytmu IS-MCTS z biblioteki OpenSpiel \cite{LanctotEtAl2019OpenSpiel}}\\
-        Biblioteka OpenSpiel zawiera implementację algorytmu IS-MCTS,
-        który może być wykorzystany do gry w~brydża.
+    \item \textbf{Implementacja algorytmu IS-MCTS z biblioteki OpenSpiel \cite{LanctotEtAl2019OpenSpiel}}\\
+          Biblioteka OpenSpiel zawiera implementację algorytmu IS-MCTS,
+          który może być wykorzystany do gry w~brydża.
 
-  \item \textbf{Program AI do brydża GIB \cite{Ginsberg1999GIBST}}\\
-        GIB jest jednym ze starszych programów AI do brydża. Możliwe jest
-        jego bezpośrednie wykorzystanie w~projekcie.
+    \item \textbf{Program AI do brydża GIB \cite{Ginsberg1999GIBST}}\\
+          GIB jest jednym ze starszych programów AI do brydża. Możliwe jest
+          jego bezpośrednie wykorzystanie w~projekcie.
 
-  \item \textbf{Algorytm Pure Monte Carlo Tree Search \cite{pmcts}}\\
-        Algorytm równoważny MCTS dla maksymalnej głębokości drzewa równej 1.
+    \item \textbf{Algorytm Pure Monte Carlo Tree Search \cite{pmcts}}\\
+          Algorytm równoważny MCTS dla maksymalnej głębokości drzewa równej 1.
 \end{enumerate}
 
 
 %%%
 
 \section{Analiza zagrożeń}
+\label{sec:analiza_zagrozen}
 
 Gra w~brydża jest jedną z~najtrudniejszych gier strategicznych na świecie.
 Do tej pory nie powstał żaden system AI grający na mistrzowskim poziomie
@@ -203,22 +204,22 @@ w~oparciu o~komputer osobisty lub mikrokomputer, np. Raspberry Pi \cite{RPi}.
 
 % needs latex magic
 \begin{table}[h]
-  \centering
-  \begin{tabularx}{\textwidth}{|p{5.5cm}|Y|Y|}
-    \hline
-    \textbf{Zagrożenie}                                    & \textbf{Prawdopodobieństwo wystąpienia} & \textbf{Zagrożenie dla projektu} \\
-    \hline
-    Problemy w implementacji AI                            & Wysokie                                 & Średnie (podano plany awaryjne)  \\
-    \addlinespace[0.1cm]
-    Nie osiągniecie poziomu mistrzowskiego przez asystenta & Wysokie                                 & Niskie                           \\
-    \addlinespace[0.1cm]
-    Niska niezawodność produktu                            & Niskie                                  & Średnie                          \\
-    \addlinespace[0.1cm]
-    Zmiana modelu biznesowego wykorzystywanych serwisów    & Niskie                                  & Średnie                          \\
-    \hline
-  \end{tabularx}
-  \caption{Analiza zagrożeń}
-  \label{tab:zagrozenia}
+    \centering
+    \begin{tabularx}{\textwidth}{|p{5.5cm}|Y|Y|}
+        \hline
+        \textbf{Zagrożenie}                                    & \textbf{Prawdopodobieństwo wystąpienia} & \textbf{Zagrożenie dla projektu} \\
+        \hline
+        Problemy w implementacji AI                            & Wysokie                                 & Średnie (podano plany awaryjne)  \\
+        \addlinespace[0.1cm]
+        Nie osiągniecie poziomu mistrzowskiego przez asystenta & Wysokie                                 & Niskie                           \\
+        \addlinespace[0.1cm]
+        Niska niezawodność produktu                            & Niskie                                  & Średnie                          \\
+        \addlinespace[0.1cm]
+        Zmiana modelu biznesowego wykorzystywanych serwisów    & Niskie                                  & Średnie                          \\
+        \hline
+    \end{tabularx}
+    \caption{Analiza zagrożeń}
+    \label{tab:zagrozenia}
 \end{table}
 
 %%%
@@ -231,25 +232,25 @@ Zostały przygotowane szkice interfejsu aplikacji
 (Rys.~\ref{fig:figma_login}--\ref{fig:figma_game}).
 
 \begin{figure}[h!]
-  \centering
-  \subfloat[Ekran logowania]{
-    \includegraphics[width=0.45\textwidth]{img/figma-szkic/1.png}
-    \label{fig:figma_login}
-  }%
-  \hspace*{0.5cm}
-  \subfloat[Ekran główny]{
-    \includegraphics[width=0.45\textwidth]{img/figma-szkic/2.png}
-  }%
-  \\
-  \subfloat[Ekran lobby]{
-    \includegraphics[width=0.45\textwidth]{img/figma-szkic/3.png}
-  }%
-  \hspace*{0.5cm}
-  \subfloat[Ekran gry]{
-    \includegraphics[width=0.45\textwidth]{img/figma-szkic/4.png}
-    \label{fig:figma_game}
-  }%
-  \caption{Szkice interfejsu aplikacji}
+    \centering
+    \subfloat[Ekran logowania]{
+        \includegraphics[width=0.45\textwidth]{img/figma-szkic/1.png}
+        \label{fig:figma_login}
+    }%
+    \hspace*{0.5cm}
+    \subfloat[Ekran główny]{
+        \includegraphics[width=0.45\textwidth]{img/figma-szkic/2.png}
+    }%
+    \\
+    \subfloat[Ekran lobby]{
+        \includegraphics[width=0.45\textwidth]{img/figma-szkic/3.png}
+    }%
+    \hspace*{0.5cm}
+    \subfloat[Ekran gry]{
+        \includegraphics[width=0.45\textwidth]{img/figma-szkic/4.png}
+        \label{fig:figma_game}
+    }%
+    \caption{Szkice interfejsu aplikacji}
 \end{figure}
 
 \FloatBarrier
@@ -257,12 +258,12 @@ Zostały przygotowane szkice interfejsu aplikacji
 \section{Słownik pojęć}
 
 \begin{enumerate}
-  \item Brydż -- karciana gra strategiczna rozgrywana przez dwie pary graczy,
-  \item Użytkownik -- człowiek korzystający z aplikacji,
-  \item Wirtualny asystent -- algorytm posiadający możliwość analizy rozgrywki w celu nauki, współpracy lub konkurencji z użytkownikiem,
-  \item Gracz -- użytkownik lub wirtualny asystent biorący udział w rozgrywce,
-  \item Partner -- drugi gracz grający w parze danego gracza,
-  \item Przeciwnik -- jeden z graczy z pary grającej przeciwko danemu graczowi,
-  \item Wirtualny partner -- partner będący wirtualnym asystentem,
-  \item Wirtualny przeciwnik -- przeciwnik będący wirtualnym asystentem,
+    \item Brydż -- karciana gra strategiczna rozgrywana przez dwie pary graczy,
+    \item Użytkownik -- człowiek korzystający z aplikacji,
+    \item Wirtualny asystent -- algorytm posiadający możliwość analizy rozgrywki w celu nauki, współpracy lub konkurencji z użytkownikiem,
+    \item Gracz -- użytkownik lub wirtualny asystent biorący udział w rozgrywce,
+    \item Partner -- drugi gracz grający w parze danego gracza,
+    \item Przeciwnik -- jeden z graczy z pary grającej przeciwko danemu graczowi,
+    \item Wirtualny partner -- partner będący wirtualnym asystentem,
+    \item Wirtualny przeciwnik -- przeciwnik będący wirtualnym asystentem,
 \end{enumerate}
