@@ -569,59 +569,6 @@ Architektura przedstawiona jest na Rys.~\ref{fig:ai-arch}.
     \label{fig:ai-arch}
 \end{figure}
 
-\subsubsection{Wyniki}
-% TODO: wyniki uczenia przenosimy do rozdzialu 5
-
-
-
-Agent był uczony poprzez granie sam ze sobą.
-W~procesie uczenia zaobserwował ponad 110~mln ruchów,
-co odpowiada około 10 mln gier, zakładając średnią
-długość licytacji 11 ruchów.
-W~celach ewaluacji agenta, przeprowadzane
-były gry pomiędzy agentem a~graczem wykonującym
-losowe ruchy.
-Nie jest to najlepszy przeciwnik, ale pozwala
-ocenić, czy agent polepsza swoje umiejętności.
-Ewaluacja wykorzystywała samą sieć $\pi$,
-agent nie widział kart przeciwnika.
-Wyniki przedstawia Rys. \ref{fig:bzero-eval}.
-Agent szybko osiąga do 95\% wygranych.
-Brak 100\% wygranych wynika z~faktu, że
-podczas ewaluacji agent nie wybiera zawsze optymalnego ruchu,
-tylko losuje ruch z~prawdopodobieństwa
-wygenerowanego przez $\pi$.
-Służy to zróżnicowaniu gier i~umożliwia
-dokładniejszą ocenę umiejętności agenta.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
-    \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
-    \label{fig:othello-eval}
-\end{figure}
-
-\begin{figure}[!]
-    \centering
-    \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
-    \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
-    \label{fig:bzero-eval}
-\end{figure}
-
-Ze względu na brak odpowiedniego modelu
-bazowego (baseline) przeciwnika,
-przeprowadzono test zaimplementowanego algorytmu
-na grze Othello \cite{Othello}.
-Uruchomiono identyczny proces uczenia,
-wykorzystując implementację Othello oraz
-model AI baseline z~\cite{PGX}.
-Wyniki uczenia przedstawia Rys.~\ref{fig:othello-eval}.
-Nasze AI uzyskuje stosunek wygranych do przegranych
-kontra model AI baseline na poziomie 9:1.
-Można zatem wnioskować, że nasza implementacja
-AlphaZero jest poprawna.
-
-\FloatBarrier
 
 \subsection{Faza gry}
 

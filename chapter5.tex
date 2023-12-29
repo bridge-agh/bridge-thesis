@@ -176,13 +176,89 @@ w~podobny sposób jak przy prawdziwym stole.
 \subsection{Wirtualny asystent}
 %%% przeprowadzone testy aplikacji na wybranej grupie osób (do wywalenia?)
 
-\subsubsection{Moc AI}
+W fazie planowania projektu wskazano 5 różnych algorytmów AI, które mogłyby zostać
+wykorzystane.
+Nie podjęto próby implementacji pierwszego z nich (Regularized Nash Dynamics),
+ze względu na jego złożoność i~brak dostępnych implementacji.
+Zdecydowano się na implementację drugiego algorytmu (AlphaZero).
+Początkowo planowano wykorzystanie rozszerzenia IS-MCTS.
+Odkryto jednak sposób na zaimplementowanie algorytmu bez tego rozszerzenia,
+co pozwoliło na uproszczenie implementacji. Nazywamy tę wersję algorytmu
+\textit{Depth-Zero AlphaZero}.
+
+
+\subsubsection{Poziom sztucznej inteligencji}
 \label{subsubsec:mocai}
-%%% testy/badania czy AI wygrywa
+
+Agent AlphaZero uczony był poprzez granie sam ze sobą.
+W~procesie uczenia zaobserwował ponad 110~mln ruchów,
+co odpowiada około 10 mln gier, zakładając średnią
+długość licytacji 11 ruchów.
+W~celach ewaluacji agenta, przeprowadzane
+były gry pomiędzy agentem a~graczem wykonującym
+losowe ruchy.
+Nie jest to najlepszy przeciwnik, ale pozwala
+ocenić, czy agent polepsza swoje umiejętności.
+Ewaluacja wykorzystywała samą sieć $\pi$,
+agent nie widział kart innych graczy.
+Wyniki przedstawia Rys. \ref{fig:bzero-eval}.
+Agent szybko osiąga 95\% wygranych.
+Brak 100\% wygranych wynika z~faktu, że
+podczas ewaluacji agent nie wybiera zawsze optymalnego ruchu,
+tylko losuje ruch z~rozkładu prawdopodobieństwa
+wygenerowanego przez $\pi$.
+Służy to zróżnicowaniu gier i~umożliwia
+dokładniejszą ocenę umiejętności agenta.
+
+
+\begin{figure}[!]
+    \centering
+    \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
+    \caption{Proces uczenia AlphaZero vs. losowy gracz -- Licytacja}
+    \label{fig:bzero-eval}
+\end{figure}
+
+Ze względu na brak odpowiedniego modelu
+bazowego (baseline) przeciwnika,
+przeprowadzono test zaimplementowanego algorytmu
+na grze Othello \cite{Othello}.
+Uruchomiono identyczny proces uczenia,
+wykorzystując implementację Othello oraz
+model AI baseline z~\cite{PGX}.
+Wyniki uczenia przedstawia Rys.~\ref{fig:othello-eval}.
+Nasze AI uzyskuje stosunek wygranych do przegranych
+kontra model AI baseline na poziomie 9:1.
+Można zatem wnioskować, że nasza implementacja
+AlphaZero jest poprawna.
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
+  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
+  \label{fig:othello-eval}
+\end{figure}
+
+AI do fazy rozgrywki wykorzystuje algorytm DDS,
+zatem jest matematycznie doskonałe i~nie ma potrzeby
+oceny jego umiejętności.
+
 
 \subsubsection{Możliwości rozwoju modelu}
 %%% czy da sie rozszerzac o kolejne elementy gry brydza
 %%% mozna sie odwolac do dalszych perspektyw (na ten moment w PR)
+
+Efektem implementacji AlphaZero było stworzenie
+rozbudowanego środowiska do uczenia.
+W~przyszłości można wykorzystać to środowisko
+do uczenia innych algorytmów AI, między innymi
+Regularized Nash Dynamics.
+Znaczna część kodu jest wspólna dla obu algorytmów.
+W~przyszłości można również rozszerzyć
+model o~dodatkowe elementy gry w~brydża,
+na przykład o~systemy licytacyjne.
+
+
 
 \subsection{Ułatwienia dostępności}
 
