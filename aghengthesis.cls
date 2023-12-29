@@ -137,9 +137,9 @@
   {\normalsize{\scshape\bfseries \LangAgh}}\\
   \vspace*{1mm}
 
-  {\normalsize{\scshape\bfseries \LangFaculty}}\\
-  \vspace*{1mm}
-  {\normalsize\scshape \LangInstitute}
+  {\normalsize{\scshape \LangFaculty}}\\
+  % \vspace*{1mm}
+  % {\normalsize\scshape \LangInstitute}
 
   \vspace*{2cm}
 

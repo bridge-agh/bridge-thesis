@@ -39,9 +39,9 @@ z~aplikacji. Widoki aplikacji są w~znacznym stopniu podobne do szkiców wykonan
 rozpoczęcia prac. Różnią się nieznacznie stylem ze względu na użycie innych narzędzi
 do ich utworzenia. Są też bardziej szczegółowe od szkiców, ponieważ nie planowano
 rozmieszczenia najdrobniejszych elementów interfejsu, takich jak przyciski akcji hosta
-w lobby czy oznaczenia pozycji graczy na ekranie gry. Przykładowe porównania końcowych
-rezultatów ze szkicami są przedstawione na rysunkach \ref{fig:compare_lobby} i
-\ref{fig:compare_game}.
+w~lobby czy oznaczenia pozycji graczy na ekranie gry. Przykładowe porównania końcowych
+rezultatów ze szkicami są przedstawione na rysunkach \ref{fig:compare_lobby}
+i~\ref{fig:compare_game}.
 
 \begin{figure}[h!]
   \centering
@@ -55,8 +55,6 @@ rezultatów ze szkicami są przedstawione na rysunkach \ref{fig:compare_lobby} i
   \caption{Porównanie ekranu lobby z początkowym szkicem}
   \label{fig:compare_lobby}
 \end{figure}
-
-\FloatBarrier
 
 \begin{figure}[h!]
   \centering
@@ -140,7 +138,8 @@ podejmowane kontrakty przez innych graczy. Niedostępne akcje
 są blokowane, co ułatwia wybór odpowiedniego kontraktu.
 Wskazywany jest również gracz, który w~danym momencie
 mógłby wygrać licytację, gdy trzech kolejnych graczy
-pasuje.
+pasuje. Przykładowy stan licytacji widoczny jest na rysunku
+\ref{fig:bidding}.
 
 \begin{figure}[h!]
   \centering
@@ -153,7 +152,8 @@ pasuje.
 
 \subsubsection{Rozgrywka}
 
-W~ekranie rozgrywki znalazły się takie elementy jak widok
+W~ekranie rozgrywki (Rys. \ref{fig:game}) znalazły się takie
+elementy jak widok
 kart każdego z~graczy, w~tym widoczne są awersy kart
 użytkownika i~dziadka (lub partnera, gdy użytkownik jest
 dziadkiem). Litery znajdujące się przy kartach określają
@@ -168,7 +168,7 @@ w~podobny sposób jak przy prawdziwym stole.
   \centering
   \includegraphics[width=0.9\textwidth]{img/widoki/game.png}
   \caption{Interfejs gry podczas rozgrywki}
-  \label{fig:bidding}
+  \label{fig:game}
 \end{figure}
 
 \FloatBarrier
@@ -298,7 +298,7 @@ do uwzględniania wyników gry\footnote{Uwzględnienie wyników gry jest
 podczas podejmowania decyzji. Istotne w~tym przypadku
 byłoby również rozszerzenie interfejsu gry, aby mógł zawierać
 dodatkowe informacje, jak na przykład aktualny wynik gry lub
-historię licytacji. \\
+historię licytacji.
 
 Również istotną propozycją, która z~pewnością podniesie poziom
 współpracy asystenta z~graczem, jest wsparcie języków licytacji\footnote{
@@ -308,7 +308,7 @@ współpracy asystenta z~graczem, jest wsparcie języków licytacji\footnote{
 } (systemów licytacji).
 Aktualnie asystent podejmuje decyzje podczas licytacji bez znajomości
 języków. Oznacza to, że nie rozumie odzywek gracza w~stosowanym przez
-niego systemie licytacyjnym. \\
+niego systemie licytacyjnym.
 
 Dodatkową funkcjonalnością, która rozszerza zastosowanie asystenta, jest
 wykorzystanie go do analizy rozgrywek w~czasie rzeczywistym lub
