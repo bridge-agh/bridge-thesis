@@ -32,34 +32,34 @@ działanie systemu. \\
 
 Podzielono system na następujące elementy:
 \begin{itemize}
-  \item Bridge Core -- główna logika gry w~brydża; stworzona
-        w~języku Python,
+    \item Bridge Core -- główna logika gry w~brydża; stworzona
+          w~języku Python,
 
-  \item Wirtualny asystent -- algorytm sztucznej inteligencji; stworzony
-        w~języku Python z~wykorzystaniem biblioteki JAX,
+    \item Wirtualny asystent -- algorytm sztucznej inteligencji; stworzony
+          w~języku Python z~wykorzystaniem biblioteki JAX,
 
-  \item Aplikacja webowa -- główny interfejs dla użytkowników,
-        aby móc rozgrywać grę; stworzone przy zastosowaniu
-        frameworków Next.js i~Tailwind.css w~językach HTML, \mbox{Javascript}
-        oraz CSS,
+    \item Aplikacja webowa -- główny interfejs dla użytkowników,
+          aby móc rozgrywać grę; stworzone przy zastosowaniu
+          frameworków Next.js i~Tailwind.css w~językach HTML, \mbox{Javascript}
+          oraz CSS,
 
-  \item Serwer gry -- centralny serwer, którego zadaniem jest
-        łączenie graczy do sesji, przeprowadzanie gier i~zarządzaie
-        w~nich asystentem; stworzony przy użyciu języku Scala
-        \mbox{i~frameworku} Akka,
+    \item Serwer gry -- centralny serwer, którego zadaniem jest
+          łączenie graczy do sesji, przeprowadzanie gier i~zarządzaie
+          w~nich asystentem; stworzony przy użyciu języka Scala
+          \mbox{i~frameworku} Akka,
 
-  \item Bridge Engine -- interfejs gry brydża; stworzony
-        z~użyciem frameworka Three.js i~języku Javascript,
+    \item Bridge Engine -- interfejs gry brydża; stworzony
+          z~użyciem frameworka Three.js i~języka Javascript,
 
-  \item Google Firebase -- osobny system Google'a, który
-        odpowiada za zarządzanie i~uwierzytelnianie użytkowników.
+    \item Google Firebase -- osobny system Google'a, który
+          odpowiada za zarządzanie i~uwierzytelnianie użytkowników.
 \end{itemize}
 
 \begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/schematy/schemat_systemu.png}
-  \caption{Schemat podziału i~zależności elementów systemu wraz z~wykorzystywanymi przez nie technologiami.}
-  \label{fig:system-scheme}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/schematy/schemat_systemu.png}
+    \caption{Schemat podziału i~zależności elementów systemu wraz z~wykorzystywanymi przez nie technologiami.}
+    \label{fig:system-scheme}
 \end{figure}
 
 \FloatBarrier
@@ -83,31 +83,31 @@ serwer HTTP odczytuje identyfikatory $UserId$ oraz
 $SessionId$ powiązane z~danym użytkownikiem.
 
 \begin{figure}[hp!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/akka/HighLevel.png}
-  \caption{Wysokopoziomowy schemat architektury serwera.}
-  \label{fig:akka-highlevel}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/akka/HighLevel.png}
+    \caption{Wysokopoziomowy schemat architektury serwera.}
+    \label{fig:akka-highlevel}
 \end{figure}
 
 \begin{figure}[hp!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/akka/CreateSession.png}
-  \caption{Schemat tworzenia sesji.}
-  \label{fig:akka-createsession}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/akka/CreateSession.png}
+    \caption{Schemat tworzenia sesji.}
+    \label{fig:akka-createsession}
 \end{figure}
 
 \begin{figure}[hp!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/akka/JoinSession.png}
-  \caption{Schemat dołączania do sesji.}
-  \label{fig:akka-joinsession}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/akka/JoinSession.png}
+    \caption{Schemat dołączania do sesji.}
+    \label{fig:akka-joinsession}
 \end{figure}
 
 \begin{figure}[hp!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/akka/SessionInfo.png}
-  \caption{Schemat pobierania informacji o sesji.}
-  \label{fig:akka-sessioninfo}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/akka/SessionInfo.png}
+    \caption{Schemat pobierania informacji o sesji.}
+    \label{fig:akka-sessioninfo}
 \end{figure}
 
 Drugi poziom to system aktorów, który jest
@@ -357,10 +357,10 @@ Dokonano zmiany na framework umożliwiający renderowanie
 \mbox{3D -- Three.js~\cite{ThreeJS}~(Rys.~\ref{fig:engine_orbit})}.
 
 \begin{figure}[hbt!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
-  \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
-  \label{fig:engine_orbit}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/bridge-engine/orbit.png}
+    \caption{Widok boczny trójwymiarowej przestrzeni silnika gry.}
+    \label{fig:engine_orbit}
 \end{figure}
 
 Posiada on wszystkie potrzebne funkcje, które pozwalają na zaawansowane
@@ -389,8 +389,8 @@ Przykładowo badając skok wydajności, porównując pierwotny silnik z~obecnym,
 na urządzeniu mobilnym, różnica jest na poziomie od około 15 aż do
 ponad 140 wyświetlanych
 klatek na sekundę\footnote{
-  Porównanie zostało wykonane na urządzeniu
-  Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
+    Porównanie zostało wykonane na urządzeniu
+    Samsung Galaxy S10+ z procesorem Samsung Exynos 9820.
 }.
 
 \FloatBarrier
@@ -443,10 +443,10 @@ dobrej oceny stanu $v$.
 
 
 \begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{img/ai/alphazero.png}
-  \caption{Schemat działania algorytmu AlphaZero.}
-  \label{fig:ai-alphazero}
+    \centering
+    \includegraphics[width=\textwidth]{img/ai/alphazero.png}
+    \caption{Schemat działania algorytmu AlphaZero.}
+    \label{fig:ai-alphazero}
 \end{figure}
 
 
@@ -454,18 +454,18 @@ dobrej oceny stanu $v$.
 
 Formalnie, brydż to gra:
 \begin{itemize}
-  \item czteroosobowa,
-  \item niedeterministyczna,
-  \item o sumie zerowej,
-  \item z~niepełną informacją.
+    \item czteroosobowa,
+    \item niedeterministyczna,
+    \item o sumie zerowej,
+    \item z~niepełną informacją.
 \end{itemize}
 
 AlphaZero został zaprojektowany do gier:
 \begin{itemize}
-  \item dwuosobowych,
-  \item deterministycznych,
-  \item o sumie zerowej,
-  \item z~pełną informacją.
+    \item dwuosobowych,
+    \item deterministycznych,
+    \item o sumie zerowej,
+    \item z~pełną informacją.
 \end{itemize}
 
 W brydżu występuje szczególny przypadek niedeterminizmu,
@@ -526,9 +526,9 @@ W~brydżu uczestniczy czterech graczy w~dwóch drużynach.
 Można zatem potraktować drużynę jako \textit{abstrakcyjnego gracza}.
 Finalna nagroda zdefiniowana jest następująco:
 \begin{itemize}
-  \item 1 -- wygrana drużyny,
-  \item 0 -- remis,
-  \item -1 -- przegrana drużyny.
+    \item 1 -- wygrana drużyny,
+    \item 0 -- remis,
+    \item -1 -- przegrana drużyny.
 \end{itemize}
 Każda drużyna podejmuje decyzje maksymalizujące swoją nagrodę.
 W~przypadku kolejności \textit{fizycznych graczy}
@@ -545,10 +545,10 @@ Taka modyfikacja gry pozwala na zastosowanie AlphaZero.
 Algorytm AlphaZero został zaimplementowany w~języku Python,
 wykorzystując biblioteki:
 \begin{itemize}
-  \item JAX \cite{JAX} -- backend do obliczeń numerycznych,
-  \item Haiku \cite{Haiku} -- biblioteka do tworzenia sieci neuronowych,
-  \item PGX \cite{PGX} -- implementacja gry w~brydża,
-  \item ekosystem DeepMind JAX \cite{JAXEcosystem} -- biblioteki pomocnicze.
+    \item JAX \cite{JAX} -- backend do obliczeń numerycznych,
+    \item Haiku \cite{Haiku} -- biblioteka do tworzenia sieci neuronowych,
+    \item PGX \cite{PGX} -- implementacja gry w~brydża,
+    \item ekosystem DeepMind JAX \cite{JAXEcosystem} -- biblioteki pomocnicze.
 \end{itemize}
 
 Sieć neuronowa bazuje na architekturze opisanej w \cite{AlphaZeroPaper}.
@@ -563,10 +563,10 @@ ocena $v$ stanu gry po aktywacji $tanh$.
 Architektura przedstawiona jest na Rys.~\ref{fig:ai-arch}.
 
 \begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{img/ai/arch.png}
-  \caption{Architektura sieci neuronowej AlphaZero.}
-  \label{fig:ai-arch}
+    \centering
+    \includegraphics[width=\textwidth]{img/ai/arch.png}
+    \caption{Architektura sieci neuronowej AlphaZero.}
+    \label{fig:ai-arch}
 \end{figure}
 
 \subsubsection{Wyniki}
@@ -595,17 +595,17 @@ Służy to zróżnicowaniu gier i~umożliwia
 dokładniejszą ocenę umiejętności agenta.
 
 \begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
-  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
-  \label{fig:othello-eval}
+    \centering
+    \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
+    \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
+    \label{fig:othello-eval}
 \end{figure}
 
 \begin{figure}[!]
-  \centering
-  \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
-  \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
-  \label{fig:bzero-eval}
+    \centering
+    \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
+    \caption{Proces uczenia AlphaZero vs. losowy gracz -- Brydż}
+    \label{fig:bzero-eval}
 \end{figure}
 
 Ze względu na brak odpowiedniego modelu
@@ -637,21 +637,4 @@ Wymagane jest podanie kart wszystkich graczy, dlatego
 metoda może być wykorzystana tylko przez serwer, który zna stan całej gry.
 Dostosowanie poziomu trudności polega na wybieraniu nieoptymalnych ruchów
 z~pewnym prawdopodobieństwem, konfigurowalnym przez użytkownika.
-
-\section{Dodatkowe elementy aplikacji}
-
-Oprócz omówionych kluczowych funkcjonalności, w ramach rozwoju aplikacji wprowadzono także dodatkowe elementy,
-których potrzebę przedstawiono w podrozdziale dotyczącym wymagań niefunkcjonalnych.
-
-\subsection{Tryb mobilny}
-
-Zgodnie z wymogiem dostępności interfejsy aplikacji powinny być funkcjonalne również na urządzeniach o niewielkich rozmiarach
-ekranu. Wszystkie strony zostały zaprojektowane tak, aby umożliwić wygodne korzystanie
-zarówno na urządzeniach stacjonarnych, jak i mobilnych. Minimalna przewidziana szerokość ekranu wynosi 280 pikseli.
-
-\subsection{Motywy aplikacji}
-
-W celu zrealizowania zdefiniowanego w rozdziale drugim wymagania użyteczności, wygląd aplikacji rozwijano w dwóch trybach -
-jasnym i ciemnym. Użyto w tym celu dostępnych w bibliotece Daisy UI motywów oraz kolorów, które w zależności od aktualnie wybranego motywu
-zmieniały swój odcień. Implementacja własnych motywów od podstaw byłaby nieporównywalnie trudniejsza i bardziej czasochłonna.
 
