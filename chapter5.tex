@@ -11,10 +11,10 @@ Uwzględnia on nie tylko wymagania zdefiniowane w~rozdziale drugim
 realizacji wymagania techniczne.
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/schematy/milestones.png}
-    \caption{Szczegółowy podział milestone'ów na zadania}
-    \label{fig:figma_strategicplan}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/schematy/milestones.png}
+  \caption{Szczegółowy podział milestone'ów na zadania}
+  \label{fig:figma_strategicplan}
 \end{figure}
 
 Opierając się na powyższym planie, można stwierdzić, że udało się
@@ -119,9 +119,51 @@ nieproszonymi uczestnikami.
 
 \subsection{Gra w brydża}
 
+Utworzony został prosty interfejs gry, który zapewnia
+wymagane elementy gry jak system licytacji i~widoczne
+karty odpowiednich graczy. Ograniczono się głównie do
+zaimplementowania tych akcji, jakie mógłby wykonać także
+wirtualny asystent.
+
 \subsubsection{Licytacja}
+
+Podczas licytacji użytkownik może na bieżąco obserwować
+podejmowane kontrakty przez innych graczy. Niedostępne akcje
+są blokowane, co ułatwia wybór odpowiedniego kontraktu.
+Wskazywany jest również gracz, który w~danym momencie
+mógłby wygrać licytację, gdy trzech kolejnych graczy
+pasuje.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/widoki/bidding.png}
+  \caption{Interfejs gry podczas licytacji}
+  \label{fig:bidding}
+\end{figure}
+
+\FloatBarrier
+
 \subsubsection{Rozgrywka}
 
+W~ekranie rozgrywki znalazły się takie elementy jak widok
+kart każdego z~graczy, w~tym widoczne są awersy kart
+użytkownika i~dziadka (lub partnera, gdy użytkownik jest
+dziadkiem). Litery znajdujące się przy kartach określają
+kierunek, na którym się znajdują. Podświetlany jest
+kierunek tego gracza, który aktualnie wykonuje ruch.
+Na środku ekranu znajdują się zagrane karty tworzące lewę.
+Wszystkie karty i~ich zagrania są płynnie animowane,
+dzięki czemu użytkownicy mogą doświadczyć gry
+w~podobny sposób jak przy prawdziwym stole.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/widoki/game.png}
+  \caption{Interfejs gry podczas rozgrywki}
+  \label{fig:bidding}
+\end{figure}
+
+\FloatBarrier
 
 \subsection{Wirtualny asystent}
 %%% przeprowadzone testy aplikacji na wybranej grupie osób (do wywalenia?)
@@ -161,7 +203,7 @@ się one z~negatywną czynnością.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/widoki/host_actions.png}
+  \includegraphics[width=0.9\textwidth]{img/widoki/host_actions.png}
   \caption{Akcje hosta lobby}
   \label{fig:host_actions_ui}
 \end{figure}
@@ -185,7 +227,7 @@ ekranu.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=\textwidth]{img/widoki/desktop_mobile.png}
+  \includegraphics[width=0.9\textwidth]{img/widoki/desktop_mobile.png}
   \caption{Tryb mobilny i desktopowy aplikacji}
   \label{fig:responsive_ui}
 \end{figure}
@@ -227,6 +269,53 @@ wybranego motywu kolory zmieniały swój odcień.
 \FloatBarrier
 
 \section{Dalsze perspektywy rozwoju projektu}
+
+Aplikacja do gry w~brydża została stworzona głównie
+na potrzeby asystenta, aby można było go wykorzystać w~grze
+poprzez sieć Internet. Tworzona była w~technologiach, które
+w~naszej opinii są popularne, a~ich rozwój jest stale wspierany.
+Dzięki temu możliwy jest przyszły rozwój lub przebudowa aktualnej
+wersji aplikacji.
+W~związku z~tym zaproponowano potencjalne funkcjonalności rozszerzające
+możliwości asystenta i~aplikacji, które
+mogłyby być rozwinięte w~przyszłości. \\
+
+Jedną z~ważniejszych funkcji jest wprowadzenie wsparcia do
+przeprowadzenia pełnej rozgrywki gry. Na ten moment możliwe jest
+rozegranie jednego rozdania. Przy wprowadzeniu pełnej gry należałoby
+utworzyć zapisy wyników z~każdej partii, w~których skład wchodzą rozdania,
+a~także dostosować asystenta
+do uwzględniania wyników gry\footnote{Uwzględnienie wyników gry jest
+  rozumiane jako dodanie wyników gry do obserwacji modelu asystenta.}
+podczas podejmowania decyzji. Istotne w~tym przypadku
+byłoby również rozszerzenie interfejsu gry, aby mógł zawierać
+dodatkowe informacje, jak na przykład aktualny wynik gry lub
+historię licytacji. \\
+
+Również istotną propozycją, która z~pewnością podniesie poziom
+współpracy asystenta z~graczem, jest wsparcie języków licytacji\footnote{
+  język licytacji -- odzywki licytacyjne mające przekazać informacje
+  partnerowi, którym przypisane
+  są ustalone informacje o~posiadanych kartach.
+} (systemów licytacji).
+Aktualnie asystent podejmuje decyzje podczas licytacji bez znajomości
+języków. Oznacza to, że nie rozumie odzywek gracza w~stosowanym przez
+niego systemie licytacyjnym. \\
+
+Dodatkową funkcjonalnością, która rozszerza zastosowanie asystenta, jest
+wykorzystanie go do analizy rozgrywek w~czasie rzeczywistym lub
+ich historycznych zapisów. Dzięki temu gracz mógłby uzyskać podpowiedzi
+o~możliwie najlepszych ruchach na podstawie aktualnego stanu gry.
+W~przypadku gier już odbytych mógłby także sprawdzić, w~jakich etapach
+zostały popełnione błędy lub wykonano najlepsze z~możliwych ruchów.
+
+Również można rozwinąć analizę przeprowadzoną przez asystenta, aby
+podpowiedzi do gry były zintegrowane z~modelem językowym. Dzięki
+takiemu rozwiązaniu gracz mógłby korzystać z~chatu dostępnego
+z~poziomu aplikacji, aby zadać pytanie o~aktualnie przeprowadzanej
+rozgrywce lub na temat zasad gry w~brydża. Model językowy zapewniłby
+zrozumiałe dla gracza odpowiedzi i~w~razie potrzeby mógłby bardziej
+szczegółowo sprezycować odpowiedź na prośbę gracza.
 
 \section{Podsumowanie}
 
