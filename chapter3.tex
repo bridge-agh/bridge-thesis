@@ -431,15 +431,34 @@ AlphaZero eksploruje drzewo stanów gry,
 symulując możliwe ruchy wszystkich graczy.
 MCTS ocenia jakość stanu metodą Random Rollout, czyli
 losowym symulowaniem ruchów do końca gry.
-AlphaZero ocenia stan gry za pomocą sieci neuronowej $v$.
-Druga sieć neuronowa $\pi$ przewiduje rozkład
-prawdopodobieństwa wyboru każdego ruchu.
-W~implementacji obie sieci neuronowe są połączone w~jedną
-sieć o dwóch wyjściach.
-Dodatkowo zastosowano modyfikację
+AlphaZero ocenia stan gry $v$ za pomocą sieci neuronowej.
+Druga sieć neuronowa przewiduje rozkład $\mathbf{p}$
+prawdopodobieństwa wyboru ruchu w~danym stanie gry.
+Pod tym kątem zwykły MCTS można traktować jako
+AlphaZero gdzie $v$ jest wynikiem Random Rollout,
+a~$\mathbf{p}$ jest rozkładem jednostajnym, bądź
+jest ulepszone ręcznymi heurystykami.
+Sieć\footnote{W~implementacji obie sieci neuronowe są połączone w~jedną
+sieć o dwóch wyjściach} uczona jest na danych zebranych poprzez rozgrywanie
+partii \textit{self-play}, minimalizując funkcję kosztu (\ref{eq:alphazero-loss}).
+W~naszej pracy zastosowano dodatkowo modyfikację
 Gumbel AlphaZero \cite{GumbelAZ},
-która gwarantuje poprawę funkcji polityki $\pi$, pod warunkiem
+która gwarantuje poprawę funkcji polityki $\mathbf{p}$, pod warunkiem
 dobrej oceny stanu $v$.
+
+\begin{align}
+\mathcal{L}(\mathbf{\theta}) = (z - v)^2 - \mathbf{\pi}^T \log \mathbf{p} + c ||\mathbf{\theta}||^2
+\label{eq:alphazero-loss}
+\end{align}
+
+\begin{itemize}
+  \item $z$ -- wartość stanu terminalnego,
+  \item $v$ -- predykcje wartości stanów nieterminalnych,
+  \item $\mathbf{\pi}$ -- wynik MCTS dla korzenia po $N$ iteracjach,
+  \item $\mathbf{p}$ -- predykcja rozkładu \textit{a~priori} akcji w~korzeniu,
+  \item $c$ -- współczynnik regularyzacji,
+  \item $\mathbf{\theta}$ -- parametry sieci neuronowej.
+\end{itemize}
 
 
 \begin{figure}[h!]
@@ -473,49 +492,48 @@ czyli niedeterminizm konfiguracji początkowej.
 Skutki wykonania każdego ruchu są deterministyczne,
 natomiast początkowe rozdanie kart podlega losowości.
 Z tego powodu możemy traktować fazę gry po rozdaniu jako
-grę deterministyczną.
+grę deterministyczną, z~brakiem informacji o~konfiguracji początkowej.
 
 Algorytmy MCTS i~AlphaZero wymagają pełnej informacji o~stanie gry.
 W~brydżu gracz nie zna kart przeciwników i~partnera.
 Z~tego powodu nie jest możliwe symulowanie ruchów przeciwników.
 Dokonano pewnej obserwacji, która pozwala użyć AlphaZero do gier
 z~niepełną informacją.
-AlphaZero wykorzystuje sieć neuronową $\pi$ do predykcji
+\textbf{Przez chwilę załóżmy, że mamy do czynienia z~grą o~pełnej informacji.}
+AlphaZero wykorzystuje sieć neuronową $\mathbf{p}$ do predykcji
 prawdopodobieństwa wyboru każdego ruchu.
-Sieć $\pi$ uczona jest poprzez minimalizację funkcji kosztu,
+Sieć $\mathbf{p}$ uczona jest poprzez minimalizację funkcji kosztu,
 która zdefiniowana jest jako entropia krzyżowa pomiędzy
 przewidzianym rozkładem a~wynikiem algorytmu MCTS.
-Sam MCTS również wykorzystuje $\pi$ jako rozkład
-\textit{a~priori} w każdym węźle.
 Finalny wynik MCTS po określonej liczbie iteracji
 to rozkład prawdopodobieństwa wyboru każdego ruchu,
-który maksymalizuje wartość oczekiwaną nagrody.
-Dla stanów nieterminalnych nagroda jest przewidywana
-przez sieć $v$.
+który maksymalizuje wartość oczekiwaną skumulowanej nagrody.
 Przy liczbie iteracji MCTS dążącej do nieskończoności,
-algorytm zbiega się do rozwiązania MiniMax, czyli optymalnego.
-Można zatem wnioskować, że sieć $\pi$ również zbiega się
-do rozwiązania MiniMax, ponieważ \textit{internalizuje}
+algorytm zbiega się do rozwiązania MiniMax, czyli stanu równowagi Nasha.
+Można zatem wnioskować, że sieć $\mathbf{p}$ również zbiega się
+do stanu równowagi Nasha, ponieważ \textit{internalizuje}
 wyszukiwanie MCTS. W~literaturze MCTS opisywany jest jako
 \textit{policy improvement operator} \cite{MuZeroPaper,EfficientZeroPaper},
-czyli metoda poprawy funkcji $\pi$.
-W~procesie uczenia sieć $\pi$ uczy się przewidywać wynik MCTS,
+czyli metoda poprawy funkcji $\mathbf{p}$.
+W~procesie uczenia sieć $\mathbf{p}$ uczy się przewidywać wynik MCTS,
 dlatego dla nieskończonej liczby iteracji MCTS,
-sieć $\pi$ zbiega się do rozwiązania MiniMax.
+sieć zbiega się do stanu równowagi Nasha.
+To rozumowanie nie jest formalnie poprawne dla gier z~niepełną informacją.
+W~praktyce to rozwiązanie daje zadowalające wyniki, mimo braku zbieżności
+do stanu równowagi Nasha.
+Dokładniejsza analiza przedstawiona jest w Appendix. % TODO
 
-Skoro udowodniono, że sieć $\pi$ uczy się przewidywać
-optymalny ruch (pod kątem maksymalizacji oczekiwanej nagrody),
-można wykorzystać samą sieć, bez MCTS, do wyboru ruchu.
+Można więc wykorzystać samą sieć, bez MCTS, do wyboru ruchu.
 W~praktyce MCTS zwraca lepszy wynik, ale wymaga
 symulacji ruchów przeciwników.
 W~naszym przypadku nie jest to możliwe, dlatego
-zdecydowano się na wykorzystanie samej sieci $\pi$,
+zdecydowano się na wykorzystanie samej sieci $\mathbf{p}$,
 która w~czasie $O(1)$ wybiera ruch na podstawie obserwacji stanu gry.
 Sieć była uczona za pomocą algorytmu MCTS (\textit{policy improvement operator}),
 który znał pełny stan gry.
-Sieć $\pi$ nie zna pełnego stanu gry, ale zna obserwację stanu gry
+Sieć nie zna pełnego stanu gry, ale zna obserwację stanu gry
 z~punktu widzenia jednego z~graczy.
-Jest zatem w~stanie przewidzieć optymalny ruch,
+Jest zatem w~stanie wybrać ruch,
 mając dostęp jedynie do kart jednego gracza.
 
 Analogicznie do \cite{rong19,gong20,tian20,lockhart20}, zastosowano
@@ -538,7 +556,7 @@ Można to interpretować jako grę dwuosobową,
 gdzie gracze ,,przesiadają się'', zapominając o~swoich kartach.
 Decyzje mogą być podejmowane tylko na podstawie kart, które
 są widoczne dla gracza w~danej turze.
-Taka modyfikacja gry pozwala na zastosowanie AlphaZero.
+Taka modyfikacja gry pozwala na zastosowanie AlphaZero w~brydżu.
 
 \subsubsection{Implementacja}
 
@@ -552,13 +570,13 @@ wykorzystując biblioteki:
 \end{itemize}
 
 Sieć neuronowa bazuje na architekturze opisanej w \cite{AlphaZeroPaper}.
-Jest to konwolucyjna wieża rezydualna z~dwoma głowicami -- $\pi$ i $v$.
+Jest to konwolucyjna wieża rezydualna z~dwoma głowicami -- $\mathbf{p}$ i $v$.
 Obserwacja kodowana jest jako wektor jednowymiarowy,
 bazując na \cite{lockhart20}.
 Aby zastosować konwolucje, dodatkowa pierwsza warstwa
 oblicza liniową projekcję obserwacji do tensora
 o wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
-Wynikiem jest rozkład $\pi$ na 38 możliwych ruchów oraz
+Wynikiem jest rozkład $\mathbf{p}$ na 38 możliwych ruchów oraz
 ocena $v$ stanu gry po aktywacji $tanh$.
 Architektura przedstawiona jest na Rys.~\ref{fig:ai-arch}.
 

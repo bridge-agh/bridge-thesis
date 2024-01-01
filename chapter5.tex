@@ -199,14 +199,14 @@ były gry pomiędzy agentem a~graczem wykonującym
 losowe ruchy.
 Nie jest to najlepszy przeciwnik, ale pozwala
 ocenić, czy agent polepsza swoje umiejętności.
-Ewaluacja wykorzystywała samą sieć $\pi$,
+Ewaluacja wykorzystywała samą sieć $\mathbf{p}$,
 agent nie widział kart innych graczy.
 Wyniki przedstawia Rys. \ref{fig:bzero-eval}.
 Agent szybko osiąga 95\% wygranych.
 Brak 100\% wygranych wynika z~faktu, że
 podczas ewaluacji agent nie wybiera zawsze optymalnego ruchu,
 tylko losuje ruch z~rozkładu prawdopodobieństwa
-wygenerowanego przez $\pi$.
+wygenerowanego przez $\mathbf{p}$.
 Służy to zróżnicowaniu gier i~umożliwia
 dokładniejszą ocenę umiejętności agenta.
 
