@@ -512,14 +512,14 @@ to rozkład prawdopodobieństwa wyboru każdego ruchu,
 który maksymalizuje wartość oczekiwaną skumulowanej nagrody.
 Przy liczbie iteracji MCTS dążącej do nieskończoności,
 algorytm zbiega się do rozwiązania MiniMax, czyli \textit{stanu równowagi Nasha}.
-Można zatem wnioskować, że sieć $\mathbf{p}$ również zbiega się
+Można zatem wnioskować, że $\operatorname{argmax} \mathbf{p}$ również zbiega się
 do stanu równowagi Nasha, ponieważ \textit{internalizuje}
 wyszukiwanie MCTS. W~literaturze MCTS opisywany jest jako
 \textit{policy improvement operator} \cite{MuZeroPaper,EfficientZeroPaper},
 czyli metoda poprawy funkcji $\mathbf{p}$.
 W~procesie uczenia sieć $\mathbf{p}$ uczy się przewidywać wynik MCTS,
-dlatego dla nieskończonej liczby iteracji MCTS,
-sieć zbiega się do stanu równowagi Nasha.
+dlatego dla nieskończonej liczby iteracji MCTS, $\operatorname{argmax} \mathbf{p}$
+zbiega się do stanu równowagi Nasha.
 To rozumowanie \textit{nie jest} formalnie poprawne dla gier z~niepełną informacją.
 Przez brak pełnej informacji o~stanie gry, problem nie spełnia
 \textit{własności Markova}, czyli nie jest
