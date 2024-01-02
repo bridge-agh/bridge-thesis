@@ -212,10 +212,17 @@ dokładniejszą ocenę umiejętności agenta.
 
 
 \begin{figure}[!]
-    \centering
-    \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
-    \caption{Proces uczenia AlphaZero vs. losowy gracz -- Licytacja}
-    \label{fig:bzero-eval}
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/bzero-eval.png}
+  \caption{Proces uczenia AlphaZero vs. losowy gracz -- Licytacja}
+  \label{fig:bzero-eval}
+\end{figure}
+
+\begin{figure}[!]
+  \centering
+  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
+  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
+  \label{fig:othello-eval}
 \end{figure}
 
 Ze względu na brak odpowiedniego modelu
@@ -231,18 +238,11 @@ kontra model AI baseline na poziomie 9:1.
 Można zatem wnioskować, że nasza implementacja
 AlphaZero jest poprawna.
 
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=\textwidth]{img/wykresy/othello-eval.png}
-  \caption{Proces uczenia AlphaZero vs. PGX Baseline -- Othello}
-  \label{fig:othello-eval}
-\end{figure}
-
 AI do fazy rozgrywki wykorzystuje algorytm DDS,
 zatem jest matematycznie doskonałe i~nie ma potrzeby
 oceny jego umiejętności.
 
+\FloatBarrier
 
 \subsubsection{Możliwości rozwoju modelu}
 %%% czy da sie rozszerzac o kolejne elementy gry brydza
