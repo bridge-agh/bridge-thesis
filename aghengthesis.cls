@@ -29,6 +29,7 @@
   \newcommand*{\ChapterTitleRealizationAspects}{Wybrane aspekty realizacji}
   \newcommand*{\ChapterTitleWorkOrganization}{Organizacja pracy}
   \newcommand*{\ChapterTitleResults}{Wyniki projektu}
+  \newcommand*{\ChapterTitleAppendix}{Materiały dodatkowe}
 
   \newcommand*{\LangListing}{Listing}
   \newcommand*{\LangListingRef}{List.}

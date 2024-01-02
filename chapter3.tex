@@ -439,17 +439,19 @@ AlphaZero gdzie $v$ jest wynikiem Random Rollout,
 a~$\mathbf{p}$ jest rozkładem jednostajnym, bądź
 jest ulepszone ręcznymi heurystykami.
 Sieć\footnote{W~implementacji obie sieci neuronowe są połączone w~jedną
-sieć o dwóch wyjściach} uczona jest na danych zebranych poprzez rozgrywanie
+sieć o dwóch wyjściach.} uczona jest na danych zebranych poprzez rozgrywanie
 partii \textit{self-play}, minimalizując funkcję kosztu (\ref{eq:alphazero-loss}).
 W~naszej pracy zastosowano dodatkowo modyfikację
 Gumbel AlphaZero \cite{GumbelAZ},
 która gwarantuje poprawę funkcji polityki $\mathbf{p}$, pod warunkiem
-dobrej oceny stanu $v$.
+dobrej oceny stanu $v$. Szczegóły algorytmu zostały
+opisane w~rozdziale \nameref{sec:appendix}.
 
 \begin{align}
 \mathcal{L}(\mathbf{\theta}) = (z - v)^2 - \mathbf{\pi}^T \log \mathbf{p} + c ||\mathbf{\theta}||^2
 \label{eq:alphazero-loss}
 \end{align}
+% TODO: add caption
 
 \begin{itemize}
   \item $z$ -- wartość stanu terminalnego,
@@ -502,14 +504,14 @@ z~niepełną informacją.
 \textbf{Przez chwilę załóżmy, że mamy do czynienia z~grą o~pełnej informacji.}
 AlphaZero wykorzystuje sieć neuronową $\mathbf{p}$ do predykcji
 prawdopodobieństwa wyboru każdego ruchu.
-Sieć $\mathbf{p}$ uczona jest poprzez minimalizację funkcji kosztu,
-która zdefiniowana jest jako entropia krzyżowa pomiędzy
+Sieć $\mathbf{p}$ uczona jest poprzez minimalizację funkcji kosztu (\ref{eq:alphazero-loss}),
+której składnikiem jest entropia krzyżowa pomiędzy
 przewidzianym rozkładem a~wynikiem algorytmu MCTS.
-Finalny wynik MCTS po określonej liczbie iteracji
+Finalny wynik MCTS po określonej liczbie iteracji $N$
 to rozkład prawdopodobieństwa wyboru każdego ruchu,
 który maksymalizuje wartość oczekiwaną skumulowanej nagrody.
 Przy liczbie iteracji MCTS dążącej do nieskończoności,
-algorytm zbiega się do rozwiązania MiniMax, czyli stanu równowagi Nasha.
+algorytm zbiega się do rozwiązania MiniMax, czyli \textit{stanu równowagi Nasha}.
 Można zatem wnioskować, że sieć $\mathbf{p}$ również zbiega się
 do stanu równowagi Nasha, ponieważ \textit{internalizuje}
 wyszukiwanie MCTS. W~literaturze MCTS opisywany jest jako
@@ -518,12 +520,17 @@ czyli metoda poprawy funkcji $\mathbf{p}$.
 W~procesie uczenia sieć $\mathbf{p}$ uczy się przewidywać wynik MCTS,
 dlatego dla nieskończonej liczby iteracji MCTS,
 sieć zbiega się do stanu równowagi Nasha.
-To rozumowanie nie jest formalnie poprawne dla gier z~niepełną informacją.
-W~praktyce to rozwiązanie daje zadowalające wyniki, mimo braku zbieżności
+To rozumowanie \textit{nie jest} formalnie poprawne dla gier z~niepełną informacją.
+Przez brak pełnej informacji o~stanie gry, problem nie spełnia
+\textit{własności Markova}, czyli nie jest
+\textit{procesem decyzyjnym Markova} \cite{SuttonRL}.
+Dodatkowo, rozwiązanie MiniMax nie gwarantuje
+stanu równowagi Nasha w~grach z~niepełną informacją.
+Dokładniejsza analiza przedstawiona jest w~rozdziale \nameref{sec:appendix}.
+W~praktyce rozwiązanie to daje zadowalające wyniki, mimo braku zbieżności
 do stanu równowagi Nasha.
-Dokładniejsza analiza przedstawiona jest w Appendix. % TODO
 
-Można więc wykorzystać samą sieć, bez MCTS, do wyboru ruchu.
+Można zatem wykorzystać samą sieć, bez MCTS, do wyboru ruchu.
 W~praktyce MCTS zwraca lepszy wynik, ale wymaga
 symulacji ruchów przeciwników.
 W~naszym przypadku nie jest to możliwe, dlatego
