@@ -106,7 +106,7 @@
 \RequirePackage{setspace}
 \RequirePackage{times}
 \RequirePackage[T1]{fontenc}
-\RequirePackage[draft]{graphicx}
+\RequirePackage{graphicx}
 \RequirePackage{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{titlesec}
