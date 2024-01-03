@@ -23,35 +23,36 @@ w~końcowych fazach rozwoju projektu. Wymagał tego proces
 badania, opisu i~testowania algorytmu uczenia. Sama część systemu
 odpowiedzialna za rozgrywkę nie wymagała w~pierwszej kolejności
 asystenta, gdyż głównie potrzebna była logika gry w~brydża
-i~synchronizacja aplikacji webowej z~serwerem. Dzięki takiemu
-podziałowi już na samym etapie planowania, mimo braku jednego
-z~elementów, można było stwierdzić jak cały system będzie się
-komunikować, a~informacje otrzymywane od nieutworzonych
-elementów zastąpić zadeklarowanymi danymi, aby przetestować
+i~synchronizacja aplikacji webowej z~serwerem.
+
+Wstępny podział systemu, już na samym etapie planowania,
+pozwolił zaprojektować komunikację pomiędzy osobnymi komponentami.
+Dzięki takiemu rozwiązaniu informacje otrzymywane od nieutworzonych
+elementów można było zastąpić zadeklarowanymi danymi, aby przetestować
 działanie systemu. \\
 
 Podzielono system na następujące elementy:
 \begin{itemize}
-  \item Bridge Core -- główna logika gry w~brydża; stworzona
+  \item \textbf{Bridge Core} -- główna logika gry w~brydża; stworzona
         w~języku Python,
 
-  \item Wirtualny asystent -- algorytm sztucznej inteligencji; stworzony
-        w~języku Python z~wykorzystaniem biblioteki JAX,
+  \item \textbf{Wirtualny asystent} -- algorytm sztucznej inteligencji; stworzony
+        w~języku Python z~wykorzystaniem biblioteki JAX~\cite{JAX},
 
-  \item Aplikacja webowa -- główny interfejs dla użytkowników,
+  \item \textbf{Aplikacja webowa} -- główny interfejs dla użytkowników,
         aby móc rozgrywać grę; stworzone przy zastosowaniu
-        frameworków Next.js i~Tailwind.css w~językach HTML, \mbox{Javascript}
+        frameworków Next.js~\cite{NextJS} i~Tailwind.css w~językach HTML, \mbox{Javascript}
         oraz CSS,
 
-  \item Serwer gry -- centralny serwer, którego zadaniem jest
+  \item \textbf{Serwer gry} -- centralny serwer, którego zadaniem jest
         łączenie graczy do sesji, przeprowadzanie gier i~zarządzaie
-        w~nich asystentem; stworzony przy użyciu języka Scala
-        \mbox{i~frameworku} Akka,
+        w~nich asystentem; stworzony przy użyciu języka Scala~\cite{Scala}
+        \mbox{i~frameworku} Akka~\cite{Akka},
 
-  \item Bridge Engine -- interfejs gry brydża; stworzony
-        z~użyciem frameworka Three.js i~języka Javascript,
+  \item \textbf{Bridge Engine} -- interfejs gry brydża; stworzony
+        z~użyciem frameworka Three.js~\cite{ThreeJS} i~języka Javascript,
 
-  \item Google Firebase -- osobny system Google'a, który
+  \item \textbf{Google Firebase} -- osobny system Google'a, który
         odpowiada za zarządzanie i~uwierzytelnianie użytkowników.
 \end{itemize}
 
@@ -68,7 +69,7 @@ Podzielono system na następujące elementy:
 \section{Architektura serwera}
 
 Serwer został zaimplementowany w języku Scala,
-wykorzystując framework Akka \cite{Akka}.
+wykorzystując framework Akka.
 Zaprojektowano dwupoziomową architekturę serwera
 (Rys.~\ref{fig:akka-highlevel}).
 
@@ -168,7 +169,7 @@ obiecująca, powstały obawy związane z~koniecznością ciągłego monitorowani
 potencjalnej utraty połączenia. Skłoniło nas do ostatecznej rezygnacji
 z~wdrożenia tego pomysłu.
 
-Implementacja frameworka Akka \cite{Akka} pozwoliła na ustanowienie stabilnego,
+Implementacja frameworka Akka pozwoliła na ustanowienie stabilnego,
 reaktywnego połączenia między klientem a~serwerem. Programowanie
 reaktywne, koncentrujące się na płynnym przepływie danych i~ich propagacji,
 umożliwiło aplikacji klienta natychmiastowo reagować na wszelkie zmiany. Jest
@@ -189,7 +190,7 @@ graczy.
 
 \section{Aplikacja webowa}
 Aplikacja webowa została stworzona przy użyciu platformy Next.js
-\cite{NextJS} oraz języka programowania Typescript \cite{Typescript},
+oraz języka programowania Typescript~\cite{Typescript},
 będącego rozszerzeniem języka JavaScript o~statyczne typowanie.
 Jednakże ze względu na problemy wydajnościowe rozgrywki
 i~słabą responsywność interfejsu związaną z~połączeniem serwerowym
@@ -207,7 +208,7 @@ Są to funkcje, które udostępniają stany obiektów, oferując do nich wgląd,
 lub zmianę wartości stanów.
 
 W~naszym projekcie, do obsługi zapytań klienta do serwera, zdecydowaliśmy się
-skorzystać z~biblioteki SWR \cite{SWR}.
+skorzystać z~biblioteki SWR~\cite{SWR}.
 Jest to rozwiązanie, korzystające z~hooków, do
 pobierania danych rozwiązujące wiele problemów implementacynych takich jak
 cache'owanie i~deduplikacje (usuwanie redundantnych kopii) danych, ponawianie żądań
@@ -228,8 +229,8 @@ wykorzystania hooków pozostała taka sama, przez co komponenty interfejsu
 zawierające wspomniane hooki nie musiały być aktualizowane po tej zmianie. \\
 
 Poniżej przedstawione zostały hooki odpowiedzialne za aktualizacje
-danych z~serwera, wykorzystując Fetch API \cite{FetchAPI} do wysyłania pojedynczych
-zapytań i~WebSockety \cite{WebSockets} do ustanawiania połączenia z~serwerem
+danych z~serwera, wykorzystując Fetch API~\cite{FetchAPI} do wysyłania pojedynczych
+zapytań i~WebSockety~\cite{WebSockets} do ustanawiania połączenia z~serwerem
 i~ciągłą aktualizację oferowanego stanu przez serwer.
 
 \begin{lstlisting}[language=JavaScript, caption=Hooki z Fetch API, label={lst:fetch-hooks}, captionpos=b]
@@ -314,8 +315,7 @@ export function useSessionInfo(): SocketState<GetInfoResponse> {
 
 \subsection{Stylizacja interfejsu}
 W~celu nadania stylów komponentom naszej aplikacji internetowej posłużono się
-frameworkiem Tailwind CSS. W~połączeniu z~biblioteką Daisy UI
-\cite{DaisyUI}, która
+frameworkiem Tailwind CSS. W~połączeniu z~biblioteką Daisy UI~\cite{DaisyUI}, która
 w~pełni wspiera ten framework, możliwe było zastosowanie gotowych klas
 stylistycznych. Oferują one nie tylko samą edycję pojedynczych elementów, ale też
 utworzenie zaprojektowanych, w~pełni animowanych obiektów.
@@ -354,7 +354,7 @@ ich płynność. \\
 Wymusiło to rezygnację z~rozwiązania wykorzystującego jedynie elementy HTML.
 Dokonano zmiany na framework umożliwiający renderowanie
 środowiska i~elementów
-\mbox{3D -- Three.js~\cite{ThreeJS}~(Rys.~\ref{fig:engine_orbit})}.
+\mbox{3D -- Three.js~~(Rys.~\ref{fig:engine_orbit})}.
 
 \begin{figure}[hbt!]
   \centering
@@ -374,7 +374,7 @@ w~środowisku 3D, przez co gracze mogą mieć wizualne
 odczucie realnej rozgrywki gry w~brydża.
 
 Dodatkowo framework ten został wybrany ze względu na swoją wydajność.
-Do renderowania elementów wykorzystuję on potencjał WebGL \cite{WebGL}.
+Do renderowania elementów wykorzystuję on potencjał WebGL~\cite{WebGL}.
 Jest to API utworzone
 w~języku JavaScript, które jest standardem webowym wykorzystywanym
 w~przeglądarkach. Umożliwia ono wykorzystanie akceleracji sprzętowej kart
@@ -397,8 +397,8 @@ klatek na sekundę\footnote{
 
 \subsection{Integracja silnika z Reactem}
 Three.js oprócz wspomnianych zalet jest też wspierany w~postaci komponentów React.
-Rozwiązania, które są wykorzystane w~aplikacji to React Three Fiber
-\cite{ReactThreeFiber} i~React drei \cite{ReactDrei}. Oba oferują
+Rozwiązania, które są wykorzystane w~aplikacji to React Three Fiber~\cite{ReactThreeFiber}
+i~React drei~\cite{ReactDrei}. Oba oferują
 wspomniane komponenty, jak i~dodatkowe moduły
 wspomagające prace Three.js w~środowisku React. Uniknięto w~ten sposób korzystania
 z~JavaScript'a, a~wykorzystano oferowane hooki i~komponenty.
@@ -418,7 +418,7 @@ do fazy licytacji i~fazy gry.
 
 Licytacja w~brydżu jest otwartym problemem w~dziedzinie AI.
 Pozostaje ona wyzwaniem dla naukowców.
-Zdecydowano się na implementację algorytmu AlphaZero \cite{AlphaZeroPaper},
+Zdecydowano się na implementację algorytmu AlphaZero~\cite{AlphaZeroPaper},
 po przystosowaniu do gry w~brydża.
 
 \subsubsection{AlphaZero}
@@ -426,7 +426,7 @@ po przystosowaniu do gry w~brydża.
 AlphaZero jest algorytmem uczenia maszynowego, który rozwija
 algorytm Monte Carlo Tree Search (MCTS) o~sieć neuronową do ewaluacji
 stanów gry.
-Analogicznie do MCTS (Rys.~\ref{fig:ai-alphazero}),
+Analogicznie do MCTS~(Rys.~\ref{fig:ai-alphazero}),
 AlphaZero eksploruje drzewo stanów gry,
 symulując możliwe ruchy wszystkich graczy.
 MCTS ocenia jakość stanu metodą Random Rollout, czyli
@@ -440,9 +440,9 @@ a~$\mathbf{p}$ jest rozkładem jednostajnym, bądź
 jest ulepszone ręcznymi heurystykami.
 Sieć\footnote{W~implementacji obie sieci neuronowe są połączone w~jedną
   sieć o dwóch wyjściach.} uczona jest na danych zebranych poprzez rozgrywanie
-partii \textit{self-play}, minimalizując funkcję kosztu (\ref{eq:alphazero-loss}).
+partii \textit{self-play}, minimalizując funkcję kosztu~(\ref{eq:alphazero-loss}).
 W~naszej pracy zastosowano dodatkowo modyfikację
-Gumbel AlphaZero \cite{GumbelAZ},
+Gumbel AlphaZero~\cite{GumbelAZ},
 która gwarantuje poprawę funkcji polityki $\mathbf{p}$, pod warunkiem
 dobrej oceny stanu $v$. Szczegóły algorytmu zostały
 opisane w~rozdziale \nameref{sec:appendix}.
@@ -489,11 +489,11 @@ AlphaZero został zaprojektowany do gier:
   \item z~pełną informacją.
 \end{itemize}
 
-W brydżu występuje szczególny przypadek niedeterminizmu,
+W~brydżu występuje szczególny przypadek niedeterminizmu,
 czyli niedeterminizm konfiguracji początkowej.
 Skutki wykonania każdego ruchu są deterministyczne,
 natomiast początkowe rozdanie kart podlega losowości.
-Z tego powodu możemy traktować fazę gry po rozdaniu jako
+Z~tego powodu możemy traktować fazę gry po rozdaniu jako
 grę deterministyczną, z~brakiem informacji o~konfiguracji początkowej.
 
 Algorytmy MCTS i~AlphaZero wymagają pełnej informacji o~stanie gry.
@@ -580,16 +580,16 @@ wykorzystując biblioteki:
   \item JAX \cite{JAX} -- backend do obliczeń numerycznych,
   \item Haiku \cite{Haiku} -- biblioteka do tworzenia sieci neuronowych,
   \item PGX \cite{PGX} -- implementacja gry w~brydża,
-  \item ekosystem DeepMind JAX \cite{JAXEcosystem} -- biblioteki pomocnicze.
+  \item ekosystem DeepMind JAX~\cite{JAXEcosystem} -- biblioteki pomocnicze.
 \end{itemize}
 
-Sieć neuronowa bazuje na architekturze opisanej w \cite{AlphaZeroPaper}.
+Sieć neuronowa bazuje na architekturze opisanej w~\cite{AlphaZeroPaper}.
 Jest to konwolucyjna wieża rezydualna z~dwoma głowicami -- $\mathbf{p}$ i $v$.
 Obserwacja kodowana jest jako wektor jednowymiarowy,
 bazując na \cite{lockhart20}.
 Aby zastosować konwolucje, dodatkowa pierwsza warstwa
 oblicza liniową projekcję obserwacji do tensora
-o wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
+o~wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
 Wynikiem jest rozkład $\mathbf{p}$ na 38 możliwych ruchów oraz
 ocena $v$ stanu gry po aktywacji $tanh$.
 Architektura przedstawiona jest na Rys.~\ref{fig:ai-arch}.
@@ -603,7 +603,7 @@ zdecydowano się na uproszczone podejście do fazy gry.
 Zgodnie z~założeniami projektu, wirtualny asystent powinien umożliwić
 graczom doskonalenie swoich umiejętności w~grze w~brydża.
 Aby zagwarantować wysoki poziom umiejętności AI, zdecydowano się
-na wykorzystanie algorytmu Double Dummy Solver (DDS) \cite{DDS}.
+na wykorzystanie algorytmu Double Dummy Solver (DDS)~\cite{DDS}.
 Jest to algorytm, który wykorzystuje pełną wiedzę o~rozdaniu kart
 w~celu znalezienia optymalnej sekwencji ruchów dla graczy.
 Wymagane jest podanie kart wszystkich graczy, dlatego
