@@ -24,6 +24,20 @@
 
 \begin{algorithm}
     \caption{Procedura self\_play}\label{alg:alphazero-self-play}
+    \KwIn{Weights $\theta$}
+    \KwOut{Trajectory $T$}
+    $T \gets$ empty list\;
+    $s \gets$ random initial game state\;
+    \While{$s$ is not terminal}{
+        \tcc{See algorithm in \cite{GumbelAZ}}
+        $\pi \gets$ GumbelAlphaZeroPolicy($s$, $\theta$)\;
+        $a \gets$ GumbelRootActionSelection($\pi$)\;
+        $s' \gets$ $s$.apply($a$)\;
+        $s$.action\_weights $\gets$ $\pi$\;
+        $T \gets T \cup \{s\}$\;
+        $s \gets s'$\;
+    }
+    \Return $T$\;
 \end{algorithm}
 
 \begin{algorithm}
@@ -34,7 +48,7 @@
     \ForEach{state $s$ in $T$}{
         $x \gets$ empty example\;
         $x$.observation $\gets$ $s$.observation\;
-        $x$.policy\_target $\gets$ $s$.MCTS\_action\_weights\;
+        $x$.policy\_target $\gets$ $s$.action\_weights\;
         $x$.value\_mask $\gets$ $1$ if $T[\mathrm{end}]$ is terminal, $0$ otherwise\;
         $x$.value\_target $\gets \begin{cases}
                 1  & \text{if}\ T[\mathrm{end}].\mathrm{winner} = s.\mathrm{player}                 \\
@@ -60,6 +74,73 @@
     }
     \Return $\theta$\;
 \end{algorithm}
+
+\begin{table}
+    \centering
+    \caption{Parametry algorytmu Gumbel AlphaZero}
+    \label{tab:gumbel-alphazero-params}
+    \begin{tabular}{ll}
+        \toprule
+        Parametr & Wartość \\ \midrule
+        Gumbel scale \cite{GumbelAZ} & 1.0 \\
+        MCTS max depth & 64 \\
+        MCTS simulations & 32 \\
+        $Q$-value transform & Completed by mix value \cite{GumbelAZ}; Appendix D \\
+        Self-play iterations per epoch & 8 \\
+        Self-play batch size & 256 \\
+        Training iterations per epoch & 16 \\
+        Training batch size & 8192 \\
+        Experience buffer size & 1e6 \\
+        Optimizer & Adam \cite{Adam} \\
+        Learning rate & 1e-3 \\
+        Regularization constant $c$ & 1e-4 \\
+        Epochs & 846 \\
+        Training time & 21h 26m \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{Architektura sieci neuronowej}
+    \label{tab:nn-architecture}
+    \begin{tabular}{ll}
+        \toprule
+        Warstwa & Rozmiar \\ \midrule
+        Input & (480) \\
+        Linear & (4, 4, 32) \\
+        \midrule
+        \multicolumn{2}{c}{Initial convolution} \\
+        Conv2D 3x3 & (4, 4, 64) \\
+        BatchNorm & (4, 4, 64) \\
+        ReLU & (4, 4, 64) \\
+        \midrule
+        \multicolumn{2}{c}{Residual block $\times 9$} \\
+        Conv2D 3x3 & (4, 4, 64) \\
+        BatchNorm & (4, 4, 64) \\
+        ReLU & (4, 4, 64) \\
+        Conv2D 3x3 & (4, 4, 64) \\
+        BatchNorm & (4, 4, 64) \\
+        Residual connection & (4, 4, 64) \\
+        ReLU & (4, 4, 64) \\
+        \midrule
+        \multicolumn{2}{c}{Policy head} \\
+        Conv2D 1x1 & (4, 4, 2) \\
+        BatchNorm & (4, 4, 2) \\
+        ReLU & (4, 4, 2) \\
+        Linear & (38) \\
+        \midrule
+        \multicolumn{2}{c}{Value head} \\
+        Conv2D 1x1 & (4, 4, 1) \\
+        BatchNorm & (4, 4, 1) \\
+        ReLU & (4, 4, 1) \\
+        Linear & (256) \\
+        ReLU & (256) \\
+        Linear & (1) \\
+        Tanh & (1) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 % 0 -> 0 = 1
 % 0 -> 1 = -0.5
