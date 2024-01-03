@@ -15,21 +15,7 @@ fragmenty. Każdy z~nich odpowiedzialny był za inną jego część.
 Pozwoliło to na stworzenie odpowiednich mechanizmów dla każdego
 z~nich, których zadaniem byłoby między innymi automatyczne
 wdrażanie nowych wersji i~testowanie. Podział był też powiązany
-z~wykorzystywanym językiem programowania i~technologią danego elementu.
-
-Ważne jest też, że niektóre elementy nie były od razu wymagane do
-działania reszty systemu. Przykładowo wirtualny asystent był tworzony
-w~końcowych fazach rozwoju projektu. Wymagał tego proces
-badania, opisu i~testowania algorytmu uczenia. Sama część systemu
-odpowiedzialna za rozgrywkę nie wymagała w~pierwszej kolejności
-asystenta, gdyż głównie potrzebna była logika gry w~brydża
-i~synchronizacja aplikacji webowej z~serwerem.
-
-Wstępny podział systemu, już na samym etapie planowania,
-pozwolił zaprojektować komunikację pomiędzy osobnymi komponentami.
-Dzięki takiemu rozwiązaniu informacje otrzymywane od nieutworzonych
-elementów można było zastąpić zadeklarowanymi danymi, aby przetestować
-działanie systemu. \\
+z~wykorzystywanym językiem programowania i~technologią danego elementu. \\
 
 Podzielono system na następujące elementy:
 \begin{itemize}
@@ -56,6 +42,20 @@ Podzielono system na następujące elementy:
         odpowiada za zarządzanie i~uwierzytelnianie użytkowników.
 \end{itemize}
 
+Ważne jest też, że niektóre elementy nie były od razu wymagane do
+działania reszty systemu. Przykładowo wirtualny asystent był tworzony
+w~końcowych fazach rozwoju projektu. Wymagał tego proces
+badania, opisu i~testowania algorytmu uczenia. Sama część systemu
+odpowiedzialna za rozgrywkę nie wymagała w~pierwszej kolejności
+asystenta, gdyż głównie potrzebna była logika gry w~brydża
+i~synchronizacja aplikacji webowej z~serwerem.
+
+Wstępny podział systemu, już na samym etapie planowania,
+pozwolił zaprojektować komunikację pomiędzy osobnymi komponentami.
+Dzięki takiemu rozwiązaniu informacje otrzymywane od nieutworzonych
+elementów można było zastąpić zadeklarowanymi danymi, aby przetestować
+działanie systemu.
+
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.9\textwidth]{img/schematy/schemat_systemu.png}
@@ -74,7 +74,7 @@ Zaprojektowano dwupoziomową architekturę serwera
 (Rys.~\ref{fig:akka-highlevel}).
 
 Pierwszy poziom to serwer HTTP, który obsługuje
-zapytania API oraz połączenia WebSocket.
+zapytania API oraz połączenia WebSocket~\cite{WebSockets}.
 Jest odpowiedzialny za tłumaczenie zapytań HTTP na
 komunikaty wewnętrzne, które są przekazywane do
 aktorów drugiego poziomu.
@@ -138,11 +138,10 @@ na rysunkach \ref{fig:akka-createsession} -- \ref{fig:akka-sessioninfo}.
 \subsection{Komunikacja z serwerem}
 Wstępne założenia dotyczące infrastruktury aplikacji
 serwerowej opierały się na wykorzystaniu języka Python
-wraz z~frameworkiem FastAPI.
-
-Ze względu na problemy komunikacyjne aplikacji
+wraz z~frameworkiem FastAPI. Ze względu na problemy
+komunikacyjne aplikacji
 z~serwerem, zdecydowano się na skonstruowanie struktury serwera
-w~dynamicznym języku Scala, korzystając z~potencjału
+w~języku Scala. Wykorzystany został potencjał
 frameworka Akka, specjalizującego się w~programowaniu
 współbieżnym oraz rozproszonym, bazującym na
 zaawansowanym modelu aktorów.
@@ -199,7 +198,7 @@ zdecydowano się na zmianę technologii odpowiedzialnych za te zadania.
 Implementacja rozgrywki w~brydża została logicznie
 odseparowana od reszty aplikacji, choć w~pełni integruje się z~samą
 platformą i~korzysta z~wcześniej wspomnianych języków programowania.
-Szczegółowy opis części znajduje się w~podrozdziale \nameref{subsec:silnik_gry}.
+Szczegółowy opis części znajduje się w~sekcji \nameref{subsec:silnik_gry}.
 
 \subsection{Mechanizmy stanu i cyklu życia komponentów}
 Biblioteka React oferuje narzędzie w~postaci \textbf{hooków},
@@ -207,7 +206,8 @@ które umożliwiają efektywne zarządzanie stanem i~cyklem życia komponentów.
 Są to funkcje, które udostępniają stany obiektów, oferując do nich wgląd, automatyczną aktualizację
 lub zmianę wartości stanów.
 
-W~naszym projekcie, do obsługi zapytań klienta do serwera, zdecydowaliśmy się
+W~naszym projekcie, do obsługi zapytań klienta do serwera,
+w~pierwszej kolejności zdecydowaliśmy się
 skorzystać z~biblioteki SWR~\cite{SWR}.
 Jest to rozwiązanie, korzystające z~hooków, do
 pobierania danych rozwiązujące wiele problemów implementacynych takich jak
@@ -222,16 +222,17 @@ globalnych zmian kodu, gdyż zmiana implementacji nie zmieniła samego interfejs
 hooka. Funkcjonalność pozostała niezmienna i~oferowane stany miały taką samą strukturę.
 
 Jak zostało wspomniane we wcześniejszym podrozdziale, dotyczącym serwera aplikacji,
-zrezygnowano ze wspomnianego rozwiązania biblioteki SWR na rzecz reaktywnego
+zrezygnowano z~rozwiązania biblioteki SWR na rzecz reaktywnego
 połączenia z~serwerem. Wymusiło to zmianę implementacji wysyłania i~odbierania
 zapytań do serwera. Logika
 wykorzystania hooków pozostała taka sama, przez co komponenty interfejsu
-zawierające wspomniane hooki nie musiały być aktualizowane po tej zmianie. \\
+zawierające zastosowane hooki nie musiały być aktualizowane po tej zmianie. \\
 
 Poniżej przedstawione zostały hooki odpowiedzialne za aktualizacje
-danych z~serwera, wykorzystując Fetch API~\cite{FetchAPI} do wysyłania pojedynczych
-zapytań i~WebSockety~\cite{WebSockets} do ustanawiania połączenia z~serwerem
-i~ciągłą aktualizację oferowanego stanu przez serwer.
+danych z~serwera. Wykorzystują one Fetch API~\cite{FetchAPI} do wysyłania pojedynczych
+zapytań i~WebSockety do ustanawiania połączenia z~serwerem.
+Rozwiązanie to pozwoliło na rozdzielnie wysyłania komunikatów od
+ciągłej aktualizacji oferowanego stanu przez serwer.
 
 \begin{lstlisting}[language=JavaScript, caption=Hooki z Fetch API, label={lst:fetch-hooks}, captionpos=b]
 export function useFetch<T, U>(fetcher: (request: T) => Promise<U>): FetchState<T, U> {
@@ -332,7 +333,7 @@ proces rozwoju części wizualnej aplikacji.
 \label{subsec:silnik_gry}
 
 Silnik wizualny rozgrywki do gry w~brydża jest elementem, który miał na celu
-być minimalistycznym i~przyjaznym wizualnie dla użytkowników.
+być minimalisty i~przyjazny wizualnie dla użytkowników.
 Podczas tworzenia go skupiono się, aby zaoferować
 wysoką wydajność i~pełną integrację z~aplikacją webową.
 
@@ -341,9 +342,9 @@ wysoką wydajność i~pełną integrację z~aplikacją webową.
 
 Podczas tworzenia środowiska gry, powstał problem z~zarządzaniem
 elementami kart i~ich przemieszczaniem na ekranie użytkownika. Animacje,
-takie jak ruch kart, z~wykorzystaniem wyłącznie komponentów React
+takie jak ruch kart z~wykorzystaniem wyłącznie komponentów React,
 okazały się nadmiernie pracochłonne i~nieefektywne. Użytkownik
-mobilny miał problemy z~ładowaniem kart
+mobilny miał problemy z~ładowaniem się grafik kart
 i~ich płynnym animowaniem w~przeglądarce. Jest to spowodowane inną architekturą procesorów
 mobilnych w~porównaniu do rozwiązań desktopowych. Nie są one przystosowane
 do wykonania najmocniejszych obliczeń, ale oferują niskie zużycie energii.
@@ -385,7 +386,7 @@ i~desktopowych, które nie były w~pełni wykorzystywane z~użyciem
 jedynie elementów HTML.
 Zastosowanie tego rozwiązania
 znacznie zwiększyło efektywność i~płynność silnika gry na tych urządzeniach.
-Przykładowo badając skok wydajności, porównując pierwotny silnik z~obecnym,
+Przykładowo badając wzrost wydajności, porównując pierwotny silnik z~obecnym,
 na urządzeniu mobilnym, różnica jest na poziomie od około 15 aż do
 ponad 140 wyświetlanych
 klatek na sekundę\footnote{
