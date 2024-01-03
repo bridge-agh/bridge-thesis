@@ -114,19 +114,21 @@ i~doświadczonych.
 
 \section{Stos technologiczny}
 
-Aplikacja internetowa zostanie napisana w~frameworku React \cite{React}.
+Aplikacja internetowa zostanie napisana w~frameworku React~\cite{React}.
 Zdecydowaliśmy się na ten wybór, ze względu na dużą popularność tej
-technologii. W~2022 roku serwis Stack Overflow \cite{StackOverflow} przeprowadził ankietę dotyczącą między innymi wykorzystywanych technologii
-webowych \cite{React-stack}. Aż 42.62\% respondentów wybrało React,
-zajmując 2 miejsce w~rankingu. Jako że wykorzystuje on język Javascript,
+technologii. W~2022 roku serwis Stack Overflow~\cite{StackOverflow}
+przeprowadził ankietę dotyczącą między innymi wykorzystywanych technologii
+webowych~\cite{React-stack}. Aż 42.62\% respondentów wybrało React,
+zajmując 2 miejsce w~rankingu. Jako że wykorzystuje on język JavaScript~\cite{JavaScript},
 który według wspomnianej ankiety jest najpopularniejszym językiem programowania,
 dostępna jest olbrzymia baza bibliotek i~sprawdzonych rozwiązań. Za wizualną
-część projektu będzie odpowiedzialny framework Tailwind CSS \cite{Tailwind}.
+część projektu będzie odpowiedzialny framework Tailwind CSS~\cite{Tailwind}.
 Oferuje on gotowe klasy CSS, które pozwalają na szybkie tworzenie responsywnych
 i~estetycznych interfejsów. Część serwerowa obsługująca sesje gier zostanie
-napisana w~języku Python \cite{Python} za pomocą biblioteki FastAPI
-\cite{FastAPI}. Funkcjonalność związana z~obsługą użytkowników i~gromadzenia
-danych będzie wykorzystywała usługę Google Firebase \cite{Firebase}.
+napisana w~języku Python~\cite{Python} za pomocą biblioteki
+FastAPI~\cite{FastAPI}. Funkcjonalność związana z~obsługą użytkowników
+i~gromadzenia
+danych będzie wykorzystywała usługę Google Firebase~\cite{Firebase}.
 
 Wirtualny asystent zostanie zrealizowany jako osobna biblioteka udostępniająca
 własne API. Backend obsługujący sesje gier, po dołączeniu biblioteki asystenta,
@@ -190,8 +192,9 @@ przed problemami po stronie klienta, połączenia internetowego
 oraz samego backendu Firebase, który jest redundantnie
 rozproszony po całym świecie.
 Samo hostowanie strony internetowej zostanie zrealizowane
-usługą Firebase Hosting, która również zapewnia wysoką
-niezawodność.
+usługą Vercel~\cite{Vercel}, która również zapewnia wysoką
+niezawodność i~dostępność, natomiast serwer gry będzie znajdował
+się na maszynie chmurowej udostępnionej przez platformę Oracle Cloud~\cite{OracleCloud}.
 Bezpieczeństwo aplikacji będzie zarządzane za pomocą
 usługi Firebase Authentication.
 
