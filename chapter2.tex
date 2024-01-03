@@ -4,19 +4,6 @@
 
 \section{Kontekst użytkowania aplikacji}
 
-\begin{figure}[b!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/flow-aplikacji/user_flow.png}
-  \caption{Schemat interakcji użytkownika z aplikacją}
-  \label{fig:figma_userflow}
-\end{figure}
-
-\begin{figure}[p!]
-  \centering
-  \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
-  \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
-\end{figure}
-
 Głównym zadaniem aplikacji jest oferowanie możliwości
 rozgrywania gry w~brydża. Strona internetowa aplikacji ma być
 przystosowana do dowolnego rozmiaru ekranu urządzenia, z~którego mógłby
@@ -24,40 +11,54 @@ korzystać użytkownik. Dzięki temu można skorzystać z~aplikacji, wykorzystuj
 telefon, komputer stacjonarny, laptop lub nawet telewizor. Wymagany
 jest tylko dostęp do Internetu. \\
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/flow-aplikacji/user_flow.png}
+    \caption{Schemat interakcji użytkownika z aplikacją}
+    \label{fig:figma_userflow}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
+    \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
+\end{figure}
+
+\newpage
 
 W~systemie aplikacji zdefiniowane są dwa typy użytkowników:
 \begin{itemize}
-  \item \textbf{anonimowy użytkownik} -- osoba niezalogowana, która nie
-        posiada dostępu do funkcjonalności aplikacji związanych
-        z~rozgrywką.
+    \item \textbf{anonimowy użytkownik} -- osoba niezalogowana, która nie
+          posiada dostępu do funkcjonalności aplikacji związanych
+          z~rozgrywką.
 
-  \item \textbf{zalogowany użytkownik} -- zalogowana osoba posiadająca konto
-        w~aplikacji, mająca pełny dostęp do jej funkcjonalności.
+    \item \textbf{zalogowany użytkownik} -- zalogowana osoba posiadająca konto
+          w~aplikacji, mająca pełny dostęp do jej funkcjonalności.
 \end{itemize}
 
 Funkcjonalności dostępne dla poszczególnych użytkowników:
 \begin{itemize}
-  \item \textbf{anonimowy użytkownik}:
-        \begin{itemize}
-          \item rejestracja nowego konta w~systemie aplikacji.
-          \item logowanie do konta utworzonego w~systemie aplikacji.
-        \end{itemize}
+    \item \textbf{anonimowy użytkownik}:
+          \begin{itemize}
+              \item rejestracja nowego konta w~systemie aplikacji.
+              \item logowanie do konta utworzonego w~systemie aplikacji.
+          \end{itemize}
 
-  \item \textbf{zalogowany użytkownik}:
-        \begin{itemize}
-          \item funkcjonalności użytkownika anonimowego.
-          \item tworzenie i~dołączanie do rozgrywek w brydża --
-                gdy użytkownik założy lub zostanie jedynym
-                użytkownikiem lobby, to staje się jego
-                hostem.
-          \item zarządzanie lobby -- może decydować o~graczach znajdujących się wraz
-                z~nim w~lobby. Może decydować o~ich pozycji lub ich wyrzucić
-                ze wspólnej sesji\footnote{Sesja oznacza to samo co lobby, czyli
-                  abstrakcję łączącą wielu graczy i~asystentów w~obrębie jednej
-                  rozgrywki}.
-                Może także uzupełnić wolne miejsca wirtualnym asystentem
-                z~określeniem jego poziomu trudności.
-        \end{itemize}
+    \item \textbf{zalogowany użytkownik}:
+          \begin{itemize}
+              \item wylogowanie z~konta (przejście w~stan użytkownika anonimowego),
+              \item tworzenie i~dołączanie do rozgrywek w brydża --
+                    gdy użytkownik założy lub zostanie jedynym
+                    użytkownikiem lobby, to staje się jego
+                    hostem,
+              \item zarządzanie lobby -- może decydować o~graczach znajdujących się wraz
+                    z~nim w~lobby; może decydować o~ich pozycji lub ich wyrzucić
+                    ze wspólnej sesji\footnote{Sesja oznacza to samo co lobby, czyli
+                        abstrakcję łączącą wielu graczy i~asystentów w~obrębie jednej
+                        rozgrywki};
+                    może uzupełnić wolne miejsca wirtualnym asystentem
+                    z~określeniem jego poziomu trudności.
+          \end{itemize}
 \end{itemize}
 
 \FloatBarrier
@@ -68,17 +69,17 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
 
 Aby uzyskać dostęp do większości funkcjonalności aplikacji, wymagane
 jest posiadanie konta. Anonimowy użytkownik może je utworzyć, klikając
-opcję \textbf{"Register"} w~nagłówku strony. Po kliknięciu użytkownik
+opcję "\textbf{Register}"\xspace w~nagłówku strony. Po kliknięciu użytkownik
 zostanie przekierowany do formularza rejestracyjnego.
 Do utworzenia konta wymagane jest podanie własnego
 pseudonimu, adresu e-mail oraz hasła. Aby uzyskać dostęp do utworzonego
-konta, należy kliknąć \textbf{"Log in"} w~nagłówku strony, po czym
+konta, należy kliknąć "\textbf{Log in}"\xspace w~nagłówku strony, po czym
 w~formularzu podać dane wykorzystanie podczas rejestracji.
 
 \begin{figure}[hbt!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/schematy/login.png}
-  \caption{Schemat logowania i~rejestracji użytkownika}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/schematy/login.png}
+    \caption{Schemat logowania i~rejestracji użytkownika}
 \end{figure}
 
 W~przypadku nieprawidłowo podanych danych podczas rejestracji
@@ -94,7 +95,7 @@ informację na ekranie.
 \subsubsection{Tworzenie lobby}
 
 Rozpoczęcie gry w~brydża jest dostępne z~poziomu lobby. Aby utworzyć
-lobby, należy kliknąć \textbf{"Create lobby"} na głównym panelu
+lobby, należy kliknąć "\textbf{Create lobby}"\xspace na głównym panelu
 aplikacji. Przekieruje ono użytkownika do nowego lobby, którego staje
 się administratorem. Do utworzonego lobby zostanie wygenerowany
 unikalny identyfikator, zwany dalej kodem. Użytkownik będzie mógł go skopiować
@@ -105,13 +106,13 @@ i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć.
 
 Gdy użytkownik otrzyma kod do lobby od innego użytkownika, może
 do niego dołączyć, poprzez główny panel aplikacji. Należy wkleić
-kod w~odpowiednie pole i~klikając opcję \textbf{"Join"}
+kod w~odpowiednie pole i~klikając opcję "\textbf{Join}"\xspace
 dołączyć do przypisanego do kodu lobby.
 
 \begin{figure}[hbt!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/schematy/create_join_lobby.png}
-  \caption{Schemat tworzenia i dołączania do lobby}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/schematy/create_join_lobby.png}
+    \caption{Schemat tworzenia i dołączania do lobby}
 \end{figure}
 
 \FloatBarrier
@@ -120,28 +121,30 @@ dołączyć do przypisanego do kodu lobby.
 \subsubsection{Zarządzanie lobby}
 
 Jeżeli użytkownik jest hostem lub został jedynym
-użytkownikiem w~lobby, może on zarządzać innymi graczami.
+użytkownikiem w~lobby, może on zarządzać stanem innych graczy.
 Posiada on następujące możliwości:
 \begin{itemize}
-  \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami.
-        Może być to gracz lub puste miejsce.
-  \item usunięcie gracza z lobby -- gracz opuszcza lobby i~nie będzie
-        mógł już ponownie do niego dołączyć.
-  \item zajęcie wolnej pozycji jako wirtualny asystent -- wybrana pozycja
-        w~grze będzie kontrolowana przez asystenta
-        i~uczestniczyć w~rozgrywce jako partner lub przeciwnik.
-  \item zamknięcie lobby -- jeżeli administrator jest ostatnim
-        użytkownikiem w~lobby, opuszczenie go spowoduje jego automatyczne
-        zamknięcie.
-        %  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
-        %         dostępność rozgrywki rozpoczętej przez lobby w~panelu
+    \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami
+          (może być to gracz lub puste miejsce),
+    \item usunięcie gracza z lobby -- gracz opuszcza lobby i~nie będzie
+          mógł już ponownie do niego dołączyć,
+    \item awans użytkownika na hosta lobby -- wybrany gracz, będący użytkownikiem
+          aplikacji, otrzymuje uprawnienia hosta; poprzedni host traci uprawnienia hosta,
+    \item zajęcie wolnej pozycji jako wirtualny asystent -- wybrana pozycja
+          w~grze będzie kontrolowana przez asystenta
+          i~uczestniczyć w~rozgrywce jako partner lub przeciwnik,
+    \item zamknięcie lobby -- jeżeli host jest ostatnim
+          użytkownikiem w~lobby, opuszczenie go spowoduje jego automatyczne
+          zamknięcie.
+          %  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
+          %         dostępność rozgrywki rozpoczętej przez lobby w~panelu
 
 \end{itemize}
 
 \begin{figure}[hbt!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/schematy/manage_lobby.png}
-  \caption{Schemat zarządzania lobby}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/schematy/manage_lobby.png}
+    \caption{Schemat zarządzania lobby}
 \end{figure}
 
 \FloatBarrier
@@ -149,8 +152,8 @@ Posiada on następujące możliwości:
 
 \subsubsection{Zgłoszenie gotowości}
 Użytkownik po dołączeniu do lobby może zgłosić gotowość do rozgrywki poprzez
-naciśnięcie przycisku "\textbf{Ready}". Kiedy wszyscy użytkownicy w lobby zgłoszą
-gotowość, zaczyna się gra.
+naciśnięcie przycisku "\textbf{Ready}". Przejście wszystkich użytkowników w~lobby
+w~stan gotowości spowoduje rozpoczęcie się gry.
 
 
 \subsection{Gra w brydża}
@@ -158,15 +161,15 @@ gotowość, zaczyna się gra.
 \subsubsection{Licytacja}
 
 \begin{figure}[hbt!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/schematy/bid.png}
-  \caption{Schemat zgłoszenie odzywki}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/schematy/bid.png}
+    \caption{Schemat zgłoszenie odzywki}
 \end{figure}
 
 Na etapie początkowym gry, uczestnicy mają możliwość zgłaszania odzywek poprzez
 aktywację przycisków odpowiadających ich wyborom. Mogą licytować kontrakty, pasować lub
 deklarować kontrę i~rekontrę. Pierwszy licytujący jest losowo
-wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas" zostanie zagrana
+wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas"\xspace zostanie zagrana
 trzy razy z rzędu.
 
 
@@ -175,14 +178,19 @@ trzy razy z rzędu.
 
 \subsubsection{Zagrywanie kart}
 
-Po zakończeniu fazy licytacji, gracz podczas swojej kolejki może zagrać kartę,
-przesuwając kursor na nią i~klikając myszką. Dodatkowo, gracz będący partnerem dziadka
-ma możliwość zagrywania kart w~jego imieniu podczas jego tury.
+Po zakończeniu fazy licytacji gracz może zagrać kartę poprzez
+przesunięcie kursora nad kartę i~kliknięcie myszką. Akcja zagrania
+będzie dostępna, tylko jeżeli odbędzie się ona w~turze gracza
+i~wybrana karta może być zagrana zgodnie z~zasadami gry brydża.
+Dostępność akcji będzie odpowiednio zasygnalizowana w~interfejsie.
+Dodatkowo gracz będący partnerem dziadka
+ma możliwość zagrywania kart w~jego imieniu (co
+jest zgodne z~zasadami gry brydża).
 
 \begin{figure}[hbt!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/schematy/play_card.png}
-  \caption{Schemat zagrania karty przez użytkownika}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/schematy/play_card.png}
+    \caption{Schemat zagrania karty przez użytkownika}
 \end{figure}
 
 \FloatBarrier
@@ -214,17 +222,18 @@ zdecydują się opuścić rozgrywkę, to zostanie ona zakończona.
 
 Aplikacja nie tylko powinna być dobrze zaprojektowana i~wygodna
 w~użyciu, ale także funkcjonalna. Musi spełniać założone wymagania,
-udostępniając odpowiednie funkcjonalności, żeby była przydatna dla
-jej użytkowników. Nie da się używać wirtualnego asystenta do gry
-w~brydża, jeśli brakuje w nim algorytmu AI, czy w~ogóle elementu
+udostępniając odpowiednie funkcjonalności przydatne dla
+jej użytkowników. Nie da się jej używać, jeśli brakuje w~niej
+wirtualnego asystenta z~odpowiednim
+algorytmem AI, czy w~ogóle elementu
 rozgrywki. Bez spełnienia kluczowych wymagań funkcjonalnych,
 aplikacja praktycznie nie istnieje. W~tym podrozdziale przedstawiamy
 te wymagania.
 
 
 \subsection{Logowanie i rejestracja nowych użytkowników}
-Żeby uzyskać dostęp do funkcjonalności naszej aplikacji, potrzebne
-jest posiadanie konta i bycie zalogowanym. Z~tego względu koniecznością
+Żeby uzyskać dostęp do funkcjonalności naszej aplikacji, trzeba
+posiadać konto i~być zalogowanym. Z~tego względu koniecznością
 jest umożliwienie użytkownikom utworzenia konta, logowania się na
 nie i~możliwość późniejszego wylogowania. Formularz rejestracji wymaga
 podania adresu e-mail, nazwy użytkownika i~hasła. Logowanie odbywa się
@@ -232,7 +241,7 @@ poprzez wprowadzenie swojego adresu e-mail i~hasła.
 
 
 \subsection{Lobby}
-W celu rozegrania partii brydża przeciwko innym graczom,
+W~celu rozegrania partii brydża przeciwko innym graczom
 użytkownik musi mieć możliwość utworzenia własnej
 rozgrywki oraz dołączenia do istniejącej.
 
@@ -244,40 +253,40 @@ wysłać jego identyfikator innym użytkownikom, zapraszając ich do dołączeni
 \subsubsection{Zarządzanie lobby}
 Host powinien mieć możliwość dostosowania lobby według swoich preferencji przed
 rozpoczęciem gry. Host ma prawo wyrzucić gracza z~lobby, zmienić jego pozycję lub przekazać
-mu swoje uprawnienia. Dodatkowo, host powinien móc przydzielić wybrane pozycje
+mu swoje uprawnienia. Dodatkowo host powinien móc przydzielić wybrane pozycje
 wirtualnym asystentom.
 
 
 \subsection{Rozpoczęcie rozgrywki}
-Kiedy wszystkie miejsca w lobby zostaną zajęte przez graczy, którzy zgłoszą gotowość do gry
-lub są wirtualnymi asystentami, rozgrywka zostaje rozpoczęta.
+Kiedy wszystkie miejsca w~lobby zostaną zajęte przez graczy, którzy zgłoszą gotowość do gry,
+rozgrywka zostaje rozpoczęta.
 Wszyscy użytkownicy zostają przeniesieni do ekranu gry.
 
 
 \subsection{Rozgrywka}
 Głównym celem i~podstawową funkcjonalnością naszej aplikacji jest
-rozgrywka w brydża. Zaczyna się od fazy licytacji, po której
-gracze wykładają karty zgodnie z~zasadami gry. Gra kończy się po rozegraniu 
+rozgrywka w~brydża. Zaczyna się ona od fazy licytacji, po której
+gracze wykładają karty zgodnie z~zasadami gry. Gra kończy się po rozegraniu
 trzynastu lew. Po skończonej rozgrywce użytkownikowi wyświetlany jest ekran z~wynikami.
 
 \subsection{Wyświetlenie wyników}
 Ważne jest, żeby użytkownicy po skończeniu partii mogli zobaczyć
-podsumowanie całej rozgrywki. Użytkownikowi wyświetlana jest liczba 
-zdobytych lew. Dzięki temu użytkownicy mogą na koniec porównać rezultat rozgrywki 
-ze swoimi założeniami z fazy licytacji i lepiej oceniać swoje możliwości w~przyszłych rozgrywkach.
+podsumowanie całej rozgrywki. Użytkownikowi wyświetlana jest liczba
+zdobytych lew. Dzięki temu użytkownicy mogą na koniec porównać rezultat rozgrywki
+ze swoimi założeniami z~fazy licytacji i~lepiej oceniać swoje możliwości w~przyszłych rozgrywkach.
 
 
 \subsection{Opuszczenie rozgrywki}
 Użytkownik może nie tylko wyjść z~lobby, ale także w~dowolnym momencie
-opuścić rozgrywkę. W~takim przypadku miejsce użytkownika zastępuje
-wirtualny asystent.
+opuścić rozgrywkę. W~takim przypadku miejsce użytkownika w~trakcie
+rozgrywki zastępuje wirtualny asystent.
 
 
 
 % TODO
 
 \section{Specyfikacja wymagań niefunkcjonalnych}
-W naszym projekcie aplikacji do gry w~brydża
+W~naszym projekcie aplikacji do gry w~brydża
 istotą jest zapewnienie nie tylko wszystkich potrzebnych wymagań
 funkcjonalnych, ale także wygodnej i~intuicyjnej. Niewiele osób
 będzie chętnie korzystać z~aplikacji, choćby miała ona rozbudowane
@@ -312,8 +321,8 @@ Wykorzystamy ikony o~jednakowym znaczeniu na wszystkich stronach,
 co ułatwi nawigację. Dodatkowo zastosujemy stałą gamę starannie
 dobranych kolorów dla elementów interfejsu, co pozwoli nam utrzymać
 spójny styl podczas projektowania kolejnych widoków. Aplikacja
-będzie oferować tryb jasny i~ciemny, aby użytkownicy mogli wygodnie
-korzystać z~niej w~zależności od preferencji lub pory dnia.
+będzie oferować tryb jasny i~ciemny, aby użytkownicy mogli z~niej
+wygodnie korzystać w~zależności od preferencji lub pory dnia.
 Ponadto, wszystkie podstrony będą responsywne, co będzie oznaczać,
 że elementy interfejsu będą zachowywać pełną funkcjonalność,
 niezależnie od rozmiaru okna przeglądarki, na którym są wyświetlane.
@@ -322,23 +331,15 @@ niezależnie od rozmiaru okna przeglądarki, na którym są wyświetlane.
 Wirtualny asystent do gry w~brydża ma być tworzony z~myślą o~nauce
 i~doskonaleniu umiejętności, ale także konkurencji i~wzajemnym
 rozgrywkom pomiędzy użytkownikami. Konieczne jest więc wprowadzenie logiki
-gry z~największą dokładnością. Błędy w działaniu aplikacji podczas
+gry z~największą dokładnością. Błędy w~działaniu aplikacji podczas
 rozgrywki mogłyby wpłynąć na wynik gry oraz wprowadzić nowych użytkowników
 w~zakłopotanie, a~bardziej doświadczonych w~stan irytacji.
 Niezwykle istotne jest również uniknięcie sytuacji, w~których
 dochodziłoby do utraty połączenia lub braku synchronizacji pomiędzy
 użytkownikami. Takie incydenty mogą zrujnować całą rozgrywkę i~zdecydowanie
 obniżyć wartość jednej z~kluczowych funkcjonalności aplikacji, jaką
-jest możliwość rozgrywania partii między użytkownikami.
+jest możliwość rozgrywania partii między graczami.
 Również błędy implementacyjne logiki gry sprawiłyby problemy
 z~działaniem asystenta. Nie jest to dopuszczalne, zważając na to,
 że asystent ma być konkurencyjnym i~sprawnie działającym rozwiązaniem.
 
-Pierwszym krokiem w~stronę niezawodności aplikacji było wybranie
-odpowiednich technologii do jej realizacji. Narzędzia Next.js
-oraz FastAPI służące do budowy aplikacji webowych zostały
-przez nas uznane, jako godne zaufania, a~zarazem są
-popularne na całym świecie. Usługa Google Firebase odciąża nas z~implementacji
-funkcjonalności gromadzenia danych i~obsługi użytkowników od podstaw.
-Mając odpowiedni stos technologiczny, przystąpiliśmy do implementacji
-kolejnych funkcjonalności.
