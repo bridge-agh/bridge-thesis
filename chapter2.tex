@@ -9,7 +9,9 @@ rozgrywania gry w~brydża. Strona internetowa aplikacji ma być
 przystosowana do dowolnego rozmiaru ekranu urządzenia, z~którego mógłby
 korzystać użytkownik. Dzięki temu można skorzystać z~aplikacji, wykorzystując
 telefon, komputer stacjonarny, laptop lub nawet telewizor. Wymagany
-jest tylko dostęp do Internetu. \\
+jest tylko dostęp do Internetu.
+Schematy interakcji użytkownika z~aplikacją zostały przedstawione na rysunkach
+\ref{fig:figma_userflow} i~\ref{fig:figma_gameflow}. \\
 
 \begin{figure}[h!]
     \centering
@@ -22,6 +24,7 @@ jest tylko dostęp do Internetu. \\
     \centering
     \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
     \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
+    \label{fig:figma_gameflow}
 \end{figure}
 
 \newpage
@@ -74,12 +77,13 @@ zostanie przekierowany do formularza rejestracyjnego.
 Do utworzenia konta wymagane jest podanie własnego
 pseudonimu, adresu e-mail oraz hasła. Aby uzyskać dostęp do utworzonego
 konta, należy kliknąć "\textbf{Log in}"\xspace w~nagłówku strony, po czym
-w~formularzu podać dane wykorzystanie podczas rejestracji.
+w~formularzu podać dane wykorzystanie podczas rejestracji (Rys.~\ref{fig:figma_xd_login}).
 
 \begin{figure}[hbt!]
     \centering
     \includegraphics[width=0.9\textwidth]{img/schematy/login.png}
     \caption{Schemat logowania i~rejestracji użytkownika}
+    \label{fig:figma_xd_login}
 \end{figure}
 
 W~przypadku nieprawidłowo podanych danych podczas rejestracji
@@ -99,7 +103,7 @@ lobby, należy kliknąć "\textbf{Create lobby}"\xspace na głównym panelu
 aplikacji. Przekieruje ono użytkownika do nowego lobby, którego staje
 się administratorem. Do utworzonego lobby zostanie wygenerowany
 unikalny identyfikator, zwany dalej kodem. Użytkownik będzie mógł go skopiować
-i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć.
+i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć (Rys.~\ref{fig:figma_xd_create_join_lobby}).
 
 
 \subsubsection{Dołączanie do lobby}
@@ -107,12 +111,13 @@ i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć.
 Gdy użytkownik otrzyma kod do lobby od innego użytkownika, może
 do niego dołączyć, poprzez główny panel aplikacji. Należy wkleić
 kod w~odpowiednie pole i~klikając opcję "\textbf{Join}"\xspace
-dołączyć do przypisanego do kodu lobby.
+dołączyć do przypisanego do kodu lobby (Rys.~\ref{fig:figma_xd_create_join_lobby}).
 
 \begin{figure}[hbt!]
     \centering
     \includegraphics[width=0.9\textwidth]{img/schematy/create_join_lobby.png}
     \caption{Schemat tworzenia i dołączania do lobby}
+    \label{fig:figma_xd_create_join_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -121,7 +126,7 @@ dołączyć do przypisanego do kodu lobby.
 \subsubsection{Zarządzanie lobby}
 
 Jeżeli użytkownik jest hostem lub został jedynym
-użytkownikiem w~lobby, może on zarządzać stanem innych graczy.
+użytkownikiem w~lobby, może on zarządzać stanem innych graczy (Rys.~\ref{fig:figma_xd_manage_lobby}).
 Posiada on następujące możliwości:
 \begin{itemize}
     \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami
@@ -145,6 +150,7 @@ Posiada on następujące możliwości:
     \centering
     \includegraphics[width=0.9\textwidth]{img/schematy/manage_lobby.png}
     \caption{Schemat zarządzania lobby}
+    \label{fig:figma_xd_manage_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -164,10 +170,12 @@ w~stan gotowości spowoduje rozpoczęcie się gry.
     \centering
     \includegraphics[width=0.9\textwidth]{img/schematy/bid.png}
     \caption{Schemat zgłoszenie odzywki}
+    \label{fig:figma_xd_bid}
 \end{figure}
 
 Na etapie początkowym gry, uczestnicy mają możliwość zgłaszania odzywek poprzez
-aktywację przycisków odpowiadających ich wyborom. Mogą licytować kontrakty, pasować lub
+aktywację przycisków odpowiadających ich wyborom (Rys.~\ref{fig:figma_xd_bid}).
+Mogą licytować kontrakty, pasować lub
 deklarować kontrę i~rekontrę. Pierwszy licytujący jest losowo
 wybranym graczem. Faza licytacji dobiega końca, gdy odzywka "pas"\xspace zostanie zagrana
 trzy razy z rzędu.
@@ -179,7 +187,8 @@ trzy razy z rzędu.
 \subsubsection{Zagrywanie kart}
 
 Po zakończeniu fazy licytacji gracz może zagrać kartę poprzez
-przesunięcie kursora nad kartę i~kliknięcie myszką. Akcja zagrania
+przesunięcie kursora nad kartę i~kliknięcie myszką. (Rys.~\ref{fig:figma_xd_play_card}).
+Akcja zagrania
 będzie dostępna, tylko jeżeli odbędzie się ona w~turze gracza
 i~wybrana karta może być zagrana zgodnie z~zasadami gry brydża.
 Dostępność akcji będzie odpowiednio zasygnalizowana w~interfejsie.
@@ -191,6 +200,7 @@ jest zgodne z~zasadami gry brydża).
     \centering
     \includegraphics[width=0.9\textwidth]{img/schematy/play_card.png}
     \caption{Schemat zagrania karty przez użytkownika}
+    \label{fig:figma_xd_play_card}
 \end{figure}
 
 \FloatBarrier

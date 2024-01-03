@@ -410,6 +410,16 @@ rozgrywce lub na temat zasad gry w~brydża. Model językowy zapewniłby
 zrozumiałe dla gracza odpowiedzi i~w~razie potrzeby mógłby bardziej
 szczegółowo sprecyzować odpowiedź na prośbę gracza.
 
+Możliwe jest podniesienie umiejętności asystenta poprzez
+zastosowanie innego algorytmu. W~przypadku AlphaZero
+można zastosować rozszerzenie IS-MCTS, które pozwoliłoby
+lepiej poradzić sobie z~niepełną informacją o~stanie gry,
+niż nasze aktualne rozwiązanie.
+Można również zastosować zasadniczo inny algorytm,
+jak na przykład Regularized Nash Dynamics,
+który posiada gwarancję zbieżności do stanu
+równowagi Nasha.
+
 \section{Podsumowanie}
 
 Uczestnictwo przez zespół w~tworzeniu projektu
@@ -434,6 +444,14 @@ i~testowanie utworzono pełny system spełniający wymagania
 klienta.
 Stworzona aplikacja jest w~pełni użyteczna i~może być
 wykorzystywana w~sposób darmowy do grania w~brydża przez Internet.
+Opracowano również metodę zastosowania algorytmu AlphaZero
+do gry, do której nie był zaprojektowany.
+Zaimplementowany algorytm został sprawdzony na dwóch grach: brydżu i~Othello.
+Dla Othello udało się uzyskać wynik 9:1 wygranych w~stosunku do konkurencyjnego
+modelu AI.
+Pokazano od strony formalnej i~eksperymentalnej zalety i~wady zastosowanego algorytmu.
+Wskazano również ścieżki rozwoju algorytmu, które mogą
+doprowadzić do stworzenia AI na poziomie mistrzowskim.
 
 Jesteśmy usatysfakcjonowani z~finalnego rozwiązania produktu,
 które dostarczyliśmy i~zadowoleni, że udało nam się pokonać

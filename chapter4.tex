@@ -158,15 +158,19 @@ zależności między nimi oraz dzielenia na większe zbiory zadań.
     \centering
     \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_backlog.png}
     \caption{Backlog z zadaniami}
+    \label{fig:xd_shortcut_backlog}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{img/shortcut/shortcut_epic.png}
     \caption{Epic dotyczący systemu lobby wraz z~zadaniami i~ich statusami}
+    \label{fig:xd_shortcut_epic}
 \end{figure}
 
-Zdecydowano się na narzędzie Shortcut \cite{Shortcut}, które oferuje
+Zdecydowano się na narzędzie Shortcut
+\cite{Shortcut} (Rys.~\ref{fig:xd_shortcut_backlog}, \ref{fig:xd_shortcut_epic}),
+które oferuje
 wszystkie potrzebne funkcjonalności. Pozwala na podział zadań na tzw.
 epiki -- elementy pracy zawierające wystarczająco dużo zadań do realizacji,
 których nie da się ukończyć w~krótkim czasie. Dla każdego kamienia milowego
@@ -384,7 +388,7 @@ odpowiedni skrypt uruchamiał nową wersję kontenera.
 Każda gałąź kodu, podobnie jak w~przypadku aplikacji
 webowej, posiadała osobny kontener uruchomiony na serwerze
 Oracle, do którego tworzony był osobny adres za pomocą
-utworzonych skryptów i~oprogramowania Traefik~\cite{Traefik}.
+utworzonych skryptów i~oprogramowania Traefik~\cite{Traefik} (Rys.~\ref{fig:traefik-dashboard}).
 Dzięki temu aplikację webową można było połączyć
 z~dowolnie wybraną wersją serwera gry, na przykład, aby
 przetestować nową funkcjonalność. Na rysunku

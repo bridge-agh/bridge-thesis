@@ -11,7 +11,8 @@ się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 \section{Podział tworzonego systemu}
 
 Aby usprawnić pracę nad produktem, podzieliliśmy system na osobne
-fragmenty. Każdy z~nich odpowiedzialny był za inną jego część.
+fragmenty (Rys.~\ref{fig:system-scheme}).
+Każdy z~nich odpowiedzialny był za inną jego część.
 Pozwoliło to na stworzenie odpowiednich mechanizmów dla każdego
 z~nich, których zadaniem byłoby między innymi automatyczne
 wdrażanie nowych wersji i~testowanie. Podział był też powiązany
@@ -417,7 +418,7 @@ do fazy licytacji i~fazy gry.
 
 \subsection{Faza licytacji}
 
-Licytacja w~brydżu jest otwartym problemem w~dziedzinie AI.
+Licytacja w~brydżu jest otwartym problemem w~dziedzinie AI \cite{Zhang2019DesignAD,Zhang2022TheSO,Zhang2022AIEB}.
 Pozostaje ona wyzwaniem dla naukowców.
 Zdecydowano się na implementację algorytmu AlphaZero~\cite{AlphaZeroPaper},
 po przystosowaniu do gry w~brydża.
@@ -593,7 +594,8 @@ oblicza liniową projekcję obserwacji do tensora
 o~wymiarze 4x4x32. Taki tensor trafia do konwolucyjnej wieży rezydualnej.
 Wynikiem jest rozkład $\mathbf{p}$ na 38 możliwych ruchów oraz
 ocena $v$ stanu gry po aktywacji $tanh$.
-Architektura przedstawiona jest na Rys.~\ref{fig:ai-arch}.
+Architektura jest przedstawiona na Rys.~\ref{fig:ai-arch}
+oraz szczegółowo opisana w~rozdziale \nameref{sec:appendix}.
 
 \FloatBarrier
 

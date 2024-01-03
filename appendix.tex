@@ -3,8 +3,12 @@
 
 \section*{Szczegóły implementacji algorytmu Gumbel AlphaZero}
 
+W tej sekcji przedstawiamy szczegóły implementacji zastosowanego algorytmu.
+Należy zaznaczyć, że przedstawiony pseudokod nie uwzględnia
+wektoryzacji obliczeń, która jest kluczowa dla wydajności.
+
 \begin{algorithm}
-    \caption{Pętla główna uczenia AlphaZero}\label{alg:alphazero-main}
+    \caption{Pętla główna uczenia Gumbel AlphaZero}\label{alg:alphazero-main}
     \KwOut{Learned weights $\theta$}
     $\theta \gets$ initial random weights\;
     Collect observations from random-move games to initialize batch norm stats\;
@@ -252,12 +256,14 @@ Stanem równowagi Nasha dla tej gry jest losowanie akcji przez obu
 graczy z~pewnym prawdopodobieństwem, maksymalizując wartość
 oczekiwaną nagrody w~perspektywie wielu gier.
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{img/ai/devil-game-tree.png}
     \caption{Drzewo Gry z Diabełkiem.}
     \label{fig:devil-game-tree}
 \end{figure}
+
+\FloatBarrier
 
 \subsection*{Eksperymenty}
 
@@ -267,7 +273,7 @@ Zaimplementowano grę zgodnie z~opisem powyżej
 i~zastosowano algorytm AlphaZero.
 Obserwacją była jedna wartość: czy gracz jest Diabełkiem, czy Człowiekiem.
 Nauczoną sieć~$\mathbf{p}$ przedstawia Tab.~\ref{tab:devil-game-policy}.
-Widać zbieżność $\operatorname{argmax} \mathbf{p}$ do strategii MiniMax.
+Widać, że $\operatorname{argmax} \mathbf{p}$ to strategia MiniMax.
 Widać również, że sieć nauczyła się całkowicie przewidywalnej strategii,
 która nie jest stanem równowagi Nasha.
 Eksperyment potwierdza, że AlphaZero nie zawsze znajduje stan równowagi Nasha.
@@ -287,7 +293,7 @@ na przykład Regularized Nash Dynamics \cite{doi:10.1126/science.add4679},
 który ma gwarancję zbieżności do stanu równowagi Nasha.
 
 
-\begin{table}
+\begin{table}[h!]
     \centering
     \caption{Nauczona funkcja polityki $\mathbf{p}$}
     \label{tab:devil-game-policy}
