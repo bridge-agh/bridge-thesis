@@ -109,6 +109,10 @@ backend=biber]{biblatex}
 \tocfile{\lstlistlistingname}{lol}
 \endgroup}
 
+\newcommand{\uchapter}[1]{\chapter*{#1}
+\addcontentsline{toc}{chapter}{\hspace*{-1.55em}\protect\numberline{}#1}
+\markboth{\uppercase{#1}}{\uppercase{#1}}}
+
 % Definicje nowych rodzajów kolumn w tabeli
 % \newcolumntype{y}{>{\small\centering\arraybackslash}X}
 %\newcolumntype{b}{>{\hsize=1.6\hsize}Y}

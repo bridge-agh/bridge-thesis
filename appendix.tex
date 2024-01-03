@@ -1,64 +1,64 @@
-\chapter{\ChapterTitleAppendix}
+\uchapter{\ChapterTitleAppendix}
 \label{sec:appendix}
 
 \begin{algorithm}
-\caption{Pętla główna uczenia AlphaZero}\label{alg:alphazero-main}
-\KwOut{Learned weights $\theta$}
-$\theta \gets$ initial random weights\;
-Collect observations from random-move games to initialize batch norm stats\;
-experience\_buffer $\gets$ empty list\;
-\Repeat{training budget exhausted}{
-    \For{$i \gets 1$ \KwTo self-play games per epoch}{
-        $T \gets$ self\_play($\theta$)\;
-        $X \gets$ process\_trajectory($T$)\;
-        experience\_buffer $\gets$ experience\_buffer $\cup$ $X$\;
+    \caption{Pętla główna uczenia AlphaZero}\label{alg:alphazero-main}
+    \KwOut{Learned weights $\theta$}
+    $\theta \gets$ initial random weights\;
+    Collect observations from random-move games to initialize batch norm stats\;
+    experience\_buffer $\gets$ empty list\;
+    \Repeat{training budget exhausted}{
+        \For{$i \gets 1$ \KwTo self-play games per epoch}{
+            $T \gets$ self\_play($\theta$)\;
+            $X \gets$ process\_trajectory($T$)\;
+            experience\_buffer $\gets$ experience\_buffer $\cup$ $X$\;
+        }
+        Truncate experience\_buffer to fixed size with most recent data\;
+        \For{$i \gets 1$ \KwTo training iterations}{
+            $X \gets$ sample batch from experience\_buffer without replacement\;
+            $\theta \gets$ train\_step($\theta$, $X$)\;
+        }
     }
-    Truncate experience\_buffer to fixed size with most recent data\;
-    \For{$i \gets 1$ \KwTo training iterations}{
-        $X \gets$ sample batch from experience\_buffer without replacement\;
-        $\theta \gets$ train\_step($\theta$, $X$)\;
+    \Return $\theta$\;
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{Procedura self\_play}\label{alg:alphazero-self-play}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{Procedura process\_trajectory}\label{alg:alphazero-process-trajectory}
+    \KwIn{Trajectory $T$}
+    \KwOut{Batch of training data $X$}
+    $X \gets$ empty list\;
+    \ForEach{state $s$ in $T$}{
+        $x \gets$ empty example\;
+        $x$.observation $\gets$ $s$.observation\;
+        $x$.policy\_target $\gets$ $s$.MCTS\_action\_weights\;
+        $x$.value\_mask $\gets$ $1$ if $T[\mathrm{end}]$ is terminal, $0$ otherwise\;
+        $x$.value\_target $\gets \begin{cases}
+                1  & \text{if}\ T[\mathrm{end}].\mathrm{winner} = s.\mathrm{player}                 \\
+                -1 & \text{if}\ T[\mathrm{end}].\mathrm{winner} = \mathrm{other}(s.\mathrm{player}) \\
+                0  & \text{otherwise}
+            \end{cases}$\\
+        $X \gets X \cup \{x\}$\;
     }
-}
-\Return $\theta$\;
+    \Return $X$\;
 \end{algorithm}
 
 \begin{algorithm}
-\caption{Procedura self\_play}\label{alg:alphazero-self-play}
-\end{algorithm}
-
-\begin{algorithm}
-\caption{Procedura process\_trajectory}\label{alg:alphazero-process-trajectory}
-\KwIn{Trajectory $T$}
-\KwOut{Batch of training data $X$}
-$X \gets$ empty list\;
-\ForEach{state $s$ in $T$}{
-    $x \gets$ empty example\;
-    $x$.observation $\gets$ $s$.observation\;
-    $x$.policy\_target $\gets$ $s$.MCTS\_action\_weights\;
-    $x$.value\_mask $\gets$ $1$ if $T[\mathrm{end}]$ is terminal, $0$ otherwise\;
-    $x$.value\_target $\gets \begin{cases}
-        1 &\text{if}\ T[\mathrm{end}].\mathrm{winner} = s.\mathrm{player} \\
-        -1 &\text{if}\ T[\mathrm{end}].\mathrm{winner} = \mathrm{other}(s.\mathrm{player}) \\
-        0 &\text{otherwise}
-    \end{cases}$\\
-    $X \gets X \cup \{x\}$\;
-}
-\Return $X$\;
-\end{algorithm}
-
-\begin{algorithm}
-\caption{Procedura train\_step}\label{alg:alphazero-train-step}
-\KwIn{Weights $\theta$, batch of training data $X$}
-\KwOut{Updated weights $\theta$}
-\ForEach{example $x$ in $X$}{
-    $z \gets$ $x$.value\_target\;
-    $m \gets$ $x$.value\_mask\;
-    $\pi \gets$ $x$.policy\_target\;
-    $v, \mathbf{p} \gets$ model($x$.observation, $\theta$)\;
-    $\mathcal{L} \gets m(z - v)^2 - \pi^T \log \mathbf{p} + c ||\theta||^2$\;
-    $\theta \gets$ adam\_optimizer\_step($\theta$, $\mathcal{L}$)\;
-}
-\Return $\theta$\;
+    \caption{Procedura train\_step}\label{alg:alphazero-train-step}
+    \KwIn{Weights $\theta$, batch of training data $X$}
+    \KwOut{Updated weights $\theta$}
+    \ForEach{example $x$ in $X$}{
+        $z \gets$ $x$.value\_target\;
+        $m \gets$ $x$.value\_mask\;
+        $\pi \gets$ $x$.policy\_target\;
+        $v, \mathbf{p} \gets$ model($x$.observation, $\theta$)\;
+        $\mathcal{L} \gets m(z - v)^2 - \pi^T \log \mathbf{p} + c ||\theta||^2$\;
+        $\theta \gets$ adam\_optimizer\_step($\theta$, $\mathcal{L}$)\;
+    }
+    \Return $\theta$\;
 \end{algorithm}
 
 % 0 -> 0 = 1
