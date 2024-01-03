@@ -1,15 +1,22 @@
 \chapter{\ChapterTitleWorkOrganization}
 \label{sec:organizacja-pracy}
 
-W~tym rozdziale omówione zostały początkowe idee związane z~formą i~funkcjami
-aplikacji oraz zarysem harmonogramu działań. Ponadto, przedstawiane
-są narzędzia, które zespół wykorzystał do skutecznego zarządzania
-i~realizacji projektu. Opisana jest również struktura organizacyjna
-zespołu, jego role i~zadania w kontekście tworzenia aplikacji.
-
-Ponadto, zawiera informacje dotyczące przygotowania narzędzi do
-weryfikacji postępu pracy, z~myślą o~osobach nadzorujących proces
+W~tym rozdziale omówione zostały początkowe idee związane
+z~formą i~funkcjami
+aplikacji oraz zarysem harmonogramu działań.
+Ponadto, zawiera informacje dotyczące przygotowania
+narzędzi do weryfikacji postępu pracy, z~myślą o~osobach
+nadzorujących proces
 realizacji projektu.
+Również przedstawiane
+są narzędzia, które zespół wykorzystał do skutecznego
+zarządzania
+i~realizacji projektu. Opisana jest także struktura
+organizacyjna
+zespołu, jego role i~zadania w kontekście tworzenia
+aplikacji.
+
+
 
 \section{Charakterystyka i sposób realizacji projektu}
 
@@ -30,7 +37,9 @@ etapami. Na początku napisano logikę gry w~brydża, ponieważ ustalono, że ta
 systemu powinna być już dobrze sprawdzona i~przetestowana przed powstaniem
 aplikacji umożliwiającej rozgrywkę. Kolejnym etapem była realizacja funkcjonalności
 związanych z~podstawowym interfejsem użytkownika, którego największą część
-stanowiło lobby i~zarządzanie nim. Następnie rozpoczęto prace nad silnikiem gry, który
+stanowiło lobby i~zarządzanie nim. Równoległe trwały prace nad serwerem gry, który
+odpowiadał za utworzenie sesji między graczami i~przeprowadzenie między nimi rozgrywki.
+Następnie rozpoczęto prace nad silnikiem gry, który
 umożliwił użytkownikom wykonywanie ruchów. Ostatnim kamieniem milowym była implementacja
 algorytmów odpowiadających za działanie wirtualnego asystenta oraz umożliwienie
 wstawienia go jako gracza do rozgrywki z~użytkownikami.
@@ -61,7 +70,7 @@ Po zapoznaniu się z~propozycją wykonania aplikacji umożliwiającej grę w~bry
 inteligencją, przedstawioną przez członków zespołu projektowego, zgodził się on na zostanie
 opiekunem pracy. Wykorzystując swoje doświadczenie w~pełnieniu tego stanowiska, w~trakcie regularnych
 spotkań udzielał pomocnych porad dotyczących tworzenia aplikacji, ustalania kolejnych celów
-i~pisania tekstu pracy.
+i~tworzenia dokumentacji projektu.
 
 \subsection{Zespół projektowy}
 Przez sześć semestrów studiów inżynierskich na kierunku Informatyka, członkowie zespołu zdobywali
@@ -71,9 +80,9 @@ swoich umiejętności oraz zdobywanie nowych kompetencji. Dlatego oprócz sprawd
 zespół zdecydował się eksperymentować także z~nowymi dla siebie narzędziami.
 Skład zespołu i~ogólny podział obowiązków:
 \begin{itemize}
+    \item \textbf{Szymon Idec} -- implementacja logiki gry w brydża oraz silnika gry
     \item \textbf{Jakub Karbowski} -- rozwój serwera gry oraz algorytmów sztucznej inteligencji
           wykorzystywanych przez wirtualnego asystenta
-    \item \textbf{Szymon Idec} -- implementacja logiki gry w brydża oraz silnika gry
     \item \textbf{Karol Śliwa} -- wygląd interfejsów aplikacji, funkcjonalności zarządzania stanem lobby
 \end{itemize}
 Podział ról w~projekcie nie był jednak rygorystyczny. Odpowiednio do potrzeb i~możliwości,
@@ -114,6 +123,10 @@ Do realizacji projektu zostało wykorzystane wiele narzędzi i~technologii
 dostępnych za darmo lub jako produkty open source, czyli takie,
 których właściciel praw autorskich przyznaje użytkownikom prawa
 do swobodnego używania, modyfikacji i~udostępniania oprogramowania.
+Było to kluczowe, aby zastosowane narzędzia i~technologie pozwoliły
+na utworzenie darmowego rozwiązania. Dzięki temu użytkownicy
+mogą sami uruchomić cały system, aplikację wraz z~wirtualnym
+asystentem, bez posiadania płatnych licencji.
 
 
 \subsection{Planowanie i projektowanie}
@@ -155,15 +168,15 @@ zależności między nimi oraz dzielenia na większe zbiory zadań.
 
 Zdecydowano się na narzędzie Shortcut \cite{Shortcut}, które oferuje
 wszystkie potrzebne funkcjonalności. Pozwala na podział zadań na tzw.
-epici -- elementy pracy zawierające wystarczająco dużo zadań do realizacji,
-których nie da się ukończyć w~krótkim czasie. Dla każdego milestone'a
-utworzono odpowiedni epic, dzięki czemu możliwe było prezentowanie
+epiki -- elementy pracy zawierające wystarczająco dużo zadań do realizacji,
+których nie da się ukończyć w~krótkim czasie. Dla każdego kamienia milowego
+utworzono odpowiedni epik, dzięki czemu możliwe było prezentowanie
 kolejnych części i~kluczowych etapów procesu tworzenia aplikacji.
 
 \FloatBarrier
 
 Również dużym plusem tego rozwiązania była integracja
-z~platformą GitHub\cite{Github}, która pozwoliła na
+z~platformą GitHub~\cite{Github}, która pozwoliła na
 szybkie wyszukiwanie zmian w~kodzie projektu. Poprzez
 zastosowane unikalnych identyfikatorów każde zadanie
 znajdujące się w~Shortcut mogło mieć odpowiednio przypisaną
@@ -212,10 +225,10 @@ technologiach.
 
 \subsubsection{VSCode}
 
-Visual Studio Code \cite{VSCode}, dalej opisywany jako VSCode,
+Visual Studio Code~\cite{VSCode}, dalej opisywany jako VSCode,
 to zaawansowany edytor kodu stworzony
 przez Microsoft, który stał się jednym z~najpopularniejszych narzędzi
-wśród programistów\cite{IDEIndex}.
+wśród programistów~\cite{IDEIndex}.
 VSCode wspiera wiele języków programowania i~znaczników od JavaScript,
 TypeScript, Python, C++, Rust po HTML, CSS, JSON i~wiele innych.
 Dużą zaletą VSCode jest również możliwość personalizacji. Dostępne są
@@ -225,7 +238,7 @@ potrzeb. Użycie tego edytora znacznie usprawniło rozwój aplikacji.
 Ze względu na możliwość dostosowania go do różnych języków programowania
 i~technologii, stosowano go przy tworzeniu każdego elementu projektu.
 
-Oprócz tworzenia samego oprogramowania w~tym narzędziu wykorzystano go także
+Oprócz tworzenia w~tym narzędziu systemu brydża wykorzystano go także
 do stworzenia dokumentacji aplikacji wraz z~użyciem systemu kontroli wersji Git.
 Usprawniło to przebieg pracy nad dokumentem, jak i~wzajemną kontrolę
 współtworzenia tekstu.
@@ -235,8 +248,8 @@ współtworzenia tekstu.
 
 Produkty JetBrains \cite{JetBrains}, w~tym dedykowane środowiska
 programistyczne (IDE) dla poszczególnych języków i~ekosystemów,
-takich jak Java, Python czy PHP.
-Oferują one zaawansowane funkcje autouzupełniania i~głębokiej
+takich jak Java, Python czy PHP, oferują zaawansowane funkcje
+autouzupełniania i~głębokiej
 analizy kodu. Dostarczają one również narzędzia do refaktoryzacji,
 co znacząco ułatwia zarządzanie i~optymalizację projektu.
 
@@ -265,7 +278,7 @@ w~środowisku produkcyjnym.
 
 Przez cały proces tworzenia serwera dla aplikacji Postman był wykorzystywany
 do wspomnianych wyżej celów. Było to narzędzie kluczowe w~zapewnieniu
-sprawnego działania tej części systemu.
+poprawności działania tej części systemu.
 
 
 \subsection{Integracja elementów systemu}
@@ -273,7 +286,7 @@ sprawnego działania tej części systemu.
 Podział tworzonego systemu na wiele części
 takich jak aplikacja webowa, serwer, wirtualny asystent
 i~dokumentacja wymagał stworzenia odpowiedniego
-przepływu pracy zwanego \textbf{CI/CD}. Akronim ten oznacza
+przepływu pracy zwanego \mbox{\textbf{CI/CD}}. Akronim ten oznacza
 ciągłą integrację/ciągłe wdrażanie. Jest on stosowany
 w~celu szybkiego likwidowania błędów, przeprowadzania
 testów, analizą działania i~integracją elementów systemu
@@ -297,7 +310,7 @@ Najważniejszym elementem całego systemu było zintegrowanie
 repozytorium kodu
 wraz z~resztą technologii. Platforma GitHub, na której
 znajduje się kod tworzonej aplikacji, oferuje swoje
-rozwiązanie GitHub Actions\cite{GithubActions} pozwalające
+rozwiązanie GitHub Actions~\cite{GithubActions} pozwalające
 na zaawansowaną realizację CI/CD. Dla każdego elementu
 projektu zostały utworzone instrukcje w~postaci plików JSON
 lub wykorzystano integracje zewnętrznych narzędzi oferujące
@@ -314,10 +327,10 @@ po aktualizacji kodu.
     \label{fig:github-vercel}
 \end{figure}
 
-Platforma Vercel\cite{Vercel} była odpowiedzialna za
+Platforma Vercel była odpowiedzialna za
 udostępnianie aplikacji webowej. Posiada ona wsparcie \mbox{z~GitHubem},
 przez co tworzenie instrukcji odbywa się automatycznie.
-Vercel, dla głównej gałęzi kodu \textit{"master"} oraz
+Vercel, dla głównej gałęzi kodu "\textit{master}"\xspace oraz
 gałęzi implementujących dodatkowe funkcje, budował aplikację
 i~udostępniał na swojej platformie. W~przypadku aktualizacji
 kodu, na odpowiednich gałęziach, przystępował on do ponownego
@@ -348,29 +361,30 @@ z~gałęzi został wygenerowany adres do aplikacji
 \end{figure}
 
 Do uruchomienia serwera naszego systemu wymagane było
-osobne środowisko. Wymagane było, aby oferowało ono
+osobne środowisko, w~którym możemy uruchomić
 narzędzie do automatycznego budowania i~udostępniania
 najnowszych wersji serwera, w~podobny sposób jak zostało
 to rozwiązane w~przypadku aplikacji webowej.
 
-Rozwiązano ten problem poprzez stworzenie autorskiego
+Zrealizowano takie rozwiązanie poprzez stworzenie autorskiego
 narzędzia wraz z~wykorzystaniem serwera udostępnionego
-przez platformę Oracle Cloud \cite{OracleCloud}.
+przez platformę Oracle Cloud.
 Wykorzystując możliwość tworzenia instrukcji GitHub Actions
 skonfigurowano automatyczne tworzenie obrazu kontenera
-Docker \cite{Docker}, który miał za zadanie uruchamiać
-serwer. Był on udostępniany w~rejestrze kontenerów na
+Docker~\cite{Docker}, który miał za zadanie uruchamiać
+serwer gry. Utworzony kontener był udostępniany w~rejestrze
+przechowujących takie obrazy na
 platformie GitHub. Następnie po stronie serwera Oracle
-cyklicznie był sprawdzany rejestr w~celu wykrycia
+cyklicznie sprawdzany był rejestr w~celu wykrycia
 nowo powstałego obrazu kontenera. Gdy obraz posiadał
 inny hash\footnote{hash -- wartość wyliczana przez tzw. "funkcję
     hashującą", która dla otrzymanych na wejściu tych
     samych danych zwraca tę samą wyliczoną wartość.}
-odpowiedni skrypt uruchamiał on nową wersję kontenera.
+odpowiedni skrypt uruchamiał nową wersję kontenera.
 Każda gałąź kodu, podobnie jak w~przypadku aplikacji
 webowej, posiadała osobny kontener uruchomiony na serwerze
 Oracle, do którego tworzony był osobny adres za pomocą
-autorskich skryptów i~oprogramowania Traefik \cite{Traefik}.
+utworzonych skryptów i~oprogramowania Traefik~\cite{Traefik}.
 Dzięki temu aplikację webową można było połączyć
 z~dowolnie wybraną wersją serwera gry, na przykład, aby
 przetestować nową funkcjonalność. Na rysunku
@@ -418,9 +432,8 @@ o~nieudanym przeprowadzeniu testów
 \subsection{Tworzenie dokumentacji}
 
 Do napisania dokumentacji aplikacji użyto języka \LaTeX~\cite{Latex}.
-Przesyłając tekst pracy na platformę GitHub, podobnie skorzystano
-\mbox{z GitHub Actions}, którą wykorzystano w celu
-generacji dokumentu natychmiast po opublikowaniu zmian w~tekście pracy.
+Przesyłając zmiany w~tekście pracy na platformę GitHub, za pomocą
+GitHub Actions, generowano natychmiastowo dokument PDF.
 Umożliwiło to na dostęp do najnowszej wersji dokumentu dla opiekuna
 pracy i~prowadzącego pracownię projektową, dzięki czemu była możliwa
 ciągła weryfikacja postępów nad pracą.
