@@ -8,36 +8,34 @@ komponentów oraz przedstawienie czynników, które są najistotniejsze do
 funkcjonowania całości systemu. Dodatkowo skoncentruje
 się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
 
-\section{Podział tworzonego systemu}
+\section{Podział systemu}
 
 Aby usprawnić pracę nad produktem, podzieliliśmy system na osobne
 fragmenty (Rys.~\ref{fig:system-scheme}).
 Każdy z~nich odpowiedzialny był za inną jego część.
-Pozwoliło to na stworzenie odpowiednich mechanizmów dla każdego
+Pozwoliło to na wykorzystanie odpowiednich mechanizmów dla każdego
 z~nich, których zadaniem byłoby między innymi automatyczne
 wdrażanie nowych wersji i~testowanie. Podział był też powiązany
 z~wykorzystywanym językiem programowania i~technologią danego elementu. \\
 
 Podzielono system na następujące elementy:
 \begin{itemize}
-  \item \textbf{Bridge Core} -- główna logika gry w~brydża; stworzona
-        w~języku Python,
+  \item \textbf{Bridge Core} -- główna logika gry w~brydża; język Python,
 
-  \item \textbf{Wirtualny asystent} -- algorytm sztucznej inteligencji; stworzony
-        w~języku Python z~wykorzystaniem biblioteki JAX~\cite{JAX},
+  \item \textbf{Wirtualny asystent} -- algorytm sztucznej inteligencji;
+        język Python z~wykorzystaniem biblioteki JAX~\cite{JAX},
 
-  \item \textbf{Aplikacja webowa} -- główny interfejs dla użytkowników,
-        aby móc rozgrywać grę; stworzone przy zastosowaniu
-        frameworków Next.js~\cite{NextJS} i~Tailwind.css w~językach HTML, \mbox{Javascript}
+  \item \textbf{Aplikacja webowa} -- główny interfejs dla użytkowników; wykorzystuje
+        framework Next.js~\cite{NextJS} i~Tailwind.css w~językach HTML, \mbox{Javascript}
         oraz CSS,
 
   \item \textbf{Serwer gry} -- centralny serwer, którego zadaniem jest
         łączenie graczy do sesji, przeprowadzanie gier i~zarządzaie
-        w~nich asystentem; stworzony przy użyciu języka Scala~\cite{Scala}
-        \mbox{i~frameworku} Akka~\cite{Akka},
+        w~nich asystentem; język Scala~\cite{Scala}
+        \mbox{i~framework} Akka~\cite{Akka},
 
-  \item \textbf{Bridge Engine} -- interfejs gry brydża; stworzony
-        z~użyciem frameworka Three.js~\cite{ThreeJS} i~języka Javascript,
+  \item \textbf{Bridge Engine} -- interfejs gry brydża;
+        framework Three.js~\cite{ThreeJS} i~język Javascript,
 
   \item \textbf{Google Firebase} -- osobny system Google'a, który
         odpowiada za zarządzanie i~uwierzytelnianie użytkowników.
@@ -189,7 +187,7 @@ graczy.
 % działania.
 
 \section{Aplikacja webowa}
-Aplikacja webowa została stworzona przy użyciu platformy Next.js
+Aplikacja webowa została zaimplementowana przy użyciu platformy Next.js
 oraz języka programowania Typescript~\cite{Typescript},
 będącego rozszerzeniem języka JavaScript o~statyczne typowanie.
 Jednakże ze względu na problemy wydajnościowe rozgrywki
