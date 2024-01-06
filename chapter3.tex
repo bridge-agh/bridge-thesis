@@ -3,7 +3,7 @@
 
 Ta sekcja pracy skupia się na opisaniu najważniejszych aspektów
 opracowanej aplikacji.
-Jej celem jest szczegółowe opisanie wybranych
+Jej celem jest szczegółowy przegląd wybranych
 komponentów oraz przedstawienie czynników, które są najistotniejsze do
 funkcjonowania całości systemu. Dodatkowo skoncentruje
 się na prezentacji skutecznych rozwiązań dla wykrytych problemów.
@@ -68,7 +68,9 @@ działanie systemu.
 \section{Architektura serwera}
 
 Serwer został zaimplementowany w języku Scala,
-wykorzystując framework Akka.
+wykorzystując framework Akka, specjalizującego się w~programowaniu
+współbieżnym oraz rozproszonym, bazującym na
+zaawansowanym modelu aktorów.
 Zaprojektowano dwupoziomową architekturę serwera
 (Rys.~\ref{fig:akka-highlevel}).
 
@@ -134,16 +136,13 @@ na rysunkach \ref{fig:akka-createsession} -- \ref{fig:akka-sessioninfo}.
 
 \FloatBarrier
 
-\subsection{Komunikacja z serwerem}
+\subsubsection*{Komunikacja z serwerem}
 Wstępne założenia dotyczące infrastruktury aplikacji
 serwerowej opierały się na wykorzystaniu języka Python
 wraz z~frameworkiem FastAPI. Ze względu na problemy
 komunikacyjne aplikacji
 z~serwerem, zdecydowano się na skonstruowanie struktury serwera
-w~języku Scala. Wykorzystany został potencjał
-frameworka Akka, specjalizującego się w~programowaniu
-współbieżnym oraz rozproszonym, bazującym na
-zaawansowanym modelu aktorów.
+z~powyższym opisem.
 
 Pierwotny model komunikacji między klientem a~serwerem
 był zbudowany w~oparciu o~metodę \textbf{short polling},
@@ -168,7 +167,7 @@ potencjalnej utraty połączenia. Skłoniło nas do ostatecznej rezygnacji
 z~wdrożenia tego pomysłu.
 
 Implementacja frameworka Akka pozwoliła na ustanowienie stabilnego,
-reaktywnego połączenia między klientem a~serwerem. Programowanie
+\textbf{reaktywnego} połączenia między klientem a~serwerem. Programowanie
 reaktywne, koncentrujące się na płynnym przepływie danych i~ich propagacji,
 umożliwiło aplikacji klienta natychmiastowo reagować na wszelkie zmiany. Jest
 to szczególnie istotne w~kontekście naszej aplikacji, która charakteryzuje

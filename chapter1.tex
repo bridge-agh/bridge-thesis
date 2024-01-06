@@ -88,11 +88,10 @@ i~grę w brydża, jednak mają one istotne wady. Brakuje rozwiązania, które
 byłoby dostępne bez konieczności ponoszenia kosztów, umożliwiało naukę
 i~rywalizację z~innymi użytkownikami oraz posiadało intuicyjny i~przyjazny
 interfejs graficzny. Celem projektu jest połączenie większości tych funkcji
-w~dostępnej za darmo aplikacji.
-
-
+w~dostępnej za darmo aplikacji zintegrowanej z~wirtualnym asystentem.
 
 \FloatBarrier
+
 
 \section{Wizja produktu}
 
@@ -135,7 +134,7 @@ danych będzie wykorzystywała usługę Google Firebase~\cite{Firebase}.
 
 Wirtualny asystent zostanie zrealizowany jako osobna biblioteka udostępniająca
 własne API. Backend obsługujący sesje gier, po dołączeniu biblioteki asystenta,
-będzie mógł wysłać do API asystenta aktualny stan gry, aby otrzymać
+będzie mógł wysłać do API asystenta aktualny stan gry. Zwróci on
 odpowiedź zawierającą analizę tego stanu, między innymi
 prawdopodobieństwo wygrania każdej z~par graczy oraz listę
 najlepszych ruchów, jakie mogą być wykonane przez następnego gracza.

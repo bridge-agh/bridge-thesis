@@ -14,54 +14,54 @@ Schematy interakcji użytkownika z~aplikacją zostały przedstawione na rysunkac
 \ref{fig:figma_userflow} i~\ref{fig:figma_gameflow}. \\
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/flow-aplikacji/user_flow.png}
-    \caption{Schemat interakcji użytkownika z aplikacją}
-    \label{fig:figma_userflow}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/flow-aplikacji/user_flow.png}
+  \caption{Schemat interakcji użytkownika z aplikacją}
+  \label{fig:figma_userflow}
 \end{figure}
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
-    \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
-    \label{fig:figma_gameflow}
+  \centering
+  \includegraphics[width=\textwidth]{img/flow-aplikacji/game_flow.png}
+  \caption{Schemat interakcji użytkownika z aplikacją podczas rozgrywki brydża}
+  \label{fig:figma_gameflow}
 \end{figure}
 
 \newpage
 
 W~systemie aplikacji zdefiniowane są dwa typy użytkowników:
 \begin{itemize}
-    \item \textbf{anonimowy użytkownik} -- osoba niezalogowana, która nie
-          posiada dostępu do funkcjonalności aplikacji związanych
-          z~rozgrywką.
+  \item \textbf{anonimowy użytkownik} -- osoba niezalogowana, która nie
+        posiada dostępu do funkcjonalności aplikacji związanych
+        z~rozgrywką.
 
-    \item \textbf{zalogowany użytkownik} -- zalogowana osoba posiadająca konto
-          w~aplikacji, mająca pełny dostęp do jej funkcjonalności.
+  \item \textbf{zalogowany użytkownik} -- zalogowana osoba posiadająca konto
+        w~aplikacji, mająca pełny dostęp do jej funkcjonalności.
 \end{itemize}
 
 Funkcjonalności dostępne dla poszczególnych użytkowników:
 \begin{itemize}
-    \item \textbf{anonimowy użytkownik}:
-          \begin{itemize}
-              \item rejestracja nowego konta w~systemie aplikacji.
-              \item logowanie do konta utworzonego w~systemie aplikacji.
-          \end{itemize}
+  \item \textbf{anonimowy użytkownik}:
+        \begin{itemize}
+          \item rejestracja nowego konta w~systemie aplikacji.
+          \item logowanie do konta utworzonego w~systemie aplikacji.
+        \end{itemize}
 
-    \item \textbf{zalogowany użytkownik}:
-          \begin{itemize}
-              \item wylogowanie z~konta (przejście w~stan użytkownika anonimowego),
-              \item tworzenie i~dołączanie do rozgrywek w brydża --
-                    gdy użytkownik założy lub zostanie jedynym
-                    użytkownikiem lobby, to staje się jego
-                    hostem,
-              \item zarządzanie lobby -- może decydować o~graczach znajdujących się wraz
-                    z~nim w~lobby; może decydować o~ich pozycji lub ich wyrzucić
-                    ze wspólnej sesji\footnote{Sesja oznacza to samo co lobby, czyli
-                        abstrakcję łączącą wielu graczy i~asystentów w~obrębie jednej
-                        rozgrywki};
-                    może uzupełnić wolne miejsca wirtualnym asystentem
-                    z~określeniem jego poziomu trudności.
-          \end{itemize}
+  \item \textbf{zalogowany użytkownik}:
+        \begin{itemize}
+          \item wylogowanie z~konta (przejście w~stan użytkownika anonimowego),
+          \item tworzenie i~dołączanie do rozgrywek w brydża --
+                gdy użytkownik założy lub zostanie jedynym
+                użytkownikiem lobby, to staje się jego
+                hostem,
+          \item zarządzanie lobby -- może decydować o~graczach znajdujących się wraz
+                z~nim w~lobby; może decydować o~ich pozycji lub ich wyrzucić
+                ze wspólnej sesji\footnote{Sesja oznacza to samo co lobby, czyli
+                  abstrakcję łączącą wielu graczy w~obrębie jednej
+                  rozgrywki};
+                może uzupełnić wolne miejsca wirtualnym asystentem
+                z~określeniem jego poziomu trudności.
+        \end{itemize}
 \end{itemize}
 
 \FloatBarrier
@@ -72,18 +72,18 @@ Funkcjonalności dostępne dla poszczególnych użytkowników:
 
 Aby uzyskać dostęp do większości funkcjonalności aplikacji, wymagane
 jest posiadanie konta. Anonimowy użytkownik może je utworzyć, klikając
-opcję "\textbf{Register}"\xspace w~nagłówku strony. Po kliknięciu użytkownik
+opcję "Register"\xspace w~nagłówku strony. Po kliknięciu użytkownik
 zostanie przekierowany do formularza rejestracyjnego.
 Do utworzenia konta wymagane jest podanie własnego
 pseudonimu, adresu e-mail oraz hasła. Aby uzyskać dostęp do utworzonego
-konta, należy kliknąć "\textbf{Log in}"\xspace w~nagłówku strony, po czym
+konta, należy kliknąć "Log in"\xspace w~nagłówku strony, po czym
 w~formularzu podać dane wykorzystanie podczas rejestracji (Rys.~\ref{fig:figma_xd_login}).
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/schematy/login.png}
-    \caption{Schemat logowania i~rejestracji użytkownika}
-    \label{fig:figma_xd_login}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/schematy/login.png}
+  \caption{Schemat logowania i~rejestracji użytkownika}
+  \label{fig:figma_xd_login}
 \end{figure}
 
 W~przypadku nieprawidłowo podanych danych podczas rejestracji
@@ -99,9 +99,9 @@ informację na ekranie.
 \subsubsection{Tworzenie lobby}
 
 Rozpoczęcie gry w~brydża jest dostępne z~poziomu lobby. Aby utworzyć
-lobby, należy kliknąć "\textbf{Create lobby}"\xspace na głównym panelu
+lobby, należy kliknąć "Create lobby"\xspace na głównym panelu
 aplikacji. Przekieruje ono użytkownika do nowego lobby, którego staje
-się administratorem. Do utworzonego lobby zostanie wygenerowany
+się hostem. Do utworzonego lobby zostanie wygenerowany
 unikalny identyfikator, zwany dalej kodem. Użytkownik będzie mógł go skopiować
 i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć (Rys.~\ref{fig:figma_xd_create_join_lobby}).
 
@@ -110,14 +110,14 @@ i~udostępnić, np. znajomym, aby mogli oni do niego dołączyć (Rys.~\ref{fig:
 
 Gdy użytkownik otrzyma kod do lobby od innego użytkownika, może
 do niego dołączyć, poprzez główny panel aplikacji. Należy wkleić
-kod w~odpowiednie pole i~klikając opcję "\textbf{Join}"\xspace
+kod w~odpowiednie pole i~klikając opcję "Join"\xspace
 dołączyć do przypisanego do kodu lobby (Rys.~\ref{fig:figma_xd_create_join_lobby}).
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/schematy/create_join_lobby.png}
-    \caption{Schemat tworzenia i dołączania do lobby}
-    \label{fig:figma_xd_create_join_lobby}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/schematy/create_join_lobby.png}
+  \caption{Schemat tworzenia i dołączania do lobby}
+  \label{fig:figma_xd_create_join_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -129,28 +129,28 @@ Jeżeli użytkownik jest hostem lub został jedynym
 użytkownikiem w~lobby, może on zarządzać stanem innych graczy (Rys.~\ref{fig:figma_xd_manage_lobby}).
 Posiada on następujące możliwości:
 \begin{itemize}
-    \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami
-          (może być to gracz lub puste miejsce),
-    \item usunięcie gracza z lobby -- gracz opuszcza lobby i~nie będzie
-          mógł już ponownie do niego dołączyć,
-    \item awans użytkownika na hosta lobby -- wybrany gracz, będący użytkownikiem
-          aplikacji, otrzymuje uprawnienia hosta; poprzedni host traci uprawnienia hosta,
-    \item zajęcie wolnej pozycji jako wirtualny asystent -- wybrana pozycja
-          w~grze będzie kontrolowana przez asystenta
-          i~uczestniczyć w~rozgrywce jako partner lub przeciwnik,
-    \item zamknięcie lobby -- jeżeli host jest ostatnim
-          użytkownikiem w~lobby, opuszczenie go spowoduje jego automatyczne
-          zamknięcie.
-          %  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
-          %         dostępność rozgrywki rozpoczętej przez lobby w~panelu
+  \item zamiana pozycji w lobby -- dwie wybrane pozycje są zamieniane miejscami
+        (może być to gracz lub puste miejsce),
+  \item usunięcie gracza z lobby -- gracz opuszcza lobby i~nie będzie
+        mógł już ponownie do niego dołączyć,
+  \item awans użytkownika na hosta lobby -- wybrany gracz, będący użytkownikiem
+        aplikacji, otrzymuje uprawnienia hosta; poprzedni host traci uprawnienia hosta,
+  \item zajęcie wolnej pozycji jako wirtualny asystent -- wybrana pozycja
+        w~grze będzie kontrolowana przez asystenta
+        i~uczestniczyć w~rozgrywce jako partner lub przeciwnik,
+  \item zamknięcie lobby -- jeżeli host jest ostatnim
+        użytkownikiem w~lobby, opuszczenie go spowoduje jego automatyczne
+        zamknięcie.
+        %  \item zmiana statusu lobby na publiczne/prywatne -- powoduje
+        %         dostępność rozgrywki rozpoczętej przez lobby w~panelu
 
 \end{itemize}
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/schematy/manage_lobby.png}
-    \caption{Schemat zarządzania lobby}
-    \label{fig:figma_xd_manage_lobby}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/schematy/manage_lobby.png}
+  \caption{Schemat zarządzania lobby}
+  \label{fig:figma_xd_manage_lobby}
 \end{figure}
 
 \FloatBarrier
@@ -158,7 +158,7 @@ Posiada on następujące możliwości:
 
 \subsubsection{Zgłoszenie gotowości}
 Użytkownik po dołączeniu do lobby może zgłosić gotowość do rozgrywki poprzez
-naciśnięcie przycisku "\textbf{Ready}". Przejście wszystkich użytkowników w~lobby
+naciśnięcie przycisku "Ready". Przejście wszystkich użytkowników w~lobby
 w~stan gotowości spowoduje rozpoczęcie się gry.
 
 
@@ -167,10 +167,10 @@ w~stan gotowości spowoduje rozpoczęcie się gry.
 \subsubsection{Licytacja}
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/schematy/bid.png}
-    \caption{Schemat zgłoszenie odzywki}
-    \label{fig:figma_xd_bid}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/schematy/bid.png}
+  \caption{Schemat zgłoszenie odzywki}
+  \label{fig:figma_xd_bid}
 \end{figure}
 
 Na etapie początkowym gry, uczestnicy mają możliwość zgłaszania odzywek poprzez
@@ -196,10 +196,10 @@ Gracz będący partnerem dziadka zagrywa karty w~jego imieniu,
 zgodnie z~zasadami gry w~brydża.
 
 \begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{img/schematy/play_card.png}
-    \caption{Schemat zagrania karty przez użytkownika}
-    \label{fig:figma_xd_play_card}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/schematy/play_card.png}
+  \caption{Schemat zagrania karty przez użytkownika}
+  \label{fig:figma_xd_play_card}
 \end{figure}
 
 \FloatBarrier
@@ -234,7 +234,7 @@ w~użyciu, ale także funkcjonalna. Musi spełniać założone wymagania,
 udostępniając odpowiednie funkcjonalności przydatne dla
 jej użytkowników. Nie da się jej używać, jeśli brakuje w~niej
 wirtualnego asystenta z~odpowiednim
-algorytmem AI, czy w~ogóle elementu
+algorytmem AI, czy też elementu
 rozgrywki. Bez spełnienia kluczowych wymagań funkcjonalnych,
 aplikacja praktycznie nie istnieje. W~tym podrozdziale przedstawiamy
 te wymagania.
@@ -326,7 +326,7 @@ projektowania interfejsu użytkownika kierować się zasadami
 dobrego UI/UX.
 Za cel postanowiono stworzenie minimalistycznego i~uporządkowanego
 interfejsu, który zapewniłby spójność na wszystkich podstronach aplikacji.
-Wykorzystamy ikony o~jednakowym znaczeniu na wszystkich stronach,
+Wykorzystane mają zostać ikony o~jednakowym znaczeniu na wszystkich stronach,
 co ułatwi nawigację. Dodatkowo zastosujemy stałą gamę starannie
 dobranych kolorów dla elementów interfejsu, co pozwoli nam utrzymać
 spójny styl podczas projektowania kolejnych widoków. Aplikacja
